@@ -1,0 +1,4 @@
+# 调试/敏感文件，不纳入仓库
+.env.local
+*.json
+update_data*.py

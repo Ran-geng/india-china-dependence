@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印度对中国产业依赖研究 · 贸易·原材料·工程器械·零部件</title>
+<meta name="description" content="基于公开数据，研究印度在原材料、工程器械（如盾构机）、零部件等关键领域对中国的产业依赖程度，含贸易概况、依赖度可视化、转口贸易追踪与贸易政策。">
+<link rel="stylesheet" href="styles.css">
+<script src="vendor/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot">依</span>印度对华产业依赖研究</div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#overview">贸易概况</a>
+      <a href="#dependence">依赖产业分析</a>
+      <a href="#transship">转口贸易追踪</a>
+      <a href="#policy">贸易政策</a>
+      <a href="#datasrc">数据来源与更新</a>
+      <a href="#sources">来源声明</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="tag">RESEARCH · 数据驱动的产业依赖度分析</span>
+    <h1>印度对中国的产业依赖程度研究</h1>
+    <p>聚焦原材料、工程器械（如盾构机）、零部件三大关键领域，结合双边贸易、转口贸易与政策变动，用公开数据呈现印度制造业与供应链对中国的真实依赖图景。</p>
+    <div class="stat-strip" id="heroStats"></div>
+  </div>
+</header>
+
+<!-- 1. 贸易概况 -->
+<section class="section" id="overview">
+  <div class="section-head">
+    <div class="kicker">01 · Trade Overview</div>
+    <h2>中印贸易概况</h2>
+    <p>中国是印度最大贸易伙伴之一。印度对华长期呈现巨额贸易逆差，且逐年扩大——印度向中国出口以矿产、金属等初级原材料为主，而自中国进口的多为电子、机械等高附加值成品。</p>
+  </div>
+
+  <div class="kpi" id="kpiCards" style="margin-bottom:26px"></div>
+
+  <div class="grid g-2">
+    <div class="chart-card">
+      <h3>双边贸易额与逆差趋势（2014–2025 财年）</h3>
+      <div class="sub">单位：十亿美元（USD Bn）· 数据源：印度商务部 DGCIS<a class="cite-ref" href="#sources" data-cite="1">1</a></div>
+      <div class="chart-wrap"><canvas id="tradeChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>印度自华进口品类结构</h3>
+      <div class="sub">2025–26 财年 · 电子/电信/电气为最大单一品类（占比约 34%）<a class="cite-ref" href="#sources" data-cite="83">83</a></div>
+      <div class="chart-wrap"><canvas id="catChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- 印度视角 · DGCIS / TIA 官方数据交叉校验（默认折叠，点击展开） -->
+  <div class="collapse-sec collapsed" id="tiaWrap" style="margin-top:26px">
+    <button class="collapse-toggle" id="tiaToggle" type="button" aria-expanded="false" aria-controls="tiaCross">
+      <span class="collapse-title">印度视角 · DGCIS / TIA 官方数据交叉校验</span>
+      <span class="collapse-icon" id="tiaIcon"><span class="chev">▾</span> 展开</span>
+    </button>
+    <div class="collapse-body" id="tiaCross"></div>
+  </div>
+
+  <!-- 多源交叉验证：印度视角 vs 中国镜像（默认折叠，点击展开） -->
+  <div class="collapse-sec collapsed" id="crossCheckWrap" style="margin-top:22px">
+    <button class="collapse-toggle" id="xcheckToggle" type="button" aria-expanded="false" aria-controls="crossCheck">
+      <span class="collapse-title">多源交叉验证 · 两个独立海关互为印证</span>
+      <span class="collapse-icon" id="xcheckIcon"><span class="chev">▾</span> 展开</span>
+    </button>
+    <div class="collapse-body" id="crossCheck"></div>
+  </div>
+
+  <!-- 2026 年月度贸易追踪（中国海关月度镜像） -->
+  <div class="monthly-block" id="monthlyPanel" style="margin-top:22px"></div>
+</section>
+
+<!-- 2. 依赖产业分析 -->
+<section class="section" id="dependence" style="background:var(--surface-2);max-width:none">
+  <div style="max-width:var(--maxw);margin:0 auto">
+    <div class="section-head">
+      <div class="kicker">02 · Dependence Analysis</div>
+      <h2>印度对中国依赖产业分析</h2>
+      <p>下列以“依赖指数”（中国在该产业印度进口中的份额）直观呈现依赖程度。共覆盖 <strong>17 个</strong>印度自华进口高依赖产业，横跨<strong>原材料 / 关键矿产</strong>、<strong>工程器械与设备</strong>、<strong>零部件</strong>、<strong>轻工 / 消费品</strong>四大领域——既包括稀土磁体、多晶硅、原料药等战略品类，也补全了 GTRI 报告中对华依赖度最高的<strong>纺织品服装（42%）</strong>、<strong>工程机械（39.6%）</strong>、<strong>塑料制品（25.8%）</strong>、<strong>汽车零配件（23.3%）</strong>、<strong>钢铁贱金属（17.6%）</strong>、<strong>化肥（特种肥 80%）</strong>、<strong>医疗器械与玩具</strong>等此前未单独列出的产业。</p>
+    </div>
+
+    <!-- 印度对华依赖产业总览分析（默认收起，点击展开） -->
+    <div class="ov-report collapsed" id="overviewReport">
+      <button class="ov-report-toggle" id="ovToggle" aria-expanded="false" aria-controls="ovBody">
+        <span class="ov-report-toggle-title">印度对华依赖产业总览分析</span>
+        <span class="ov-report-toggle-icon" id="ovToggleIcon"><span class="chev">▾</span> 展开</span>
+      </button>
+      <div class="ov-report-body" id="ovBody">
+        <div class="report-block" id="ovReportBody"></div>
+        <div class="report-actions">
+          <button class="dl-docx" id="dlOvDocx">⬇ 下载总览分析报告（DOCX）</button>
+          <span class="dl-hint">点击后浏览器将直接生成并下载 Word 文档，无需联网</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-bar" id="depFilter">
+      <button class="active" data-f="all">全部</button>
+      <button data-f="raw">原材料 / 关键矿产</button>
+      <button data-f="machine">工程器械与设备</button>
+      <button data-f="part">零部件</button>
+      <button data-f="consumer">轻工 / 消费品</button>
+    </div>
+
+    <div class="grid g-3" id="depGrid"></div>
+
+    <div class="chart-card" style="margin-top:26px">
+      <h3>产业对华依赖 TOP 品类 <span class="tag-sub">17 大产业 · 统一基准年 FY2024-25</span></h3>
+      <div class="sub">统一数据年份：<b>FY2024-25</b>（印度财年，2024-04 ~ 2025-03）；标注 <b>†</b> 的子项为 CY2024 日历年海关口径（与基准财年重叠 9 个月，官方财年数据缺位时的等效替代）。分类一律按产品类目（HS），细分品类均标注 HS 编码（能落到 6 位子目者标 6 位）。数据源见各模块「查看详情」及来源 [36][58]–[71]</div>
+      <div class="subdep-grid" id="industryTopGrid"></div>
+    </div>
+    <p class="chart-note">说明：本面板已于 2026-07 按三条规则完成整改——①<b>统一基准年</b>：柱状图仅展示 FY2024-25（或 † CY2024 海关口径）数据，其他年份数值一律退入卡片注释作背景，不再上图；②<b>标签规范</b>：只含「产品名 (HS 编码)」，不含时间信息，单一产品标 6 位子目（如 8541.42、9022.12、8447.20），篮子类目如实标 4 位品目或章级范围（如 3904、72 章）；③<b>不做伪细分</b>：「多晶硅·中国全球份额」「LFP 正极全球产能」等全球指标，以及按时间分档（如同一产品的 FY24/FY25 两档、电子按财年分档）均不代表印度对华进口依赖，已全部移出柱图；无基准年可信数据的<b>盾构机（TBM）</b>已从本面板移除（其产业分析保留在上方模块）。钢铁 FY25 产品级、机床/挖掘机等官方分母缺位或年份不符的子项暂不上图、只留注释，绝不推算编造。</p>
+  </div>
+</section>
+
+<!-- 3. 转口贸易追踪 -->
+<section class="section" id="transship">
+  <div class="section-head">
+    <div class="kicker">03 · Transshipment Tracking</div>
+    <h2>依赖产业转口贸易追踪</h2>
+    <p>面对高关税与边境紧张，部分中国商品经第三国（如越南、中国香港、东南亚）绕道进入印度，借自贸协定“洗产地”规避关税。以下记录主要转口路径与佐证数据。</p>
+  </div>
+
+  <div class="flow" id="routeFlow"></div>
+
+  <div class="context-box">
+    <h4>转口贸易背景与监管</h4>
+    <ul id="contextList"></ul>
+  </div>
+</section>
+
+<!-- 4. 贸易政策 -->
+<section class="section" id="policy" style="background:var(--surface-2);max-width:none">
+  <div style="max-width:var(--maxw);margin:0 auto">
+    <div class="section-head">
+      <div class="kicker">04 · Trade Policy</div>
+      <h2>中印相关贸易政策</h2>
+      <p>两国围绕关税、投资限制、出口管制、本土激励与 WTO 争端展开博弈。印度以 PLI、原产地规则、投资审查降低依赖，中国以稀土出口管制与 WTO 诉讼回应。</p>
+    </div>
+
+    <div class="policy-cols">
+      <div class="policy-col">
+        <h3><span class="flag in"></span>印度侧政策措施</h3>
+        <div class="timeline" id="policyIndia"></div>
+      </div>
+      <div class="policy-col">
+        <h3><span class="flag cn"></span>中国侧政策措施</h3>
+        <div class="timeline" id="policyChina"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4.5 数据来源与更新 -->
+<section class="section" id="datasrc">
+  <div class="section-head">
+    <div class="kicker">05 · Data Sources & Freshness</div>
+    <h2>数据来源与更新</h2>
+    <p>本站数据整合三类权威公开来源。各源更新频率、覆盖范围与接入方式如下；实时抓取由 <code>update_data.py</code> 经 UN Comtrade API 完成，可配合系统定时任务实现<strong>定期自动更新</strong>。页面所有图表与明细均标注来源编号与口径。</p>
+  </div>
+
+  <div class="last-updated" id="lastUpdated"></div>
+
+  <div class="src-registry" id="srcRegistry"></div>
+
+  <div class="update-note">
+    <h4>如何保持数据新鲜</h4>
+    <ul>
+      <li><b>UN Comtrade（自动）</b>：申请免费 API Key 后，<code>export COMTRADE_KEY="你的key"</code> 并运行 <code>python update_data.py</code>，结果写入 <code>data_live.js</code>，刷新页面即生效。可用 crontab / 任务计划程序每日定时执行。</li>
+      <li><b>中国海关总署（人工）</b>：官网 <code>customs.gov.cn</code> 每月中旬发布上月快讯，无开放 API，需人工录入或解析 PDF 后更新 <code>data.js</code> 对应字段。</li>
+      <li><b>印度商务部 DGCIS（人工）</b>：<code>commerce.gov.in</code> / 驻华使馆发布月度贸易公告与财年汇总，部分经 Lok Sabha 答复、PIB，无开放 API，需人工更新。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 来源声明（默认收起，点击展开） -->
+<footer class="disclaimer collapsed" id="sources">
+  <button class="disc-toggle" id="discToggle" aria-expanded="false" aria-controls="discBody">
+    <span class="disc-toggle-title">信息来源声明</span>
+    <span class="disc-toggle-icon" id="discToggleIcon"><span class="chev">▾</span> 展开</span>
+  </button>
+  <div class="disclaimer-inner disc-body" id="discBody">
+    <p class="lead">本网站所有数据与结论均基于以下真实公开来源整理，力求准确、可溯源。文中角标数字对应下列来源编号。不同来源的统计口径（财年/自然年、HS 编码、数据发布机构）可能存在差异，引用时已尽量标注口径。本站仅供研究参考，不构成任何投资或政策建议。</p>
+    <div class="src-list" id="srcList"></div>
+    <div class="foot-note">
+      <strong>口径提示：</strong>印度官方多采用财年（4 月–次年 3 月）口径，中国海关采用自然年口径，两者数据存在正常差异。例如中国海关口径 2025 年中印双边贸易额约 1556.2 亿美元、印度逆差约 1161.2 亿美元<a class="cite-ref" href="#sources" data-cite="19">19</a>；而印度财年口径 2024-25 双边约 1277 亿美元、逆差约 992 亿美元<a class="cite-ref" href="#sources" data-cite="1">1</a>。<br>
+      © 2026 印度对华产业依赖研究 · 数据整理于 2026 年 7 月，仅供学术与研究用途。
+    </div>
+  </div>
+</footer>
+
+<!-- 产品模块详情弹窗（务必位于脚本之前，确保运行时 DOM 已就绪） -->
+<div class="modal" id="depModal" aria-hidden="true">
+  <div class="modal-mask" id="depMask"></div>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="depClose" aria-label="关闭">×</button>
+    <div class="modal-head">
+      <div class="m-grp" id="mGrp"></div>
+      <h3 id="mName"></h3>
+      <div class="m-dep" id="mDep"></div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="data_live.js"></script>
+<script src="docxGen.js"></script>
+<script src="data_cross.js"></script>
+<script src="data_monthly.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
