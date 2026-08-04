@@ -1,0 +1,29 @@
+name: Monthly data refresh
+
+# 定期（每月 1 日 02:00 UTC）自动运行 refresh_monthly.py，刷新 LAST_UPDATED 与 TIA 总量；
+# 亦可手动在 Actions 页面点击 "Run workflow" 触发。
+on:
+  schedule:
+    - cron: '0 2 1 * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run monthly refresh
+        run: python refresh_monthly.py
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.js data_live.js
+          git diff --cached --quiet || git commit -m "chore: monthly data refresh $(date +%F)"
+          git push

@@ -114,7 +114,28 @@ const SOURCES = [
   { id: 104, name: "中国国务院《两用物项出口管制条例》+ 统一管制清单 公告 2024 年第 51 号（2024-12-01 生效）· 首次以行政法规统一两用物项管制规则，整合稀土、镓锗锑、无人机、传感器等逾千项", url: "https://swt.sc.gov.cn/sccom/c25030605/2026/6/19/30db33c59ba24936bcc6da74b08771eb.shtml" },
   { id: 105, name: "新华社 / The Hindu BusinessLine（2025-10-09 六项公告 → 2025-11-07 暂停一年至 2026-11-10）· 新增超硬材料、稀土设备与原辅料、5 种中重稀土、锂电池及人造石墨负极管制，并对「境外含中国稀土成分≥0.1% 物项」与稀土技术实施域外管制；经中美磋商暂停实施，对印度产业同样构成缓解", url: "https://www.xinhuanet.com/english/20251107/7a75d5b66d544baab747f77d6b9f52f0/c.html" },
   { id: 106, name: "The Hindu（2025-10-15 起）· 中方关闭化肥出口窗口（尿素、DAP、特种肥 TMAP）；印度约 95% 特种化肥自华进口，业界预计涨价 10–15%；2025-05~06 亦曾对印停供，8-19 中印外长会晤后短暂解禁", url: "https://www.thehindu.com/business/india-faces-specialty-fertiliser-price-jump-as-china-suspends-exports/article70187264.ece" },
-  { id: 107, name: "中国商务部 公告 2025 年第 24 号 / 第 42 号· 对印度氯氰菊酯征 48.4%–166.2% 反倾销税（5 年，2025-05-07 起）；对原产印度单模光纤反倾销期终复审立案（2025-08-14，继续征 7.4%–30.6%）", url: "https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=102876" }
+  { id: 107, name: "中国商务部 公告 2025 年第 24 号 / 第 42 号· 对印度氯氰菊酯征 48.4%–166.2% 反倾销税（5 年，2025-05-07 起）；对原产印度单模光纤反倾销期终复审立案（2025-08-14，继续征 7.4%–30.6%）", url: "https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=102876" },
+  /* —— 本轮新增：贸易流 / 军工端用途 / 转口新案例（2026-08 核实） —— */
+  { id: 108, name: "The Ken（2024-25）调查· 印度陆军、CRPF、BSF、ITBP 与恰蒂斯加尔警方经东南亚/阿联酋灰市购入中国大疆（DJI）商用无人机用于边境与反毛派行动，违反 2020 采购禁令；印无人机厂 Skylark 被指以中国技术冒充国产遭 DGCA 调查", url: "https://the-ken.com/story/the-ken-investigation-army-crpf-and-bsf-cant-do-without-banned-chinese-drones" },
+  { id: 109, name: "DefenseMirror（2024-25）· 印陆军 2023 年 ₹230 crore 应急采购 400 架后勤无人机（部署 LAC），因检出中国电子/部件、存在「后门」风险于 2024-25 取消合同", url: "https://www.defensemirror.com/news/38781/" },
+  { id: 110, name: "ORF（2025）· 印度 FY22-25 永磁体进口 59.6%–81.3% 来自中国，用于 Tejas 雷达/飞控、BrahMos 导引头、舰艇电机、导弹制导；2025-10 印企按中方要求提交「不转口美国」终端用户证明", url: "https://www.orfonline.org/research/-chokepoint-politics-china-s-rare-earth-statecraft-and-india-s-search-for-strategic-autonomy/" },
+  { id: 111, name: "India Today（2026-04-01）· 印度海军 2021 令停用海康威视并销毁存量；约 90% 印 200 万监控摄像头为中国产（Hikvision/Dahua），布于军营/机场周边；2026-04-01 起 STQC 认证全面禁中国联网摄像头", url: "https://www.indiatoday.in/amp/technology/news/story/why-india-is-banning-hikvision-dahua-tp-link-cctv-cameras-from-today-all-you-need-to-know-2889858-2026-04-01" },
+  { id: 112, name: "Construction World（2025-09-29）· DGTR 对华太阳能电池及组件征最高 30% 反倾销税（3 年），明确「中国经泰/柬/越/马来在东南亚制造再出口」同样征 30%（反规避条款）；称中国经这些国规避美/土限制", url: "https://www.constructionworld.in/policy-updates-and-economic-news/india-imposes-up-to-30--antidumping-duty-on-chinese-solar-cells/79516" },
+  { id: 113, name: "Lexology / Reuters（2025-11-13）· 印度财政部对越南热轧扁钢征 USD 121.55/吨（5 年），Reuters 注明「经越南转运的第三国货」同适用；进口商改走半成品钢规避", url: "https://www.lexology.com/library/detail.aspx?g=46c35dec-5bf1-477c-8cd5-91a20c438b1a" },
+  { id: 114, name: "India Briefing（2025-03-18）· CBIC 第 14/2025 号通告将「Certificate of Origin」改「Proof of Origin」扩权查中国经东盟/UAE 转口钻 FTA 漏洞；eCoO 2.0 自 2025-01-01 强制电子产地证；2025-04 撤销 Circular 29/2020（经孟加拉 LCS 转口）", url: "https://www.india-briefing.com/news/proof-of-origin-replaces-certificate-in-indias-trade-rules-36610.html" },
+  { id: 115, name: "Gujarat Customs / Mundra（2025-12-26）· 向三进口商发 Show Cause Notice，指其借 India-UAE CEPA 以阿联酋公司跳板进口面料，原料（尼龙/聚酯）与 CTH 不符、未达 40% 增值", url: "https://gujaratcustoms.gov.in/juridictional_commissionerate/public//storage/pdfs/nAFt5nq4MoqJ8wZZrqUG1oX6u9a9ul4mn9FKFKZw.pdf" },
+  { id: 116, name: "Times of India / feeds（2024-12）· DRI 在 ICD Sanathnagar 查中国产假冒化妆品经迪拜转口、低估约 70%、由相关人控制", url: "https://toifeeds.indiatimes.com/city/hyderabad/china-to-hyd-via-dubai-dri-unmasks-fake-cosmetics-at-city-container-depot/articleshow/119671200.cms" },
+  { id: 117, name: "Indian Express（2025）· DRI「Operation Fire Trail」在 Nhava Sheva/Thoothukudi/Mundra 查中国产烟花瞒报为 leggings/工具，单笔 ₹4.82–6.32 crore，累计 ₹35 crore+（规避进口许可，非第三国转口）", url: "https://indianexpress.com/article/cities/mumbai/dri-seizes-chinese-origin-firecrackers-worth-rs-4-82-crore-at-nhava-sheva-port-10317643/" },
+  { id: 118, name: "Financial Express / GTRI（2025-26）· 印自华进口 USD 131.63 bn（占 16%），98.5% 为工业投入，电子 43%/机械 40%/有机化学品 44%；政府设跨部门「进口激增监测」小组防中/越/印尼转口倾销", url: "https://www.financialexpress.com/business/news-indian-manufacturing-dependence-on-china-deepens-industrial-inputs-form-98-5-of-total-imports-gtri-4220806/" },
+  { id: 119, name: "徐工 XCMG（官方）· 向 Reliance Industries SANSAN 电厂出口 7×QUY650+10×QUY150 履带吊（创大吨位出口纪录）；向 Tata Steel Kalinganagar 钢厂扩建供 650 吨履带吊", url: "https://www.xcmgmachinery.com/" },
+  { id: 120, name: "中联重科 Zoomlion India（官方）· 向 Reliance Industries 直供 120 台 QY75V 汽车吊用于自建项目", url: "https://www.zoomlionindia.org/" },
+  { id: 121, name: "迈瑞医疗 Mindray（官方）· 新冠期向印度供应数千台 ICU/呼吸机设备，客户含 HLL Lifecare、Tata Trusts、AIIMS Rishikesh 等", url: "https://www.mindray.com/" },
+  { id: 122, name: "联影医疗 United Imaging（2026-04）· 6 年累计对印销售超 10 亿美元（CT/PET-CT 700+ 台），2025-12 单笔 20 亿元人民币订单；经 Medikabazaar 等代理/CDSCO 持证", url: "https://www.united-imaging.com/" },
+  { id: 123, name: "ImportGenius / 贸易公社（海关提单）· 福耀玻璃（Fuyao）对印出口汽车玻璃 4529 批海关记录；舜宇/丘钛经 Dixon 收购的印度子公司供货智能手机光学件（documented）", url: "https://www.importgenius.com/" },
+  { id: 124, name: "Volza / Panjiva（海关数据）· Dixon Technologies 收购印度 HKC 子公司以承接中国电子元件转口/本地化；电子/电信经香港、越南、新加坡、马来西亚贴牌绕 FTA 证据（DRI 调查 + 财政部 2025 原产地新规）", url: "https://www.volza.com/" },
+  { id: 125, name: "SteelMint / steel.gov.in· 中国对印成品钢出口 FY25 约 253 万吨；JSW、AM/NS 申请对越南热轧板征反倾销税 $121.55/吨，认定越南作中国转运通道；焊管反补贴税对中越延长 5 年", url: "https://www.steelmint.in/" },
+  { id: 126, name: "The Dollar Business（2024-25）· 印度玩具进口前三大买家 Leo Godt/Mattel India/Bharat Balloon，华货占 $40.2M；经新加坡 $13.1M、香港 $2.7M 中转；越南持 14 张外资玩具 BIS 许可被用作转口", url: "https://www.thedollarbusiness.com/" },
+  { id: 127, name: "MedicalBuyer / AiMeD（2025）· 约 40% 中国医疗器械被标「印度制造」白牌经第三国转口规避 CDSCO；印度政府以国防/数据安全为由启动审查", url: "https://www.medicalbuyer.co.in/" }
 ];
 
 /* --------- 数据源登记表（更新频率 / 覆盖范围 / 接入方式）--------- */
@@ -141,7 +162,7 @@ const DATA_SOURCES = [
     api:false }
 ];
 /* 本批数据整理时间（更新脚本会自动改写此值）*/
-const LAST_UPDATED = "2026-07-28";
+const LAST_UPDATED = "2026-08-04";
 
 /* --------- 1. 中印双边贸易历史（单位：十亿美元 / USD Bn）--------- */
 /* 来源：印度驻华大使馆（印度商务部 DGCIS），财年口径 --------- */
@@ -818,6 +839,99 @@ const DEPENDENCE_INDUSTRIES = [
 ];
 
 /* --------- 2.5 各产业「依赖情况及替代可能性」分析报告文本 --------- */
+/* =====================================================================
+ * TRADE_FLOWS —— 17 产业「贸易流」细化（2026-08 核实）
+ * 每个产业给出若干条 中国出口商 → 印度采购商 → 下游去向 的链路。
+ * 字段：
+ *   seller      中国主要出口商（具体公司，documented 为公开披露/报道）
+ *   buyer       印度主要采购商 / 进口方
+ *   transship   是否经第三国中转（贴牌/洗产地）
+ *   via         中转地（越南/香港/马来/阿联酋…）
+ *   downstream  印度采购后去向：自产 / 流向X公司或Y用途
+ *   military    是否流向军工/国防企业（仅在有公开证据或国防关联时标 true）
+ *   militaryNote 军工端说明（无证据时写「未见公开军工端用途证据」）
+ *   confidence  documented(有公开证据) / representative(代表性推断)
+ *   note        一句补充说明
+ *   source      来源编号数组
+ * 说明：公司级「一对一」海关提单多为付费源(ImportGenius/Volza/Panjiva)，
+ *       公开可查的直供多为「厂商公开披露/行业报道」，已在 confidence 区分。
+ * ===================================================================== */
+const TRADE_FLOWS = {
+  "稀土永磁体": [
+    { seller:"金力永磁/中科三环/宁波韵升（中国 NdFeB 龙头）", buyer:"Uno Minda / SAMVARDHANA MOTHERSON（汽车零部件）", transship:false, via:"", downstream:"供 Tata Motors、Mahindra 等 EV/混动车用电机（自产电机后装车）", military:true, militaryNote:"中国要求终端用户证明「不用于军工」；公开报道指印国防经中间商进口中国磁体供 DRDO/HAL/BEL 导弹舵机、雷达、航电（2024 约 460 吨）", confidence:"documented", note:"民用车链为 documented；军工端为统计/推断（ORF）", source:[110,12] },
+    { seller:"中国磁体厂商（个别经香港/新加坡）", buyer:"Ola Electric / Ather（电动两轮车）", transship:true, via:"香港/新加坡", downstream:"自产两轮车电机", military:false, militaryNote:"未见公开军工端用途证据", confidence:"representative", note:"磁体多对华直供，个别经香港中转为代表性推断", source:[12] }
+  ],
+  "原料药（API/关键起始物料）": [
+    { seller:"新和成/华海/九洲/普洛/国邦（中国原料药头部）", buyer:"Sun Pharma / Cipla / Aurobindo / Lupin / Dr Reddy's", transship:false, via:"", downstream:"自产制剂（出口全球 + 印度本土用药）", military:false, militaryNote:"未见公开军工端用途证据（API 为医药用途）", confidence:"documented", note:"中国医药保健品进出口商会：2023 印自华 API 及中间体约 $101.5 亿、占其进口 68.8%", source:[40,22] },
+    { seller:"青霉素/6-APA 中间体中国厂", buyer:"Aurobindo/Lyfius Kakinada 青霉素 G→6-APA 厂", transship:false, via:"", downstream:"本土自产替代（降依赖约 50%），仍部分依赖中国", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开，为代表性推断", source:[4,23] }
+  ],
+  "大宗 / 精细化学品（乙酸、甲醇、异丙醇等）": [
+    { seller:"华鲁恒升/江苏索普/上海华谊（冰醋酸）", buyer:"印度化工/制药企业", transship:false, via:"", downstream:"自产醋酸乙烯/PTA 等，供胶粘剂、制药、塑料", military:false, militaryNote:"未见", confidence:"documented", note:"乙酸（HS 2915.21）2024 自华占约 53%", source:[36] },
+    { seller:"中东（沙特/卡塔尔）/马来西亚/新加坡（甲醇主供）", buyer:"印度甲醇消费企业", transship:false, via:"", downstream:"化工原料", military:false, militaryNote:"未见", confidence:"documented", note:"甲醇（HS 2905.11）自华仅约 4.3%，中东主导——非中国依赖项", source:[34] },
+    { seller:"中国化学品（经越南/马来）", buyer:"印度（贴牌洗产地）", transship:true, via:"越南/马来", downstream:"化工进口", military:false, militaryNote:"未见", confidence:"representative", note:"精细化学品经东盟中转规避关税为常见模式，具体案未见公开", source:[14] }
+  ],
+  "盾构机（TBM）": [
+    { seller:"中铁装备 CREG / 中铁重工 CRCHI / 海瑞克广州（德资在华）", buyer:"Mumbai Metro / DFCCIL / 各城市地铁 / 高铁项目（孟买-艾哈迈达巴德）", transship:false, via:"", downstream:"基建施工自用（隧道掘进），业主为政府/国企项目", military:false, militaryNote:"边境/战略隧道具潜在国防属性，但 TBM 采购为民用基建合同", confidence:"documented", note:"孟买地铁 18 台中 8 台中资制造；2025-08 3 台滞留中国港口", source:[25,11,38] },
+    { seller:"北方重工/中铁系", buyer:"印度 BRO 边境战略通道项目", transship:false, via:"", downstream:"边境公路/隧道施工（具国防用途）", military:true, militaryNote:"BRO 隶属国防部建边境战略通道；中资占印工程机械主要份额", confidence:"representative", note:"边境基建具明确国防用途，具体 TBM 采购合同未见公开", source:[38] }
+  ],
+  "太阳能电池 / 组件": [
+    { seller:"晶科/隆基/天合/晶澳/阿特斯（中国组件）", buyer:"Tata Power Solar / Adani Solar / Waaree / Vikram Solar / RenewSys", transship:false, via:"", downstream:"自供电站 EPC（Sterling & Wilson 等）及本土组件封装", military:false, militaryNote:"未见公开军工端用途证据", confidence:"documented", note:"FY24 自华太阳能设备 $3.89B、占 62.6%", source:[26,39] },
+    { seller:"中国组件（经越南/马来/泰/柬/印尼贴牌）", buyer:"印度进口商（规避 40% BCD）", transship:true, via:"越南/马来/泰/柬/印尼", downstream:"印度电站", military:false, militaryNote:"未见", confidence:"documented", note:"美国 CBP 对 Waaree 的 EAPA 8163 规避裁定（最高 271.28% 税）；DGTR 2025-09 终裁含对东南亚制造再出口征 30% 反规避条款", source:[112,39] }
+  ],
+  "多晶硅 / 硅片（上游）": [
+    { seller:"通威/大全/协鑫/新特/亚洲硅业（中国多晶硅）", buyer:"Adani / Reliance（Jamnagar 建厂）/ Waaree 拟建上游", transship:false, via:"", downstream:"本土拉棒/切片/电池，仍依赖中国多晶硅", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开；印度多晶硅几近空白、对华依赖极高", source:[27,28] },
+    { seller:"中国硅片（经第三国）", buyer:"印度电池厂", transship:true, via:"东南亚", downstream:"电池制造", military:false, militaryNote:"未见", confidence:"representative", note:"上游经东盟中转规避，具体案少见公开", source:[27] }
+  ],
+  "电子 / 电信 / 电气产品": [
+    { seller:"华为/中兴（电信设备）", buyer:"BSNL / Airtel / Reliance Jio（网络）", transship:false, via:"", downstream:"自组网/运维，供电信与部分政府网络", military:true, militaryNote:"印军/边防通信网曾含中国设备隐患；2020 后限制但存量与替代仍存漏洞（关联监控设备禁令背景）", confidence:"documented", note:"电信设备具潜在国防/安全用途", source:[111,29] },
+    { seller:"小米/OPPO/vivo/比亚迪电子/立讯/歌尔", buyer:"Dixon Technologies / Foxconn India / 塔塔电子 / 三星印度", transship:false, via:"", downstream:"代工后供品牌（自产整机/模组）或流向 OEM", military:false, militaryNote:"未见直接军工端用途证据", confidence:"documented", note:"电子/电信/电气自华占 43.9%（大陆）", source:[29,30] },
+    { seller:"中国电子元件（经香港/越南/新加坡/马来贴牌）", buyer:"印度 EMS 代工厂", transship:true, via:"香港/越南/新加坡/马来", downstream:"组装后内销/出口", military:false, militaryNote:"未见", confidence:"documented", note:"DRI 调查 + 财政部 2025 原产地新规针对此类中转", source:[124,14] }
+  ],
+  "锂离子电池": [
+    { seller:"宁德时代/比亚迪/亿纬/国轩/欣旺达", buyer:"Ola Electric / Ather / Tata AutoComp / Exide / Amara Raja", transship:false, via:"", downstream:"自产电池包供 EV/两轮车/储能", military:true, militaryNote:"印军无人机 60–70% 关键件（电池/电机/传感器）来自中国，无人机电池 75–80% 自华进口（关联 DJI 灰市采购）", confidence:"documented", note:"锂电自华占 75%（$2.2B）", source:[31,108,109] },
+    { seller:"ATL/中国电芯（经第三国）", buyer:"印度 Pack 厂", transship:true, via:"东南亚", downstream:"本地 Pack 后供 EV", military:false, militaryNote:"未见新证据", confidence:"representative", note:"电芯经东盟中转常见", source:[31] }
+  ],
+  "智能手机零部件": [
+    { seller:"立讯/歌尔/舜宇/丘钛/蓝思/比亚迪电子", buyer:"富士康 India / 塔塔电子 / Dixon / 小米·vivo·OPPO 在印工厂", transship:false, via:"", downstream:"组装成手机后内销/出口（自产整机）", military:false, militaryNote:"未见公开军工端用途证据（消费电子）", confidence:"documented", note:"舜宇/丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", source:[123,33] },
+    { seller:"中国光学/结构件（经越南/香港）", buyer:"印度组装厂", transship:true, via:"越南/香港", downstream:"手机组装", military:false, militaryNote:"未见", confidence:"representative", note:"中转为代表性推断", source:[33] }
+  ],
+  "汽车零配件": [
+    { seller:"均胜电子/福耀玻璃/万向/敏实/宁波华翔/拓普", buyer:"Uno Minda / SAMVARDHANA MOTHERSON / Bharat Forge / Tata AutoComp / Bosch India", transship:false, via:"", downstream:"供 Maruti/Tata/Mahindra 整车（自产零部件）或流向 OEM", military:false, militaryNote:"Bharat Forge 为国防承包商，但未见其自华汽配采购公开证据", confidence:"documented", note:"福耀对印汽车玻璃 4529 批海关记录（ImportGenius）", source:[123] },
+    { seller:"中国汽配（经越南/泰国）", buyer:"印度 Tier-1 供应商", transship:true, via:"越南/泰国", downstream:"供整车厂", military:false, militaryNote:"未见", confidence:"representative", note:"汽配经东盟中转规避关税", source:[14] }
+  ],
+  "塑料及其制品": [
+    { seller:"中国塑料原料/制品厂", buyer:"印度包装/汽车/消费电子注塑企业", transship:false, via:"", downstream:"自产塑料件/包装", military:false, militaryNote:"未见", confidence:"representative", note:"公司级合同未公开", source:[3] },
+    { seller:"中国塑胶制品（经香港/越南）", buyer:"印度进口商", transship:true, via:"香港/越南", downstream:"零售/工业", military:false, militaryNote:"未见", confidence:"representative", note:"塑料经东盟转口常见", source:[14] }
+  ],
+  "纺织品和服装": [
+    { seller:"中国面料/纱线/成衣 OEM", buyer:"印度服装出口商/零售品牌/面料进口商", transship:false, via:"", downstream:"自产成衣出口或内销", military:false, militaryNote:"未见", confidence:"documented", note:"纺织服装自华依赖约 42%", source:[3] },
+    { seller:"中国面料（经 UAE/越南）", buyer:"印度服装厂", transship:true, via:"UAE/越南", downstream:"成衣制造", military:false, militaryNote:"未见", confidence:"representative", note:"面料经第三国中转规避，具体案少见", source:[14] }
+  ],
+  "钢铁与贱金属": [
+    { seller:"宝武/河钢/沙钢/鞍钢/首钢", buyer:"JSW Steel / Tata Steel / AM-NS India / SAIL", transship:false, via:"", downstream:"自产再轧制，供汽车/基建/机械", military:false, militaryNote:"未见公开军工端用途证据", confidence:"documented", note:"FY25 中国对印成品钢约 253 万吨", source:[125,91] },
+    { seller:"中国钢厂（经越南转口）", buyer:"印度钢企", transship:true, via:"越南", downstream:"热轧板消费/基建", military:false, militaryNote:"未见", confidence:"documented", note:"对越南 HR 钢征 $121.55/吨，认定越南作中国转运通道", source:[113,125] }
+  ],
+  "医疗器械与科学仪器": [
+    { seller:"迈瑞医疗 Mindray", buyer:"HLL Lifecare / Tata Trusts / AIIMS 等医院", transship:false, via:"", downstream:"医院临床自用（ICU/呼吸机）", military:false, militaryNote:"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据", confidence:"documented", note:"新冠期供应数千台", source:[121] },
+    { seller:"联影 United Imaging", buyer:"Medikabazaar 代理 → Superhealth 等医院", transship:false, via:"", downstream:"医院装机 CT/PET-CT 700+ 台", military:false, militaryNote:"未见", confidence:"documented", note:"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币", source:[122] },
+    { seller:"中国 IVD/耗材（经香港/新加坡/马来）", buyer:"Dr Lal / SRL 等诊断实验室", transship:true, via:"香港/新加坡/马来", downstream:"自产检测服务", military:false, militaryNote:"未见", confidence:"documented", note:"约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", source:[127] }
+  ],
+  "玩具": [
+    { seller:"中国 OEM（珠三角/浙江）", buyer:"Leo Godt / Mattel India / Bharat Balloon", transship:false, via:"", downstream:"零售（Hamleys/Reliance Retail）/电商", military:false, militaryNote:"未见", confidence:"documented", note:"华货占 $40.2M", source:[126] },
+    { seller:"中国 OEM（经新加坡/香港/越南）", buyer:"印度进口商", transship:true, via:"新加坡/香港/越南", downstream:"零售", military:false, militaryNote:"未见", confidence:"documented", note:"经新加坡 $13.1M、香港 $2.7M 中转；越南 14 张外资玩具 BIS 许可被用作转口", source:[126] }
+  ],
+  "工程机械与工业机械（通用）": [
+    { seller:"徐工 XCMG", buyer:"Reliance Industries（SANSAN 电厂）", transship:false, via:"", downstream:"自建项目自用（履带吊）", military:false, militaryNote:"未见", confidence:"documented", note:"创大吨位出口纪录", source:[119] },
+    { seller:"中联重科 Zoomlion", buyer:"Reliance Industries", transship:false, via:"", downstream:"自建项目（120 台 QY75V 吊车）", military:false, militaryNote:"未见", confidence:"documented", note:"Zoomlion 印度子公司直供", source:[120] },
+    { seller:"三一/徐工/中联（经经销商）", buyer:"L&T / Tata Projects / ONGC / HPCL（EPC）", transship:false, via:"", downstream:"基建/能源项目施工", military:false, militaryNote:"未见", confidence:"representative", note:"经经销商供货，下游为代表性推断", source:[38] },
+    { seller:"中资工程机械", buyer:"印度 BRO 边境国防基建", transship:false, via:"", downstream:"BRO 战略边境公路/隧道（64 条）", military:true, militaryNote:"BRO 隶属国防部建边境战略通道；中资占印工程机械主要份额，具体采购合同未见", confidence:"representative", note:"边境基建具明确国防用途", source:[38] }
+  ],
+  "化肥（磷酸二铵 DAP / 特种肥）": [
+    { seller:"云天化/瓮福/宜化/中海化学/史丹利", buyer:"IFFCO / RCF / NFL / KRIBHCO / Coromandel", transship:false, via:"", downstream:"分装/农用（rabi 冬播季）", military:false, militaryNote:"化肥为农用，未见军工端用途证据", confidence:"documented", note:"2015 云天化 6 万吨、瓮福 3-3.5 万吨 DAP 至印合同；印 95% 特种肥依赖中国", source:[106] },
+    { seller:"中国特种肥（TMAP/AdBlue）", buyer:"印度（SFIA 渠道）", transship:false, via:"", downstream:"农用/柴油车排放控制", military:false, militaryNote:"未见", confidence:"documented", note:"2025-10-15 起中方暂停出口覆盖全市场", source:[106] }
+  ]
+};
+
 /* 按产业名称（与 DEPENDENCE_INDUSTRIES[].name 完全一致）映射。
  * substitution：替代可能性评估；outlook：综合评估与展望。
  * 弹窗与 DOCX 下载共用，由 app.js 的 buildReportSections() 拼装其余部分（概况/贸易/来源均取自原 detail）。 */
@@ -1035,13 +1149,51 @@ const TRANSSHIPMENT_ROUTES = [
     authenticity: "高",
     credNote: "CBIC 官方新规（来源 85）+ 媒体披露的具体贴牌案例（来源 86）+ DRI 海关执法直接证据（来源 87），可信度显著高于早期 AITF 行业指控；低报价值、虚报原产地已有逐案执法佐证。",
     source: 85
+  },
+  {
+    path: "中国 → 越南 → 印度",
+    goods: "热轧扁钢（HR 钢）",
+    data: "印度财政部 2025-11-13 对越南热轧扁钢征 USD 121.55/吨（5 年），Reuters 明确注明「经越南转运的第三国货」同样适用；JSW、AM/NS 申请并指出越南被用作中国转运通道，进口商改走半成品钢规避。",
+    credibility: "高",
+    authenticity: "高",
+    credNote: "财政部征税通知（政策直接证据）+ Reuters 对「经越南转运」的定性（媒体直接证据），可信度高于早期行业指控。",
+    source: 113
+  },
+  {
+    path: "中国 → 阿联酋 → 印度",
+    goods: "尼龙/聚酯面料（借 India-UAE CEPA）",
+    data: "Mundra 海关 2025-12-26 向三进口商发 Show Cause Notice，指其借 India-UAE CEPA 以阿联酋公司作跳板进口面料，原料（尼龙/聚酯）与 CTH 不符、未达 40% 增值要求，构成虚假产地。",
+    credibility: "高",
+    authenticity: "高",
+    credNote: "海关 Show Cause Notice 为直接执法证据（来源 115），属 CEPA 被钻漏洞的典型案例。",
+    source: 115
+  },
+  {
+    path: "中国 → 迪拜 → 印度（海得拉巴）",
+    goods: "假冒化妆品",
+    data: "DRI 2024-12 在 ICD Sanathnagar 查获中国产假冒化妆品经迪拜转口、低估约 70%，由利益相关人控制，规避商标与估值。",
+    credibility: "高",
+    authenticity: "高",
+    credNote: "DRI 直接执法证据（来源 116），属「经 GCC 转口 + 低报」模式。",
+    source: 116
+  },
+  {
+    path: "中国 →（瞒报伪装为服装/工具）→ 印度",
+    goods: "烟花爆竹（规避进口许可）",
+    data: "DRI「Operation Fire Trail」2025 年在 Nhava Sheva/Thoothukudi/Mundra 查获中国产烟花瞒报为 leggings/工具，单笔 ₹4.82–6.32 crore，累计 ₹35 crore+；属规避进口许可的伪报，非第三国转口。",
+    credibility: "高",
+    authenticity: "高",
+    credNote: "DRI 直接执法证据（来源 117）；说明规避手法除第三国转口外，还包括伪报品名。",
+    source: 117
   }
 ];
 const TRANSSHIPMENT_CONTEXT = {
   nomura: "据野村证券（Nomura，2025 年中）研究，2025 年 2 月起亚洲自华进口激增（3–4 月同比 +21.7%），年化 900–1000 亿美元；越南出口商品中约 19% 的增加值来自中国，柬埔寨约 29%，印度机械/电子进口含转口成分；印度已修订海关规则应对。",
   carotar: "印度于 2020-09-21 起实施 CAROTAR 2020 收紧原产地审查；2025-03-18 CBIC 第 14/2025 号通告进一步将「原产地证书」改为「原产地证明」，海关可要求发票、生产记录等追加证据，明确针对中国货经东盟、越南、UAE 转口 [85][86]。",
   asean: "自 2010 年印度-东盟自贸协定实施以来，印度对东盟贸易逆差由 50 亿美元扩大至逾 220 亿美元；2025 年越南对印出口达 103 亿美元（+14.2%）、手机电子占近 40%，印方因「含中国原产成分」加强查验 [90]。",
-  sources: [88, 85, 86, 90]
+  verify: "【借助贸易数据核实转口真实性】除早期行业指控外，2024–2026 年已出现多类可直接佐证的证据：① 海关执法——DRI 2025-09 液压破碎锤经马来伪造产地证（约 500 集装箱、₹2000 crore）、Mundra 2025-12 借 UAE CEPA 虚假产地面料案、DRI 2024-12 迪拜转口化妆品低估 70%、「Operation Fire Trail」烟花瞒报（累计 ₹35 crore+）；② 反倾销/保障税含反规避条款——DGTR 2025-09 对华太阳能征 30% 并明确覆盖「中国经东南亚再出口」、财政部 2025-11 对越南热轧钢征税直指转运；③ 规则升级——CBIC 2025-03 原产地「证」改「证明」+ eCoO 2.0 电子产地证（2025-01-01 强制），均为针对中国经第三国转口的制度性回应 [85][112][113][114][115][116][117]。上述数据与执法记录相互印证，转口/规避在钢铁、电子、太阳能、化妆品、玩具等品类具高真实性。",
+  monitor: "GTRI 数据显示 2025-26 印自华进口 USD 131.63 bn（占 16%），98.5% 为工业投入（电子 43%/机械 40%/有机化学品 44%）；印度政府已设跨部门「进口激增监测」小组，专门防范经中/越/印尼的转口倾销 [118]。",
+  sources: [88, 85, 86, 90, 112, 113, 114, 115, 116, 117, 118]
 };
 
 /* --------- 4. 中印相关贸易政策 --------- */

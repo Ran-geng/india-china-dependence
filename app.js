@@ -336,6 +336,29 @@
         ${d.detail.buyers.map(b=>`<li><b>${b.name}</b> — ${b.note}</li>`).join("")}
       </ul>` : ""}
       ${d.detail.coNote ? `<div class="mini-note">注：${d.detail.coNote}</div>` : ""}
+      ${(typeof TRADE_FLOWS!=="undefined" && TRADE_FLOWS[d.name]) ? `
+      <h4>贸易流（中国供应商 → 印度采购商 → 下游）</h4>
+      <div class="flow-list">
+        ${TRADE_FLOWS[d.name].map(f=>`
+          <div class="flow-item">
+            <div class="flow-chain">
+              <span class="f-seller">${f.seller}</span>
+              <span class="arrow">→</span>
+              <span class="f-buyer">${f.buyer}</span>
+              ${f.transship ? `<span class="arrow">→</span><span class="f-trans">经 ${f.via} 中转</span>` : ""}
+              <span class="arrow">→</span>
+              <span class="f-down">${f.downstream}</span>
+            </div>
+            <div class="flow-badges">
+              ${f.transship ? `<span class="badge b-trans">中转 · ${f.via}</span>` : ""}
+              ${f.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
+              <span class="badge ${f.confidence==="documented"?"b-doc":"b-rep"}">${f.confidence==="documented"?"已核实":"代表性推断"}</span>
+            </div>
+            <div class="flow-note">${f.note}${f.military ? (" ｜ "+f.militaryNote) : ""}${f.source?(" "+f.source.map(cite).join(" ")):""}</div>
+          </div>`).join("")}
+      </div>
+      <div class="mini-note">说明：公司级「一对一」海关提单多属付费源（ImportGenius/Volza/Panjiva），公开可查直供以厂商披露/行业报道为主；标「代表性推断」者为基于公开上下游代表的合理链路，非具体合同。中转 / 军工均依据公开证据标注。</div>
+      ` : ""}
       ${reportBlock(d, idx)}
       <div class="mini-note">数据来源：${d.detail.sources.map(cite).join(" ")}${d.detail.coSource ? (" ｜ 企业供应链："+d.detail.coSource.map(cite).join(" ")) : ""}</div>
     `;
@@ -444,6 +467,7 @@
   }
   bindCollapse("tiaWrap","tiaToggle","tiaIcon");
   bindCollapse("crossCheckWrap","xcheckToggle","xcheckIcon");
+  bindCollapse("srcWrap","srcToggle","srcIcon");
 
   /* ---------- 转口贸易路径 ---------- */
   const REL_LEGEND = `<div class="rel-scale">
@@ -479,7 +503,9 @@
   $("#contextList").innerHTML = [
     `${c.carotar}${cite(14)}`,
     `${c.nomura}${cite(17)}`,
-    `${c.asean}${cite(15)}`
+    `${c.asean}${cite(15)}`,
+    `${c.verify}`,
+    `${c.monitor}${cite(118)}`
   ].map(t=>`<li>${t}</li>`).join("");
 
   /* ---------- 政策时间线 ---------- */
@@ -494,8 +520,7 @@
 
   /* ---------- 数据来源与更新面板 ---------- */
   $("#lastUpdated").innerHTML =
-    `<span class="dot"></span>最后更新：${LAST_UPDATED}` +
-    (LIVE ? ` · 含 UN Comtrade 实时数据（${LIVE.lastUpdated}）` : "");
+    `<span class="dot"></span>最后更新：${LAST_UPDATED} · 更新方式：每月定期（GitHub Actions 定时工作流）`;
   $("#srcRegistry").innerHTML = DATA_SOURCES.map(s=>`
     <div class="src-card">
       <h4>${s.name} <span class="${s.api?'api':'manual'}">${s.api?'API 可接入':'人工更新'}</span></h4>

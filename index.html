@@ -167,20 +167,29 @@
   <div class="section-head">
     <div class="kicker">05 · Data Sources & Freshness</div>
     <h2>数据来源与更新</h2>
-    <p>本站数据整合三类权威公开来源。各源更新频率、覆盖范围与接入方式如下；实时抓取由 <code>update_data.py</code> 经 UN Comtrade API 完成，可配合系统定时任务实现<strong>定期自动更新</strong>。页面所有图表与明细均标注来源编号与口径。</p>
+    <p>本站数据整合三类权威公开来源。各源更新频率、覆盖范围与接入方式如下；受官方发布节奏（月度/财年）与免费 API 限制，<strong>推荐以每月一次的方式定期更新</strong>（而非实时抓取）。页面所有图表与明细均标注来源编号与口径。</p>
   </div>
 
   <div class="last-updated" id="lastUpdated"></div>
 
-  <div class="src-registry" id="srcRegistry"></div>
+  <div class="collapse-sec collapsed" id="srcWrap" style="margin-top:22px">
+    <button class="collapse-toggle" id="srcToggle" type="button" aria-expanded="false" aria-controls="srcBody">
+      <span class="collapse-title">数据来源明细与更新方式</span>
+      <span class="collapse-icon" id="srcIcon"><span class="chev">▾</span> 展开</span>
+    </button>
+    <div class="collapse-body" id="srcBody">
+      <div class="src-registry" id="srcRegistry"></div>
 
-  <div class="update-note">
-    <h4>如何保持数据新鲜</h4>
-    <ul>
-      <li><b>UN Comtrade（自动）</b>：申请免费 API Key 后，<code>export COMTRADE_KEY="你的key"</code> 并运行 <code>python update_data.py</code>，结果写入 <code>data_live.js</code>，刷新页面即生效。可用 crontab / 任务计划程序每日定时执行。</li>
-      <li><b>中国海关总署（人工）</b>：官网 <code>customs.gov.cn</code> 每月中旬发布上月快讯，无开放 API，需人工录入或解析 PDF 后更新 <code>data.js</code> 对应字段。</li>
-      <li><b>印度商务部 DGCIS（人工）</b>：<code>commerce.gov.in</code> / 驻华使馆发布月度贸易公告与财年汇总，部分经 Lok Sabha 答复、PIB，无开放 API，需人工更新。</li>
-    </ul>
+      <div class="update-note">
+        <h4>如何保持数据新鲜（推荐：每月定期更新）</h4>
+        <ul>
+          <li><b>定期更新（推荐，每月 1 次）</b>：海关与商务部均为月度/财年发布，无实时数据流；本站采用 GitHub Actions 定时工作流（每月 1 日 + 可手动触发）运行 <code>refresh_monthly.py</code>，刷新 <code>LAST_UPDATED</code> 并补录最新官方值，避免脆弱的实时爬取。</li>
+          <li><b>UN Comtrade（受限，备用）</b>：免费档仅返回「全球」口径，印度-中国双边明细需付费订阅；当前 key 有效但取不到双边，故 Comtrade 暂不作为主更新源，<code>update_data.py</code> 保留备用。</li>
+          <li><b>中国海关总署（人工）</b>：官网 <code>customs.gov.cn</code> 每月中旬发布上月快讯，无开放 API，需人工录入或解析 PDF 后更新 <code>data.js</code>。</li>
+          <li><b>印度商务部 DGCIS（人工）</b>：<code>commerce.gov.in</code> / 驻华使馆发布月度贸易公告与财年汇总，部分经 Lok Sabha 答复、PIB，无开放 API，需人工更新。</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
