@@ -244,6 +244,7 @@
     secs.push({ type:"heading", text:"一、产业概况与对华依赖现状" });
     secs.push({ type:"para", text: det.intro || "" });
     secs.push({ type:"para", text:`对华依赖度：${d.dependency}%。${d.metric || ""}` });
+    if (det.dependencyNote) secs.push({ type:"para", text:`印度对中国依赖情况：${det.dependencyNote}` });
     secs.push({ type:"heading", text:"二、具体依赖表现" });
     if (det.tradeYearly && det.tradeYearly.length){
       secs.push({ type:"para", text:"印度自华进口贸易数据（公开口径）：" });
