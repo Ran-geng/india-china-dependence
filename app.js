@@ -304,14 +304,16 @@
   /* ---------- 依赖度仪表盘（SVG 半圆弧，可动画） ---------- */
   function gaugeSVG(dep){
     const v = Math.max(0, Math.min(100, dep));
-    return `<svg class="gauge-svg" viewBox="0 0 120 70" aria-hidden="true">
-      <defs><linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#e0762a"/><stop offset="1" stop-color="#c23a32"/>
-      </linearGradient></defs>
-      <path class="g-track" d="M8 60 A52 52 0 0 1 112 60" pathLength="100"/>
-      <path class="g-val" id="gVal" d="M8 60 A52 52 0 0 1 112 60" pathLength="100" style="stroke-dashoffset:100"/>
-    </svg>
-    <div class="g-center"><div class="g-num"><span id="gNum">0</span><span class="g-pct">%</span></div><div class="g-cap">对华依赖度</div></div>`;
+    return `<div class="gauge">
+      <svg class="gauge-svg" viewBox="0 0 120 70" aria-hidden="true">
+        <defs><linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e0762a"/><stop offset="1" stop-color="#c23a32"/>
+        </linearGradient></defs>
+        <path class="g-track" d="M8 60 A52 52 0 0 1 112 60" pathLength="100"/>
+        <path class="g-val" id="gVal" d="M8 60 A52 52 0 0 1 112 60" pathLength="100" style="stroke-dashoffset:100"/>
+      </svg>
+      <div class="g-center"><div class="g-num"><span id="gNum">0</span><span class="g-pct">%</span></div><div class="g-cap">对华依赖度</div></div>
+    </div>`;
   }
 
   /* ---------- 交互式贸易流卡片 ---------- */

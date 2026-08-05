@@ -564,7 +564,7 @@ img{max-width:100%}
 .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;padding-right:36px}
 .m-head-text{flex:1;min-width:0}
 .m-gauge{flex:none}
-.gauge{position:relative;width:150px;text-align:center}
+.gauge{position:relative;width:150px;text-align:center;padding-bottom:54px;box-sizing:border-box}
 .gauge-svg{width:100%;height:auto;display:block;overflow:visible}
 .g-track{fill:none;stroke:var(--surface-2);stroke-width:12;stroke-linecap:round}
 .g-val{fill:none;stroke:url(#gGrad);stroke-width:12;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.15s cubic-bezier(.2,.8,.2,1)}
