@@ -229,17 +229,18 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "德国", note: "高端磁体来源" }
       ],
       sellers: [
-        { name: "金力永磁（JL MAG，赣州）", note: "全球高性能 NdFeB 龙头，产能约 3.8 万吨/年，下游含 EV/风电/机器人" },
-        { name: "宁波韵升（Ningbo Yunsheng）", note: "年产能约 2.1 万吨烧结 NdFeB" },
-        { name: "中科三环（Zhong Ke Sanhuan）", note: "中科院背景，汽车/工业 OEM 主力供应商" },
-        { name: "烟台正海（Zhenghai）", note: "车规级高温钕铁硼磁体" },
-        { name: "横店东磁（DMEGC）/ 英洛华（Innuovo）/ 银河磁体", note: "其他主要厂商" }
+        { name: "金力永磁（JL MAG，赣州）", type: "稀土永磁龙头", note: "全球高性能 NdFeB 龙头，产能约 3.8 万吨/年，下游含 EV/风电/机器人" },
+        { name: "宁波韵升（Ningbo Yunsheng）", type: "稀土永磁厂商", note: "年产能约 2.1 万吨烧结 NdFeB" },
+        { name: "中科三环（Zhong Ke Sanhuan）", type: "稀土永磁（中科院背景）", note: "汽车/工业 OEM 主力供应商" },
+        { name: "烟台正海（Zhenghai）", type: "车规级磁体", note: "车规级高温钕铁硼磁体" },
+        { name: "横店东磁（DMEGC）/ 英洛华（Innuovo）/ 银河磁体", type: "其他主要磁体厂商", note: "其他主要厂商" }
       ],
       buyers: [
-        { name: "Tata Motors / Mahindra", note: "本土车企，EV 电机磁体采购方" },
-        { name: "Ola Electric / Ather", note: "电动两轮车龙头，磁体需求大" },
-        { name: "Uno Minda / SAMVARDHANA MOTHERSON / Sona BLW", note: "汽车零部件供应商" },
-        { name: "Bharat Forge / 印度电子代工厂", note: "电机与精密制造" }
+        { name: "Tata Motors / Mahindra", type: "整车制造", note: "本土车企，EV 电机磁体采购方" },
+        { name: "Ola Electric / Ather", type: "电动两轮车", note: "电动两轮车龙头，磁体需求大" },
+        { name: "Uno Minda / SAMVARDHANA MOTHERSON / Sona BLW", type: "汽车零部件供应商", note: "汽车零部件供应商" },
+        { name: "Bharat Forge", type: "精密制造与国防承包商", military: true, note: "军工锻件与底盘件主力供应商，亦涉电机与精密制造；印度主要私营国防承包商之一（火炮/装甲车辆），其磁体/锻件采购具潜在军工用途" },
+        { name: "印度电子代工厂", type: "电子制造服务", note: "电机与精密制造代工" }
       ],
       coNote: "印度无商业规模烧结 NdFeB 上游产能，公开来源未单列「自华采购的具体企业清单」；以上为公开可查的已知采购方与行业代表，非海关全量名单。",
       coSource: [44, 12],
@@ -277,12 +278,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "日本", note: "1.82%" }
       ],
       sellers: [
-        { name: "新和成（NHU）/ 华海药业 / 九洲药业 / 普洛药业 / 国邦医药 / 天新药业 / 仙琚制药 / 天宇股份 / 美诺华", note: "中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）" },
-        { name: "青霉素/6-APA、维生素、抗生素类企业", note: "全球主力供应商（中国占全球原料药产能约 30%、抗生素近 30%）" }
+        { name: "新和成（NHU）/ 华海药业 / 九洲药业 / 普洛药业 / 国邦医药 / 天新药业 / 仙琚制药 / 天宇股份 / 美诺华", type: "原料药出口头部企业", note: "中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）" },
+        { name: "青霉素/6-APA、维生素、抗生素类企业", type: "大宗原料药主力供应商", note: "全球主力供应商（中国占全球原料药产能约 30%、抗生素近 30%）" }
       ],
       buyers: [
-        { name: "Sun Pharma / Cipla / Aurobindo / Lupin / Dr Reddy's / Zydus(Cadila) / Torrent / Mankind", note: "印度制剂与原料药企业，大量进口中国中间体与 API" },
-        { name: "本土 API 园区（如 Aurobindo/Lyfius Kakinada 青霉素 G→6-APA 厂）", note: "部分自产替代，但整体仍高度依赖中国" }
+        { name: "Sun Pharma / Cipla / Aurobindo / Lupin / Dr Reddy's / Zydus(Cadila) / Torrent / Mankind", type: "印度制剂与原料药企业", note: "印度制剂与原料药企业，大量进口中国中间体与 API" },
+        { name: "本土 API 园区（如 Aurobindo/Lyfius Kakinada 青霉素 G→6-APA 厂）", type: "本土原料药产能（部分自产替代）", note: "部分自产替代，但整体仍高度依赖中国" }
       ],
       coNote: "中国医药保健品进出口商会数据显示 2023 年印度自华进口原料药及中间体约 101.5 亿美元、占其整体进口 68.8%；企业级采购清单未公开，以上为公开可查代表。",
       coSource: [40, 4],
@@ -309,13 +310,14 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "日本", note: "Hitachi Zosen / Mitsubishi / Komatsu" }
       ],
       sellers: [
-        { name: "中铁重工（CRCHI）", note: "长沙，印度孟买沿海公路/班加罗尔地铁等项目的 TBM 供应商" },
-        { name: "中铁装备（CREG，中铁工程装备）", note: "郑州，全球产销量第一，出口 34+ 国家" },
-        { name: "中交天和（CCCC Tianhe）/ 上海隧道股份", note: "其他在印中资/中制造 TBM 厂商" }
+        { name: "中铁重工（CRCHI）", type: "隧道掘进机（TBM）制造商", note: "长沙，印度孟买沿海公路/班加罗尔地铁等项目的 TBM 供应商" },
+        { name: "中铁装备（CREG，中铁工程装备）", type: "TBM 全球产销量第一", note: "郑州，全球产销量第一，出口 34+ 国家" },
+        { name: "中交天和（CCCC Tianhe）/ 上海隧道股份", type: "TBM/盾构机制造商", note: "其他在印中资/中制造 TBM 厂商" }
       ],
       buyers: [
-        { name: "L&T（Larsen & Toubro）/ Afcons（Shapoorji Pallonji）/ Tata Projects / HCC", note: "印度基建总包与 TBM 采购方" },
-        { name: "DMRC（德里地铁）/ MMRC（孟买地铁 3 号线）/ RVNL", note: "地铁与铁路项目业主" }
+        { name: "L&T（Larsen & Toubro）", type: "基建总包与国防承包商", military: true, note: "印度最大私营工程与国防集团，TBM 采购与隧道施工总包；其国防业务含舰船/导弹/装甲车，采购链具潜在军工用途" },
+        { name: "Afcons（Shapoorji Pallonji）/ Tata Projects / HCC", type: "基建与工程总包", note: "印度基建总包与 TBM 采购方" },
+        { name: "DMRC（德里地铁）/ MMRC（孟买地铁 3 号线）/ RVNL", type: "地铁与铁路项目业主（政府/国企）", note: "地铁与铁路项目业主" }
       ],
       coNote: "孟买地铁 3 号线 18 台 TBM 中 8 台为中企制造、另 10 台亦在华制造；具体采购合同方未全公开，以上为公开可查项目与承包商。Takshashila 基于印度商工部数据指出，印度 TBM 进口对华依赖已多元化，标准 TBM 自华占比由 2019 近 100% 降至近年约六成。",
       coSource: [38, 25, 72],
@@ -384,11 +386,11 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "马来西亚", note: "部分渠道" }
       ],
       sellers: [
-        { name: "通威（Tongwei，约 91 万吨产能，全球第一）/ 协鑫（GCL，48 万吨）/ 大全（Daqo，35 万吨）/ 新特（Xinte，30 万吨）", note: "全球前十占 9 席、合计 65% 份额" },
-        { name: "青海丽豪 / 新疆东方希望 / 亚洲硅业", note: "其他主要厂" }
+        { name: "通威（Tongwei，约 91 万吨产能，全球第一）/ 协鑫（GCL，48 万吨）/ 大全（Daqo，35 万吨）/ 新特（Xinte，30 万吨）", type: "多晶硅龙头（全球前十占 9 席）", note: "全球前十占 9 席、合计 65% 份额" },
+        { name: "青海丽豪 / 新疆东方希望 / 亚洲硅业", type: "多晶硅主要厂商", note: "其他主要厂" }
       ],
       buyers: [
-        { name: "Adani / Waaree / Reliance（光伏野心）/ Premier Energies", note: "印度硅片/电池/组件制造商与集成商" }
+        { name: "Adani / Waaree / Reliance（光伏野心）/ Premier Energies", type: "光伏硅片/电池/组件制造商与集成商", note: "印度硅片/电池/组件制造商与集成商" }
       ],
       coNote: "中国占全球多晶硅约 93.5%、硅片约 97%；印度上游近乎空白，硅片进口中中国 >99%。",
       coSource: [41, 7],
@@ -425,12 +427,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "马来西亚", note: "封测/组件" }
       ],
       sellers: [
-        { name: "华为（Huawei）/ 小米（Xiaomi）/ OPPO / vivo / 联想（Lenovo）/ TCL / 海尔", note: "通信设备、消费电子与家电头部品牌" },
-        { name: "立讯精密 / 歌尔 / 蓝思 / 比亚迪电子 / 富士康（中国台湾，华制造）", note: "关键零部件与 EMS 供应商（见「智能手机零部件」）" }
+        { name: "华为（Huawei）/ 小米（Xiaomi）/ OPPO / vivo / 联想（Lenovo）/ TCL / 海尔", type: "通信设备/消费电子/家电头部品牌", note: "通信设备、消费电子与家电头部品牌" },
+        { name: "立讯精密 / 歌尔 / 蓝思 / 比亚迪电子 / 富士康（中国台湾，华制造）", type: "关键零部件与 EMS 供应商", note: "关键零部件与 EMS 供应商（见「智能手机零部件」）" }
       ],
       buyers: [
-        { name: "Dixon Technologies / Bhagwati（Micromax）/ Optiemus", note: "印度本土 EMS 与组装" },
-        { name: "小米/OPPO/vivo 印度公司、三星印度、Reliance Jio", note: "品牌方与采购方" }
+        { name: "Dixon Technologies / Bhagwati（Micromax）/ Optiemus", type: "印度本土 EMS 与组装", note: "印度本土 EMS 与组装" },
+        { name: "小米/OPPO/vivo 印度公司、三星印度、Reliance Jio", type: "品牌方与电信运营商（含采购方）", note: "品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途" }
       ],
       coNote: "2023-24 印度电子/通信/电器进口中国大陆单独占 43.9%、加中国香港合计约 56%。",
       coSource: [46, 29],
@@ -460,12 +462,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "日本", note: "5–8%" }
       ],
       sellers: [
-        { name: "宁德时代（CATL）/ 比亚迪（BYD）/ 亿纬锂能（EVE）/ 国轩高科（Gotion）/ 孚能（Farasis）/ 中创新航（CALB）/ 海辰（Hithium）/ 瑞浦兰钧（REPT）", note: "印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）" },
-        { name: "蜂巢能源（SVOLT）等", note: "其他在印合作厂商" }
+        { name: "宁德时代（CATL）/ 比亚迪（BYD）/ 亿纬锂能（EVE）/ 国轩高科（Gotion）/ 孚能（Farasis）/ 中创新航（CALB）/ 海辰（Hithium）/ 瑞浦兰钧（REPT）", type: "动力电池龙头（占印进口约 68%）", note: "印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）" },
+        { name: "蜂巢能源（SVOLT）等", type: "其他在印合作厂商", note: "其他在印合作厂商" }
       ],
       buyers: [
-        { name: "Ola Electric / Ather / Tata Motors / Mahindra / TVS", note: "EV 与两轮车厂" },
-        { name: "Godawari New Energy（GNEPL，8GWh 储能订单）/ Reliance / Energy In Motion（Ravindra 系，500MWh 与 CATL 协议）", note: "储能与商用车" }
+        { name: "Ola Electric / Ather / Tata Motors / Mahindra / TVS", type: "EV 与两轮车厂", note: "EV 与两轮车厂" },
+        { name: "Godawari New Energy（GNEPL，8GWh 储能订单）/ Reliance / Energy In Motion（Ravindra 系，500MWh 与 CATL 协议）", type: "储能与商用车", note: "储能与商用车" }
       ],
       coNote: "2025 年印度约 75% 锂电进口来自中国；电芯领域 CATL/比亚迪/中创新航/亿纬/国轩合计占印进口约 68%。",
       coSource: [42, 31],
@@ -495,12 +497,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "中国台湾", note: "高端 CKD 组装份额" }
       ],
       sellers: [
-        { name: "立讯精密（Luxshare）/ 歌尔（GoerTek）/ 蓝思科技（Lens）/ 比亚迪电子（BYD Electronics）/ 闻泰（Wingtech）", note: "声学、结构件、玻璃、组装" },
-        { name: "富士康（Foxconn，中国台湾，华厂）/ 龙旗（Longcheer，ODM）", note: "整机代工与 ODM" }
+        { name: "立讯精密（Luxshare）/ 歌尔（GoerTek）/ 蓝思科技（Lens）/ 比亚迪电子（BYD Electronics）/ 闻泰（Wingtech）", type: "声学/结构件/玻璃/组装供应商", note: "声学、结构件、玻璃、组装" },
+        { name: "富士康（Foxconn，中国台湾，华厂）/ 龙旗（Longcheer，ODM）", type: "整机代工与 ODM", note: "整机代工与 ODM" }
       ],
       buyers: [
-        { name: "小米 / OPPO / vivo / realme / 一加", note: "中国品牌在印公司（最大采购方）" },
-        { name: "DBG（中国 EMS，印度份额升至 21%）/ 比亚迪电子（印度 7%）/ Dixon Technologies（印度最大 EMS，约 53%）/ Bhagwati（Micromax）", note: "在印 EMS 与组装" }
+        { name: "小米 / OPPO / vivo / realme / 一加", type: "中国品牌在印公司（最大采购方）", note: "中国品牌在印公司（最大采购方）" },
+        { name: "DBG（中国 EMS，印度份额升至 21%）/ 比亚迪电子（印度 7%）/ Dixon Technologies（印度最大 EMS，约 53%）/ Bhagwati（Micromax）", type: "在印 EMS 与组装", note: "在印 EMS 与组装" }
       ],
       coNote: "GTRI 口径印度进口智能手机零部件 51.7% 自华；中国品牌 + 在印中资 EMS 构成主要采购链。",
       coSource: [43, 33],
@@ -536,13 +538,14 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "印度本土（Motherson/Bharat Forge 等）", note: "结构件/线束本地化较高" }
       ],
       sellers: [
-        { name: "均胜电子（Joyson）/ 宁波华翔（Huaxiang）/ 中鼎股份（Zhongding）/ 万向（Wanxiang）", note: "汽车电子、内饰、密封与底盘部件对印出口" },
-        { name: "宁德时代（CATL）/ 比亚迪（BYD）", note: "EV 电池与三电配套（已并入「锂离子电池」模块，此处指电驱体系）" },
-        { name: "福耀玻璃（FY Automotive Glass）", note: "车用玻璃" }
+        { name: "均胜电子（Joyson）/ 宁波华翔（Huaxiang）/ 中鼎股份（Zhongding）/ 万向（Wanxiang）", type: "汽车电子/内饰/底盘部件", note: "汽车电子、内饰、密封与底盘部件对印出口" },
+        { name: "宁德时代（CATL）/ 比亚迪（BYD）", type: "EV 电池与三电配套", note: "EV 电池与三电配套（已并入「锂离子电池」模块，此处指电驱体系）" },
+        { name: "福耀玻璃（FY Automotive Glass）", type: "车用玻璃", note: "车用玻璃" }
       ],
       buyers: [
-        { name: "Tata Motors / Mahindra / Ola Electric / Ather", note: "整车与电动两轮车厂" },
-        { name: "Bharat Forge / Samvardhana Motherson / Bosch India / TVS / Bajaj / Hero", note: "零部件与两轮车供应商" }
+        { name: "Tata Motors / Mahindra / Ola Electric / Ather", type: "整车与电动两轮车厂", note: "整车与电动两轮车厂" },
+        { name: "Bharat Forge", type: "汽车零部件与国防承包商", military: true, note: "汽车零部件与底盘锻件供应商，印度主要私营国防承包商之一（火炮/装甲车辆），自华采购链具潜在军工用途" },
+        { name: "Samvardhana Motherson / Bosch India / TVS / Bajaj / Hero", type: "零部件与两轮车供应商", note: "零部件与两轮车供应商" }
       ],
       coNote: "印度汽车零配件对华进口以 EV 三电、磁体、半导体、PCB 等为主；以上为公开可查代表企业，非海关全量名单。",
       coSource: [49, 3],
@@ -575,12 +578,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "土耳其/韩国", note: "中高端面料" }
       ],
       sellers: [
-        { name: "恒力集团（Hengli）/ 荣盛石化（Rongsheng）/ 桐昆股份", note: "合成纤维与面料上游" },
-        { name: "申洲国际（Shenzhou，针织成衣）/ 浙江/江苏/广东纺织服装产业带", note: "对印出口代表" }
+        { name: "恒力集团（Hengli）/ 荣盛石化（Rongsheng）/ 桐昆股份", type: "合成纤维与面料上游", note: "合成纤维与面料上游" },
+        { name: "申洲国际（Shenzhou，针织成衣）/ 浙江/江苏/广东纺织服装产业带", type: "针织成衣与对印出口", note: "对印出口代表" }
       ],
       buyers: [
-        { name: "Raymond / Arvind / Welspun / Trident / Vardhman", note: "印度服装与家纺制造商" },
-        { name: "印度零售与品牌采购方", note: "下游渠道" }
+        { name: "Raymond / Arvind / Welspun / Trident / Vardhman", type: "服装与家纺制造商", note: "印度服装与家纺制造商" },
+        { name: "印度零售与品牌采购方", type: "下游渠道", note: "下游渠道" }
       ],
       coNote: "印度纺织品服装进口 42% 自华（约 $3.2B/10月）；企业级采购清单未公开，以上为公开可查代表。",
       coSource: [3],
@@ -614,12 +617,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "新加坡/荷兰", note: "部分高端设备" }
       ],
       sellers: [
-        { name: "迈瑞医疗（Mindray）/ 联影医疗（United Imaging）", note: "监护/超声、CT/MRI 等" },
-        { name: "鱼跃医疗（Yuwell）/ 东软医疗（Neusoft）/ 万东医疗 / 新华医疗", note: "监护、影像与耗材" }
+        { name: "迈瑞医疗（Mindray）/ 联影医疗（United Imaging）", type: "监护/超声、CT/MRI 制造商", note: "监护/超声、CT/MRI 等" },
+        { name: "鱼跃医疗（Yuwell）/ 东软医疗（Neusoft）/ 万东医疗 / 新华医疗", type: "监护、影像与耗材制造商", note: "监护、影像与耗材" }
       ],
       buyers: [
-        { name: "Apollo / Fortis 等医院集团采购方", note: "终端用户" },
-        { name: "印度本地医疗器械进口商/经销商", note: "渠道" }
+        { name: "Apollo / Fortis 等医院集团采购方", type: "终端用户（医院集团）", note: "终端用户" },
+        { name: "印度本地医疗器械进口商/经销商", type: "渠道", note: "渠道" }
       ],
       coNote: "印度约 80% 医疗器械靠进口，中国为第二大供应国（FY22 $1.35B、占 16.4%），中低端耗材/诊断设备占比升；企业级采购清单未公开。",
       coSource: [47],
@@ -652,12 +655,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "印度本土（Karnataka/U.P. 玩具园）", note: "政策扶持下本地化起步" }
       ],
       sellers: [
-        { name: "广东澄海玩具产业带（全球玩具产量约 70–75% 来自中国）", note: "对印出口主力" },
-        { name: "奥飞娱乐 / 星辉娱乐等中国玩具品牌", note: "品牌对印出口" }
+        { name: "广东澄海玩具产业带（全球玩具产量约 70–75% 来自中国）", type: "全球玩具产量约 70–75% 来自中国", note: "对印出口主力" },
+        { name: "奥飞娱乐 / 星辉娱乐等中国玩具品牌", type: "中国玩具品牌", note: "品牌对印出口" }
       ],
       buyers: [
-        { name: "印度玩具进口商/贸易商（赴华批量采购群体）", note: "渠道主力" },
-        { name: "印度零售与电商", note: "终端" }
+        { name: "印度玩具进口商/贸易商（赴华批量采购群体）", type: "渠道主力", note: "渠道主力" },
+        { name: "印度零售与电商", type: "终端", note: "终端" }
       ],
       coNote: "印度市场曾 80–90% 玩具靠进口、其中约 90% 来自中国；2020 起 60% 关税后进口额腰斩但中国仍最大来源；企业级采购清单未公开。",
       coSource: [48],
@@ -690,11 +693,12 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "韩国/美国", note: "工程机械与机床" }
       ],
       sellers: [
-        { name: "三一重工（Sany）/ 中联重科（Zoomlion）/ 徐工（XCMG）/ 柳工（LiuGong）/ 山东临工（SDLG）", note: "工程机械对印出口代表" },
-        { name: "中国锅炉/汽轮机/通用机械制造商", note: "电厂与工业设备" }
+        { name: "三一重工（Sany）/ 中联重科（Zoomlion）/ 徐工（XCMG）/ 柳工（LiuGong）/ 山东临工（SDLG）", type: "工程机械对印出口代表", note: "工程机械对印出口代表" },
+        { name: "中国锅炉/汽轮机/通用机械制造商", type: "电厂与工业设备", note: "电厂与工业设备" }
       ],
       buyers: [
-        { name: "L&T / Tata Projects / Afcons / 各类工业厂", note: "基建与工程总包、工业用户" }
+        { name: "L&T（Larsen & Toubro）", type: "基建总包与国防承包商", military: true, note: "印度最大私营工程与国防集团，工程机械采购与施工总包；其国防业务含舰船/导弹/装甲车，采购链具潜在军工用途" },
+        { name: "Tata Projects / Afcons / 各类工业厂", type: "基建与工程总包、工业用户", note: "基建与工程总包、工业用户" }
       ],
       coNote: "印度机械进口约 $19B 自华（占 39.6%）；盾构机为细分已单独详述；企业级采购清单未公开，以上为公开可查代表。",
       coSource: [3],
@@ -731,14 +735,14 @@ const DEPENDENCE_INDUSTRIES = [
         { country: "印度本土（IFFCO/Chambal/Coromandel 等）", note: "尿素本土产能大；DAP/特种肥本土化推进中" }
       ],
       sellers: [
-        { name: "云天化（Yuntianhua）/ 贵州磷化（瓮福 Wengfu）/ 湖北宜化", note: "磷肥（DAP/MAP）对印出口龙头" },
-        { name: "金正大（Kingenta）/ 史丹利（Stanley）/ 新洋丰（Xinyangfeng）", note: "复合肥与特种水溶肥对印出口" },
-        { name: "中海化学（CNOOC Chem）/ 华鲁恒升 / 阳煤化工", note: "尿素及氨类" }
+        { name: "云天化（Yuntianhua）/ 贵州磷化（瓮福 Wengfu）/ 湖北宜化", type: "磷肥（DAP/MAP）对印出口龙头", note: "磷肥（DAP/MAP）对印出口龙头" },
+        { name: "金正大（Kingenta）/ 史丹利（Stanley）/ 新洋丰（Xinyangfeng）", type: "复合肥与特种水溶肥", note: "复合肥与特种水溶肥对印出口" },
+        { name: "中海化学（CNOOC Chem）/ 华鲁恒升 / 阳煤化工", type: "尿素及氨类", note: "尿素及氨类" }
       ],
       buyers: [
-        { name: "Coromandel International / Chambal Fertilizers / Paradeep Phosphates (PPL)", note: "DAP/MAP 进口与加工主力" },
-        { name: "IFFCO / GSFC / Tata Chemicals / Deepak Fertilizers", note: "肥料进口与贸易" },
-        { name: "印度农资进口商与农户合作社渠道", note: "终端" }
+        { name: "Coromandel International / Chambal Fertilizers / Paradeep Phosphates (PPL)", type: "DAP/MAP 进口与加工主力", note: "DAP/MAP 进口与加工主力" },
+        { name: "IFFCO / GSFC / Tata Chemicals / Deepak Fertilizers", type: "肥料进口与贸易", note: "肥料进口与贸易" },
+        { name: "印度农资进口商与农户合作社渠道", type: "终端", note: "终端" }
       ],
       coNote: "印度化肥高度依赖进口，但仅特种水溶肥约 80% 自华、DAP 对华约 25–30%（近年因中国出口管制骤降）；尿素/MOP/磷酸主要来源非中国。以上为公开可查代表企业，非海关全量名单。",
       coSource: [50, 51],

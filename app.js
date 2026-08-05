@@ -375,14 +375,14 @@
         <p>${d.detail.diversify}</p>
       </div>` : ""}
       ${d.detail.sellers ? `
-      <h4>中国主要出口商（对华供应方）</h4>
+      <h4>中国主要出口商（出口方）</h4>
       <ul class="co-list">
-        ${d.detail.sellers.map(s=>`<li><b>${s.name}</b> — ${s.note}</li>`).join("")}
+        ${d.detail.sellers.map(s=>`<li class="co-item"><div class="co-head"><span class="co-name">${s.name}</span></div>${s.type?`<div class="co-type">${s.type}</div>`:""}<div class="co-note">${s.note}</div></li>`).join("")}
       </ul>` : ""}
       ${d.detail.buyers ? `
       <h4>印度主要采购商（进口方）</h4>
       <ul class="co-list">
-        ${d.detail.buyers.map(b=>`<li><b>${b.name}</b> — ${b.note}</li>`).join("")}
+        ${d.detail.buyers.map(b=>`<li class="co-item"><div class="co-head"><span class="co-name">${b.name}</span>${b.military?'<span class="badge b-mil">⚠ 军工</span>':""}</div>${b.type?`<div class="co-type">${b.type}</div>`:""}<div class="co-note">${b.note}</div></li>`).join("")}
       </ul>` : ""}
       ${d.detail.coNote ? `<div class="mini-note">注：${d.detail.coNote}</div>` : ""}
       ${(typeof TRADE_FLOWS!=="undefined" && TRADE_FLOWS[d.name]) ? `
