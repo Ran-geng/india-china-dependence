@@ -771,63 +771,79 @@ const DEPENDENCE_INDUSTRIES = [
  * ===================================================================== */
 const TRADE_FLOWS = {
   "稀土永磁体": [
-    { seller:"金力永磁/中科三环/宁波韵升（中国 NdFeB 龙头）", buyer:"Uno Minda / SAMVARDHANA MOTHERSON（汽车零部件）", transship:false, via:"", downstream:"供 Tata Motors、Mahindra 等 EV/混动车用电机（自产电机后装车）", military:true, militaryNote:"中国要求终端用户证明「不用于军工」；公开报道指印国防经中间商进口中国磁体供 DRDO/HAL/BEL 导弹舵机、雷达、航电（2024 约 460 吨）", confidence:"documented", note:"民用车链为 documented；军工端为统计/推断（ORF）", source:[110,12] },
-    { seller:"中国磁体厂商（个别经香港/新加坡）", buyer:"Ola Electric / Ather（电动两轮车）", transship:true, via:"香港/新加坡", downstream:"自产两轮车电机", military:false, militaryNote:"未见公开军工端用途证据", confidence:"representative", note:"磁体多对华直供，个别经香港中转为代表性推断", source:[12] }
+    { seller:"金力永磁（JL MAG，赣州）", buyer:"Uno Minda（汽车零部件）", transship:false, via:"", downstream:"供 Tata Motors、Mahindra 等 EV/混动车用电机（自产电机后装车）", military:true, militaryNote:"中国要求终端用户证明「不用于军工」；公开报道指印国防经中间商进口中国磁体供 DRDO/HAL/BEL 导弹舵机、雷达、航电（2024约460吨）", confidence:"documented", note:"民用车链为 documented；军工端为统计/推断（ORF）", source:[110,12] },
+    { seller:"中科三环（Zhong Ke Sanhuan）", buyer:"Tata Motors（整车厂）", transship:false, via:"", downstream:"车规级高温钕铁硼磁体（自产电机后装车）", military:false, militaryNote:"未见公开军工端用途证据", confidence:"representative", note:"中科院背景，汽车 OEM 主力供应商；具体直供合同未见公开，为代表性推断", source:[12] },
+    { seller:"宁波韵升（Ningbo Yunsheng）", buyer:"Ather（电动两轮车）", transship:false, via:"", downstream:"自产两轮车电机磁体", military:false, militaryNote:"未见公开军工端用途证据", confidence:"representative", note:"磁体多对华直供；具体直供合同未见公开，为代表性推断", source:[12] },
+    { seller:"中国磁体厂商（个别经香港/新加坡）", buyer:"Ola Electric（电动两轮车）", transship:true, via:"香港/新加坡", downstream:"自产两轮车电机磁体", military:false, militaryNote:"未见公开军工端用途证据", confidence:"representative", note:"个别经香港中转为代表性推断", source:[12] }
   ],
   "原料药（API/关键起始物料）": [
-    { seller:"新和成/华海/九洲/普洛/国邦（中国原料药头部）", buyer:"Sun Pharma / Cipla / Aurobindo / Lupin / Dr Reddy's", transship:false, via:"", downstream:"自产制剂（出口全球 + 印度本土用药）", military:false, militaryNote:"未见公开军工端用途证据（API 为医药用途）", confidence:"documented", note:"中国医药保健品进出口商会：2023 印自华 API 及中间体约 $101.5 亿、占其进口 68.8%", source:[40,22] },
-    { seller:"青霉素/6-APA 中间体中国厂", buyer:"Aurobindo/Lyfius Kakinada 青霉素 G→6-APA 厂", transship:false, via:"", downstream:"本土自产替代（降依赖约 50%），仍部分依赖中国", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开，为代表性推断", source:[4,23] }
+    { seller:"新和成（NHU）", buyer:"Sun Pharma", transship:false, via:"", downstream:"自产制剂（出口全球 + 印度本土用药）", military:false, militaryNote:"未见公开军工端用途证据（API 为医药用途）", confidence:"documented", note:"中国医药保健品进出口商会：2023 印自华 API 及中间体约 $101.5 亿、占其进口 68.8%", source:[40,22] },
+    { seller:"华海药业", buyer:"Dr Reddy's", transship:false, via:"", downstream:"自产制剂", military:false, militaryNote:"未见", confidence:"representative", note:"中国原料药头部企业；具体直供合同未见公开，为代表性推断", source:[22] },
+    { seller:"国邦医药", buyer:"Aurobindo", transship:false, via:"", downstream:"自产制剂", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开，为代表性推断", source:[22] },
+    { seller:"青霉素/6-APA 中间体中国厂", buyer:"Aurobindo / Lyfius Kakinada 青霉素 G→6-APA 厂", transship:false, via:"", downstream:"本土自产替代（降依赖约 50%），仍部分依赖中国", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开，为代表性推断", source:[4,23] }
   ],
   "盾构机（TBM）": [
-    { seller:"中铁装备 CREG / 中铁重工 CRCHI / 海瑞克广州（德资在华）", buyer:"Mumbai Metro / DFCCIL / 各城市地铁 / 高铁项目（孟买-艾哈迈达巴德）", transship:false, via:"", downstream:"基建施工自用（隧道掘进），业主为政府/国企项目", military:false, militaryNote:"边境/战略隧道具潜在国防属性，但 TBM 采购为民用基建合同", confidence:"documented", note:"孟买地铁 18 台中 8 台中资制造；2025-08 3 台滞留中国港口", source:[25,11,38] },
-    { seller:"北方重工/中铁系", buyer:"印度 BRO 边境战略通道项目", transship:false, via:"", downstream:"边境公路/隧道施工（具国防用途）", military:true, militaryNote:"BRO 隶属国防部建边境战略通道；中资占印工程机械主要份额", confidence:"representative", note:"边境基建具明确国防用途，具体 TBM 采购合同未见公开", source:[38] }
+    { seller:"中铁装备 CREG（郑州）", buyer:"Mumbai Metro 3 号线（MMRC）", transship:false, via:"", downstream:"孟买地铁隧道掘进（民用基建）", military:false, militaryNote:"边境/战略隧道具潜在国防属性，但 TBM 采购为民用基建合同", confidence:"documented", note:"孟买地铁 18 台中 8 台中资制造；2025-08 3 台滞留中国港口", source:[25,11,38] },
+    { seller:"海瑞克广州（Herrenknecht，德资在华）", buyer:"孟买-艾哈迈达巴德高铁项目", transship:false, via:"", downstream:"高铁隧道施工（民用）", military:false, militaryNote:"民用基建合同", confidence:"documented", note:"在华德资工厂供货，属可核实直供", source:[11,38] },
+    { seller:"中铁系（中铁重工 CRCHI 等）", buyer:"印度 BRO 边境战略通道项目", transship:false, via:"", downstream:"边境公路/隧道施工（具国防用途）", military:true, militaryNote:"BRO 隶属国防部建边境战略通道；中资占印工程机械主要份额", confidence:"representative", note:"边境基建具明确国防用途，具体 TBM 采购合同未见公开", source:[38] }
   ],
   "太阳能电池 / 组件": [
-    { seller:"晶科/隆基/天合/晶澳/阿特斯（中国组件）", buyer:"Tata Power Solar / Adani Solar / Waaree / Vikram Solar / RenewSys", transship:false, via:"", downstream:"自供电站 EPC（Sterling & Wilson 等）及本土组件封装", military:false, militaryNote:"未见公开军工端用途证据", confidence:"documented", note:"FY24 自华太阳能设备 $3.89B、占 62.6%", source:[26,39] },
+    { seller:"晶科能源（Jinko）", buyer:"Tata Power Solar", transship:false, via:"", downstream:"自供电站 EPC 及本土组件封装", military:false, militaryNote:"未见公开军工端用途证据", confidence:"documented", note:"FY24 自华太阳能设备 $3.89B、占 62.6%", source:[26,39] },
+    { seller:"隆基（LONGi）", buyer:"Adani Solar", transship:false, via:"", downstream:"本土组件封装", military:false, militaryNote:"未见", confidence:"documented", note:"中国组件对印直供代表", source:[39] },
+    { seller:"天合光能（Trina）", buyer:"Waaree", transship:false, via:"", downstream:"本土组件封装", military:false, militaryNote:"未见", confidence:"documented", note:"中国组件对印直供代表", source:[39] },
     { seller:"中国组件（经越南/马来/泰/柬/印尼贴牌）", buyer:"印度进口商（规避 40% BCD）", transship:true, via:"越南/马来/泰/柬/印尼", downstream:"印度电站", military:false, militaryNote:"未见", confidence:"documented", note:"美国 CBP 对 Waaree 的 EAPA 8163 规避裁定（最高 271.28% 税）；DGTR 2025-09 终裁含对东南亚制造再出口征 30% 反规避条款", source:[112,39] }
   ],
   "多晶硅 / 硅片（上游）": [
-    { seller:"通威/大全/协鑫/新特/亚洲硅业（中国多晶硅）", buyer:"Adani / Reliance（Jamnagar 建厂）/ Waaree 拟建上游", transship:false, via:"", downstream:"本土拉棒/切片/电池，仍依赖中国多晶硅", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开；印度多晶硅几近空白、对华依赖极高", source:[27,28] },
+    { seller:"通威（Tongwei）", buyer:"Adani（Jamnagar 建厂）", transship:false, via:"", downstream:"本土拉棒/切片/电池，仍依赖中国多晶硅", military:false, militaryNote:"未见", confidence:"representative", note:"公司级直供合同未公开；印度多晶硅几近空白、对华依赖极高", source:[27,28] },
+    { seller:"协鑫（GCL）", buyer:"Reliance（Jamnagar 光伏野心）", transship:false, via:"", downstream:"本土拉棒/切片", military:false, militaryNote:"未见", confidence:"representative", note:"上游直供合同未公开，为代表性推断", source:[27] },
     { seller:"中国硅片（经第三国）", buyer:"印度电池厂", transship:true, via:"东南亚", downstream:"电池制造", military:false, militaryNote:"未见", confidence:"representative", note:"上游经东盟中转规避，具体案少见公开", source:[27] }
   ],
   "电子 / 电信 / 电气产品": [
-    { seller:"华为/中兴（电信设备）", buyer:"BSNL / Airtel / Reliance Jio（网络）", transship:false, via:"", downstream:"自组网/运维，供电信与部分政府网络", military:true, militaryNote:"印军/边防通信网曾含中国设备隐患；2020 后限制但存量与替代仍存漏洞（关联监控设备禁令背景）", confidence:"documented", note:"电信设备具潜在国防/安全用途", source:[111,29] },
-    { seller:"小米/OPPO/vivo/比亚迪电子/立讯/歌尔", buyer:"Dixon Technologies / Foxconn India / 塔塔电子 / 三星印度", transship:false, via:"", downstream:"代工后供品牌（自产整机/模组）或流向 OEM", military:false, militaryNote:"未见直接军工端用途证据", confidence:"documented", note:"电子/电信/电气自华占 43.9%（大陆）", source:[29,30] },
+    { seller:"华为（Huawei）", buyer:"BSNL / Airtel / Reliance Jio（网络）", transship:false, via:"", downstream:"自组网/运维，供电信与部分政府网络", military:true, militaryNote:"印军/边防通信网曾含中国设备隐患；2020 后限制但存量与替代仍存漏洞（关联监控设备禁令背景）", confidence:"documented", note:"电信设备具潜在国防/安全用途", source:[111,29] },
+    { seller:"小米（Xiaomi）", buyer:"Dixon Technologies（代工）", transship:false, via:"", downstream:"代工后供品牌（自产整机/模组）", military:false, militaryNote:"未见直接军工端用途证据", confidence:"documented", note:"电子/电信/电气自华占 43.9%（大陆）", source:[29,30] },
+    { seller:"立讯精密（Luxshare）", buyer:"富士康 India（EMS）", transship:false, via:"", downstream:"组装后供品牌或流向 OEM", military:false, militaryNote:"未见", confidence:"representative", note:"关键零部件与 EMS 供应商；具体直供合同未见公开，为代表性推断", source:[30] },
     { seller:"中国电子元件（经香港/越南/新加坡/马来贴牌）", buyer:"印度 EMS 代工厂", transship:true, via:"香港/越南/新加坡/马来", downstream:"组装后内销/出口", military:false, militaryNote:"未见", confidence:"documented", note:"DRI 调查 + 财政部 2025 原产地新规针对此类中转", source:[124,14] }
   ],
   "锂离子电池": [
-    { seller:"宁德时代/比亚迪/亿纬/国轩/欣旺达", buyer:"Ola Electric / Ather / Tata AutoComp / Exide / Amara Raja", transship:false, via:"", downstream:"自产电池包供 EV/两轮车/储能", military:true, militaryNote:"印军无人机 60–70% 关键件（电池/电机/传感器）来自中国，无人机电池 75–80% 自华进口（关联 DJI 灰市采购）", confidence:"documented", note:"锂电自华占 75%（$2.2B）", source:[31,108,109] },
-    { seller:"ATL/中国电芯（经第三国）", buyer:"印度 Pack 厂", transship:true, via:"东南亚", downstream:"本地 Pack 后供 EV", military:false, militaryNote:"未见新证据", confidence:"representative", note:"电芯经东盟中转常见", source:[31] }
+    { seller:"宁德时代（CATL）", buyer:"Ola Electric", transship:false, via:"", downstream:"自产电池包供 EV/两轮车", military:true, militaryNote:"印军无人机 60–70% 关键件（电池/电机/传感器）来自中国，无人机电池 75–80% 自华进口（关联 DJI 灰市采购）", confidence:"documented", note:"锂电自华占 75%（$2.2B）", source:[31,108,109] },
+    { seller:"比亚迪（BYD）", buyer:"Tata AutoComp / Tata Motors", transship:false, via:"", downstream:"自产电池包供 EV/储能", military:false, militaryNote:"未见新证据", confidence:"representative", note:"EV 电池与三电配套；具体直供合同未见公开，为代表性推断", source:[31] },
+    { seller:"ATL / 中国电芯（经第三国）", buyer:"印度 Pack 厂", transship:true, via:"东南亚", downstream:"本地 Pack 后供 EV", military:false, militaryNote:"未见新证据", confidence:"representative", note:"电芯经东盟中转常见", source:[31] }
   ],
   "智能手机零部件": [
-    { seller:"立讯/歌尔/舜宇/丘钛/蓝思/比亚迪电子", buyer:"富士康 India / 塔塔电子 / Dixon / 小米·vivo·OPPO 在印工厂", transship:false, via:"", downstream:"组装成手机后内销/出口（自产整机）", military:false, militaryNote:"未见公开军工端用途证据（消费电子）", confidence:"documented", note:"舜宇/丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", source:[123,33] },
+    { seller:"舜宇光学 / 丘钛（经 Dixon 印度子公司）", buyer:"Dixon Technologies", transship:false, via:"", downstream:"组装成手机后内销/出口（自产整机）", military:false, militaryNote:"未见公开军工端用途证据（消费电子）", confidence:"documented", note:"舜宇/丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", source:[123,33] },
+    { seller:"立讯精密（Luxshare）", buyer:"塔塔电子（Tata Electronics）", transship:false, via:"", downstream:"组装成手机后内销/出口", military:false, militaryNote:"未见", confidence:"representative", note:"具体直供合同未见公开，为代表性推断", source:[33] },
     { seller:"中国光学/结构件（经越南/香港）", buyer:"印度组装厂", transship:true, via:"越南/香港", downstream:"手机组装", military:false, militaryNote:"未见", confidence:"representative", note:"中转为代表性推断", source:[33] }
   ],
   "汽车零配件": [
-    { seller:"均胜电子/福耀玻璃/万向/敏实/宁波华翔/拓普", buyer:"Uno Minda / SAMVARDHANA MOTHERSON / Bharat Forge / Tata AutoComp / Bosch India", transship:false, via:"", downstream:"供 Maruti/Tata/Mahindra 整车（自产零部件）或流向 OEM", military:false, militaryNote:"Bharat Forge 为国防承包商，但未见其自华汽配采购公开证据", confidence:"documented", note:"福耀对印汽车玻璃 4529 批海关记录（ImportGenius）", source:[123] },
+    { seller:"福耀玻璃（FY Automotive Glass）", buyer:"Maruti Suzuki（整车厂）", transship:false, via:"", downstream:"供整车厂车用玻璃", military:false, militaryNote:"未见", confidence:"documented", note:"福耀对印汽车玻璃 4529 批海关记录（ImportGenius）", source:[123] },
+    { seller:"均胜电子（Joyson）", buyer:"Uno Minda（汽车零部件）", transship:false, via:"", downstream:"供 Maruti/Tata/Mahindra 整车（自产零部件）", military:false, militaryNote:"未见", confidence:"representative", note:"汽车电子/内饰供应商；具体直供合同未见公开，为代表性推断", source:[123] },
+    { seller:"宁波华翔（Huaxiang）", buyer:"SAMVARDHANA MOTHERSON（零部件）", transship:false, via:"", downstream:"供整车厂内外饰件", military:false, militaryNote:"未见", confidence:"representative", note:"具体直供合同未见公开，为代表性推断", source:[123] },
     { seller:"中国汽配（经越南/泰国）", buyer:"印度 Tier-1 供应商", transship:true, via:"越南/泰国", downstream:"供整车厂", military:false, militaryNote:"未见", confidence:"representative", note:"汽配经东盟中转规避关税", source:[14] }
   ],
   "纺织品和服装": [
-    { seller:"中国面料/纱线/成衣 OEM", buyer:"印度服装出口商/零售品牌/面料进口商", transship:false, via:"", downstream:"自产成衣出口或内销", military:false, militaryNote:"未见", confidence:"documented", note:"纺织服装自华依赖约 42%", source:[3] },
+    { seller:"中国面料 OEM（中高端合成纤维）", buyer:"Raymond（服装与家纺）", transship:false, via:"", downstream:"自产成衣/面料内销或出口", military:false, militaryNote:"未见", confidence:"representative", note:"纺织服装自华依赖约 42%；具体直供合同未见公开，为代表性推断", source:[3] },
+    { seller:"中国纱线厂", buyer:"Vardhman（纱线/面料）", transship:false, via:"", downstream:"自产成衣/面料", military:false, militaryNote:"未见", confidence:"representative", note:"代表性推断", source:[3] },
     { seller:"中国面料（经 UAE/越南）", buyer:"印度服装厂", transship:true, via:"UAE/越南", downstream:"成衣制造", military:false, militaryNote:"未见", confidence:"representative", note:"面料经第三国中转规避，具体案少见", source:[14] }
   ],
   "医疗器械与科学仪器": [
-    { seller:"迈瑞医疗 Mindray", buyer:"HLL Lifecare / Tata Trusts / AIIMS 等医院", transship:false, via:"", downstream:"医院临床自用（ICU/呼吸机）", military:false, militaryNote:"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据", confidence:"documented", note:"新冠期供应数千台", source:[121] },
-    { seller:"联影 United Imaging", buyer:"Medikabazaar 代理 → Superhealth 等医院", transship:false, via:"", downstream:"医院装机 CT/PET-CT 700+ 台", military:false, militaryNote:"未见", confidence:"documented", note:"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币", source:[122] },
+    { seller:"迈瑞医疗（Mindray）", buyer:"AIIMS / HLL Lifecare（医院与采购）", transship:false, via:"", downstream:"医院临床自用（ICU/呼吸机/监护）", military:false, militaryNote:"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据", confidence:"documented", note:"新冠期供应数千台", source:[121] },
+    { seller:"联影医疗（United Imaging）", buyer:"Medikabazaar 代理 → Superhealth 等医院", transship:false, via:"", downstream:"医院装机 CT/PET-CT 700+ 台", military:false, militaryNote:"未见", confidence:"documented", note:"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币", source:[122] },
     { seller:"中国 IVD/耗材（经香港/新加坡/马来）", buyer:"Dr Lal / SRL 等诊断实验室", transship:true, via:"香港/新加坡/马来", downstream:"自产检测服务", military:false, militaryNote:"未见", confidence:"documented", note:"约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", source:[127] }
   ],
   "玩具": [
-    { seller:"中国 OEM（珠三角/浙江）", buyer:"Leo Godt / Mattel India / Bharat Balloon", transship:false, via:"", downstream:"零售（Hamleys/Reliance Retail）/电商", military:false, militaryNote:"未见", confidence:"documented", note:"华货占 $40.2M", source:[126] },
+    { seller:"中国 OEM（珠三角产业带）", buyer:"Mattel India", transship:false, via:"", downstream:"零售（Hamleys/Reliance Retail）/电商", military:false, militaryNote:"未见", confidence:"documented", note:"华货占 $40.2M", source:[126] },
+    { seller:"中国 OEM（浙江）", buyer:"Leo Godt / Bharat Balloon", transship:false, via:"", downstream:"零售/批发", military:false, militaryNote:"未见", confidence:"documented", note:"对华直供代表", source:[126] },
     { seller:"中国 OEM（经新加坡/香港/越南）", buyer:"印度进口商", transship:true, via:"新加坡/香港/越南", downstream:"零售", military:false, militaryNote:"未见", confidence:"documented", note:"经新加坡 $13.1M、香港 $2.7M 中转；越南 14 张外资玩具 BIS 许可被用作转口", source:[126] }
   ],
   "工程机械与工业机械（通用）": [
-    { seller:"徐工 XCMG", buyer:"Reliance Industries（SANSAN 电厂）", transship:false, via:"", downstream:"自建项目自用（履带吊）", military:false, militaryNote:"未见", confidence:"documented", note:"创大吨位出口纪录", source:[119] },
-    { seller:"中联重科 Zoomlion", buyer:"Reliance Industries", transship:false, via:"", downstream:"自建项目（120 台 QY75V 吊车）", military:false, militaryNote:"未见", confidence:"documented", note:"Zoomlion 印度子公司直供", source:[120] },
-    { seller:"三一/徐工/中联（经经销商）", buyer:"L&T / Tata Projects / ONGC / HPCL（EPC）", transship:false, via:"", downstream:"基建/能源项目施工", military:false, militaryNote:"未见", confidence:"representative", note:"经经销商供货，下游为代表性推断", source:[38] },
+    { seller:"徐工（XCMG）", buyer:"Reliance Industries（SANSAN 电厂）", transship:false, via:"", downstream:"自建项目自用（履带吊）", military:false, militaryNote:"未见", confidence:"documented", note:"创大吨位出口纪录", source:[119] },
+    { seller:"中联重科（Zoomlion）", buyer:"Reliance Industries", transship:false, via:"", downstream:"自建项目（120 台 QY75V 吊车）", military:false, militaryNote:"未见", confidence:"documented", note:"Zoomlion 印度子公司直供", source:[120] },
+    { seller:"三一重工（Sany）", buyer:"L&T / Tata Projects / ONGC / HPCL（EPC）", transship:false, via:"", downstream:"基建/能源项目施工", military:false, militaryNote:"未见", confidence:"representative", note:"经经销商供货，下游为代表性推断", source:[38] },
     { seller:"中资工程机械", buyer:"印度 BRO 边境国防基建", transship:false, via:"", downstream:"BRO 战略边境公路/隧道（64 条）", military:true, militaryNote:"BRO 隶属国防部建边境战略通道；中资占印工程机械主要份额，具体采购合同未见", confidence:"representative", note:"边境基建具明确国防用途", source:[38] }
   ],
   "化肥（磷酸二铵 DAP / 特种肥）": [
-    { seller:"云天化/瓮福/宜化/中海化学/史丹利", buyer:"IFFCO / RCF / NFL / KRIBHCO / Coromandel", transship:false, via:"", downstream:"分装/农用（rabi 冬播季）", military:false, militaryNote:"化肥为农用，未见军工端用途证据", confidence:"documented", note:"2015 云天化 6 万吨、瓮福 3-3.5 万吨 DAP 至印合同；印 95% 特种肥依赖中国", source:[106] },
+    { seller:"云天化（Yuntianhua）", buyer:"IFFCO", transship:false, via:"", downstream:"分装/农用（rabi 冬播季）", military:false, militaryNote:"化肥为农用，未见军工端用途证据", confidence:"documented", note:"2015 云天化 6 万吨 DAP 至印合同；印 95% 特种肥依赖中国", source:[106] },
+    { seller:"贵州磷化（瓮福 Wengfu）", buyer:"Coromandel International", transship:false, via:"", downstream:"分装/农用", military:false, militaryNote:"未见", confidence:"documented", note:"瓮福 3-3.5 万吨 DAP 至印合同", source:[106] },
     { seller:"中国特种肥（TMAP/AdBlue）", buyer:"印度（SFIA 渠道）", transship:false, via:"", downstream:"农用/柴油车排放控制", military:false, militaryNote:"未见", confidence:"documented", note:"2025-10-15 起中方暂停出口覆盖全市场", source:[106] }
   ]
 };
