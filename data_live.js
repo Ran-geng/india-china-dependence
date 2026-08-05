@@ -1,6 +1,6 @@
-// 由 update_data_tia.py 自印度 TIA 门户实时抓取（免费、无需 Key）
+// 由 refresh_monthly.py 合并刷新（印度 TIA 门户，免费无需 Key）
 // 口径：印度全部商品贸易（对全球总额），USD 十亿美元(Bn)，按财年
-// 用途：交叉校验站点第一板块总量背景；TIA_TOP_PARTNERS 确认中国为第1大进口来源
+// 合并规则：TIA 可返回的财年用最新值覆盖；人工扩充的 FY2024-25/FY2025-26 保留不回退
 const TIA_TOTAL_TRADE = {
   "years": [
     "2019-20",
@@ -35,9 +35,9 @@ const TIA_TOTAL_TRADE = {
     96.71,
     152.95,
     142.25,
-    161.10,
+    161.1,
     214.15
   ]
 };
 const TIA_TOP_PARTNERS = ["China", "Russia", "United Arab Emirates", "United States of America", "Saudi Arabia", "Iraq", "Indonesia", "Singapore", "Korea (south)", "Hong Kong"];
-const TIA_LAST_UPDATED = "2026-07-28";
+const TIA_LAST_UPDATED = "2026-08-04";
