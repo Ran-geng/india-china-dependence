@@ -5,10 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>印度对中国产业依赖研究 · 贸易·原材料·工程器械·零部件</title>
 <meta name="description" content="基于公开数据，研究印度在原材料、工程器械（如盾构机）、零部件等关键领域对中国的产业依赖程度，含贸易概况、依赖度可视化、转口贸易追踪与贸易政策。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="vendor/chart.umd.min.js"></script>
 </head>
 <body>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- 导航 -->
 <nav class="nav">
@@ -215,9 +221,12 @@
   <div class="modal-box" role="dialog" aria-modal="true">
     <button class="modal-close" id="depClose" aria-label="关闭">×</button>
     <div class="modal-head">
-      <div class="m-grp" id="mGrp"></div>
-      <h3 id="mName"></h3>
-      <div class="m-dep" id="mDep"></div>
+      <div class="m-head-text">
+        <div class="m-grp" id="mGrp"></div>
+        <h3 id="mName"></h3>
+        <div class="m-dep" id="mDep"></div>
+      </div>
+      <div class="m-gauge" id="mGauge"></div>
     </div>
     <div class="modal-body" id="mBody"></div>
   </div>
