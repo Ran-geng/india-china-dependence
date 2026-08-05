@@ -244,6 +244,7 @@
     secs.push({ type:"heading", text:"一、产业概况与对华依赖现状" });
     secs.push({ type:"para", text: det.intro || "" });
     secs.push({ type:"para", text:`对华依赖度：${d.dependency}%。${d.metric || ""}` });
+    if (det.dependencyNote) secs.push({ type:"para", text:`印度对中国依赖情况：${det.dependencyNote}` });
     secs.push({ type:"heading", text:"二、具体依赖表现" });
     if (det.tradeYearly && det.tradeYearly.length){
       secs.push({ type:"para", text:"印度自华进口贸易数据（公开口径）：" });
@@ -300,6 +301,38 @@
     };
   }
 
+  /* ---------- 依赖度仪表盘（SVG 半圆弧，可动画） ---------- */
+  function gaugeSVG(dep){
+    const v = Math.max(0, Math.min(100, dep));
+    return `<svg class="gauge-svg" viewBox="0 0 120 70" aria-hidden="true">
+      <defs><linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#e0762a"/><stop offset="1" stop-color="#c23a32"/>
+      </linearGradient></defs>
+      <path class="g-track" d="M8 60 A52 52 0 0 1 112 60" pathLength="100"/>
+      <path class="g-val" id="gVal" d="M8 60 A52 52 0 0 1 112 60" pathLength="100" style="stroke-dashoffset:100"/>
+    </svg>
+    <div class="g-center"><div class="g-num"><span id="gNum">0</span><span class="g-pct">%</span></div><div class="g-cap">对华依赖度</div></div>`;
+  }
+
+  /* ---------- 交互式贸易流卡片 ---------- */
+  function flowItemHTML(f){
+    const seller = `<span class="chip f-seller" data-role="中国供应方（对华出口商）" data-tip="中国供应方">${f.seller}</span>`;
+    const buyer  = `<span class="chip f-buyer" data-role="印度采购方（进口商）" data-tip="印度采购方">${f.buyer}</span>`;
+    const trans  = f.transship ? `<span class="arrow">→</span><span class="chip f-trans" data-role="经第三国中转（规避关税）" data-tip="中转地">经 ${f.via} 中转</span>` : "";
+    const down   = `<span class="arrow">→</span><span class="f-down">${f.downstream}</span>`;
+    return `<div class="flow-item" tabindex="0">
+        <div class="flow-chain">${seller}<span class="arrow">→</span>${buyer}${trans}${down}</div>
+        <div class="flow-badges">
+          ${f.transship ? `<span class="badge b-trans">中转 · ${f.via}</span>` : ""}
+          ${f.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
+          <span class="badge ${f.confidence==="documented"?"b-doc":"b-rep"}">${f.confidence==="documented"?"已核实":"代表性推断"}</span>
+        </div>
+        <div class="flow-note">${f.note}${f.military ? (" ｜ "+f.militaryNote) : ""}${f.source?(" "+f.source.map(cite).join(" ")):""}</div>
+        <div class="flow-caption" aria-live="polite"></div>
+        <div class="flow-hint"><span class="chev">▾</span> 点击链路节点查看角色 · 点击卡片展开 / 收起</div>
+      </div>`;
+  }
+
   function openModal(idx){
     if(!modal) return;
     const d = DEPENDENCE_INDUSTRIES[idx];
@@ -308,8 +341,15 @@
     $("#mGrp").textContent = d.group;
     $("#mName").textContent = d.name;
     $("#mDep").innerHTML = `对华依赖度 <b>${d.dependency}%</b> · ${d.metric}`;
-    $("#mBody").innerHTML = `
+    $("#mGauge").innerHTML = gaugeSVG(d.dependency);
+
+    const overviewPane = `
       <p class="intro">${d.detail.intro}</p>
+      <h4>印度对中国依赖情况</h4>
+      <p class="rep-p">${d.detail.dependencyNote ? d.detail.dependencyNote : `对华依赖度 <b>${d.dependency}%</b>。${d.metric||""}`}</p>
+      <div class="mini-note">对华依赖度（中国在该产业印度进口中的份额）：${d.dependency}%。${d.metric?(" "+d.metric):""}</div>`;
+
+    const tradePane = `
       <h4>中印双边贸易数据（印度自华进口）</h4>
       <div class="toggle" id="tradeToggle">
         <button data-t="year" class="active">逐年</button>
@@ -320,7 +360,9 @@
       <table class="hs-table"><thead><tr><th>HS 编码</th><th>品类</th></tr></thead><tbody>
         ${d.detail.hs.map(h=>`<tr><td class="code">${h.code}</td><td>${h.name}</td></tr>`).join("")}
       </tbody></table>
-      <div class="mini-note">注：HS 编码为代表性税号；贸易额单位见上表对应数据行。${d.detail.note?(" "+d.detail.note):""}</div>
+      <div class="mini-note">注：HS 编码为代表性税号；贸易额单位见上表对应数据行。${d.detail.note?(" "+d.detail.note):""}</div>`;
+
+    const supplyPane = `
       <h4>印度替代来源国家 / 地区</h4>
       <ul class="alt-list">
         ${d.detail.alternatives.map(a=>`<li><b>${a.country}</b> — ${a.note}</li>`).join("")}
@@ -342,41 +384,68 @@
       </ul>` : ""}
       ${d.detail.coNote ? `<div class="mini-note">注：${d.detail.coNote}</div>` : ""}
       ${(typeof TRADE_FLOWS!=="undefined" && TRADE_FLOWS[d.name]) ? `
-      <h4>贸易流（中国供应商 → 印度采购商 → 下游）</h4>
+      <h4>贸易流（中国供应商 → 印度采购商 → 下游）<span class="tag-sub" style="background:var(--cn)">可交互</span></h4>
       <div class="flow-list">
-        ${TRADE_FLOWS[d.name].map(f=>`
-          <div class="flow-item">
-            <div class="flow-chain">
-              <span class="f-seller">${f.seller}</span>
-              <span class="arrow">→</span>
-              <span class="f-buyer">${f.buyer}</span>
-              ${f.transship ? `<span class="arrow">→</span><span class="f-trans">经 ${f.via} 中转</span>` : ""}
-              <span class="arrow">→</span>
-              <span class="f-down">${f.downstream}</span>
-            </div>
-            <div class="flow-badges">
-              ${f.transship ? `<span class="badge b-trans">中转 · ${f.via}</span>` : ""}
-              ${f.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
-              <span class="badge ${f.confidence==="documented"?"b-doc":"b-rep"}">${f.confidence==="documented"?"已核实":"代表性推断"}</span>
-            </div>
-            <div class="flow-note">${f.note}${f.military ? (" ｜ "+f.militaryNote) : ""}${f.source?(" "+f.source.map(cite).join(" ")):""}</div>
-          </div>`).join("")}
+        ${TRADE_FLOWS[d.name].map(flowItemHTML).join("")}
       </div>
-      <div class="mini-note">说明：公司级「一对一」海关提单多属付费源（ImportGenius/Volza/Panjiva），公开可查直供以厂商披露/行业报道为主；标「代表性推断」者为基于公开上下游代表的合理链路，非具体合同。中转 / 军工均依据公开证据标注。</div>
-      ` : ""}
-      ${reportBlock(d, idx)}
-      <div class="mini-note">数据来源：${d.detail.sources.map(cite).join(" ")}${d.detail.coSource ? (" ｜ 企业供应链："+d.detail.coSource.map(cite).join(" ")) : ""}</div>
+      <div class="mini-note">说明：公司级「一对一」海关提单多属付费源（ImportGenius/Volza/Panjiva），公开可查直供以厂商披露/行业报道为主；标「代表性推断」者为基于公开上下游代表的合理链路，非具体合同。中转 / 军工均依据公开证据标注。点击节点可查看其角色，点击卡片可展开 / 收起说明。</div>
+      ` : ""}`;
+
+    $("#mBody").innerHTML = `
+      <div class="m-tabs" id="mTabs">
+        <button data-tab="overview" class="active">概览</button>
+        <button data-tab="trade">贸易数据</button>
+        <button data-tab="supply">供应链与贸易流</button>
+        <button data-tab="report">分析报告</button>
+      </div>
+      <div class="m-pane active" data-pane="overview">${overviewPane}</div>
+      <div class="m-pane" data-pane="trade">${tradePane}</div>
+      <div class="m-pane" data-pane="supply">${supplyPane}</div>
+      <div class="m-pane" data-pane="report">${reportBlock(d, idx)}</div>
     `;
+
     renderTradeBlock();
     modal.classList.add("open");
     modal.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
+
+    /* 标签切换 */
+    const tabs = $("#mTabs");
+    if (tabs) tabs.addEventListener("click", e=>{
+      const b = e.target.closest("button[data-tab]"); if(!b) return;
+      $$("#mTabs button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      const t = b.dataset.tab;
+      $$(".m-pane").forEach(p=>p.classList.toggle("active", p.dataset.pane===t));
+    });
+
+    /* 贸易数据切换（保留原逻辑） */
     $$("#tradeToggle button").forEach(b=>b.addEventListener("click",()=>{
       $$("#tradeToggle button").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
       currentTab = b.dataset.t;
       renderTradeBlock();
     }));
+
+    /* 交互式贸易流：节点高亮 + 角色说明；卡片展开 / 收起 */
+    $$(".flow-item").forEach(item=>{
+      const cap = item.querySelector(".flow-caption");
+      item.querySelectorAll(".chip").forEach(chip=>{
+        chip.addEventListener("click", ev=>{
+          ev.stopPropagation();
+          item.querySelectorAll(".chip").forEach(c=>c.classList.remove("picked"));
+          chip.classList.add("picked");
+          cap.innerHTML = `<b>${chip.dataset.role}</b>　${chip.textContent}`;
+          cap.classList.add("show");
+        });
+      });
+      item.addEventListener("click", ()=>{
+        const opened = item.classList.toggle("open");
+        if(!opened) cap.classList.remove("show");
+      });
+      item.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); item.click(); }});
+    });
+
     /* 分析报告 DOCX 下载 */
     const dld = $("#dlDocx");
     if (dld) dld.addEventListener("click", ()=>{
@@ -385,7 +454,24 @@
         window.IndiaDocx.generateDocx(buildDocxOpts(currentItem));
       } catch(e){ console.error("DOCX 生成失败：", e); alert("报告生成失败："+e.message); }
     });
+
+    /* 仪表盘动画（视口出现后触发） */
+    requestAnimationFrame(()=>{
+      const gv = $("#gVal"); const gn = $("#gNum");
+      if(gv) gv.style.strokeDashoffset = String(100 - d.dependency);
+      if(gn){
+        const target = d.dependency, t0 = performance.now(), dur = 1100;
+        const step = now=>{
+          const p = Math.min(1,(now-t0)/dur);
+          const eased = 1-Math.pow(1-p,3);
+          gn.textContent = Math.round(target*eased);
+          if(p<1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    });
   }
+
 
   function closeModal(){
     if(!modal) return;
@@ -562,8 +648,8 @@
   /* =====================================================================
    * 图表 —— 与弹窗解耦；Chart 缺失或单图报错都不影响交互
    * ===================================================================== */
-  const FONT = '"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif';
-  const C = { primary:"#1d4e89", india:"#ff7a1a", china:"#d64545", teal:"#0f9e8e", gold:"#c9962b", grid:"#e0e6ef" };
+  const FONT = '"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif';
+  const C = { primary:"#2c2a26", india:"#e0762a", china:"#c23a32", teal:"#0f8a7e", gold:"#b3852c", grid:"#e2dccd" };
 
   function chartFallback(){
     $$(".chart-wrap").forEach(w=>{
@@ -613,7 +699,7 @@
           labels:IMPORT_CATEGORIES.labels,
           datasets:[{
             data:IMPORT_CATEGORIES.values,
-            backgroundColor:["#1d4e89","#2f6fb0","#0f9e8e","#c9962b","#d64545","#ff7a1a","#9aa8bd","#7e57c2","#26a69a","#ef6c00","#8d6e63"],
+            backgroundColor:["#e0762a","#c23a32","#0f8a7e","#b3852c","#2c2a26","#d98b4a","#8a8275","#7e57c2","#5a8f86","#ef9a4d","#9c8f7a"],
             borderColor:"#fff",borderWidth:2
           }]
         },
@@ -675,6 +761,79 @@
         });
       }
     } catch(e){ console.error("industryTop 渲染失败：",e); }
+  }
+
+  /* =====================================================================
+   * 全局交互 · 滚动进度 / 入场动画 / 导航高亮 / 数字滚动
+   * ===================================================================== */
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 1. 滚动进度条 + 导航高亮（scroll-spy） */
+  const progressEl = $("#scrollProgress");
+  const navLinks = $$(".nav-links a");
+  const spyTargets = navLinks.map(a=>$(a.getAttribute("href"))).filter(Boolean);
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(()=>{
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if(progressEl) progressEl.style.width = (h>0 ? (st/h*100) : 0) + "%";
+      let cur = spyTargets[0];
+      spyTargets.forEach(s=>{ if(s.offsetTop - 120 <= st) cur = s; });
+      navLinks.forEach(a=>a.classList.toggle("active", cur && a.getAttribute("href") === "#"+cur.id));
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll, {passive:true});
+  onScroll();
+
+  /* 2. 入场动画（IntersectionObserver） */
+  if(!reduceMotion){
+    const revEls = $$(".section, .dep-card, .route, .chart-card, .src-card, .subdep-card, .tl-item, .monthly-card, .tia-card, .xcheck-card, .ov-report, .collapse-sec");
+    revEls.forEach(el=>el.classList.add("reveal"));
+    if("IntersectionObserver" in window){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+      },{threshold:.12, rootMargin:"0px 0px -8% 0px"});
+      revEls.forEach(el=>io.observe(el));
+      /* 兜底：若 observer 未触发，2.5s 后强制显示，避免内容滞留隐藏态 */
+      setTimeout(()=>revEls.forEach(el=>el.classList.add("in")), 2500);
+    } else {
+      revEls.forEach(el=>el.classList.add("in"));
+    }
+  }
+
+  /* 3. 数字滚动计数（Hero / KPI） */
+  function animateCount(el){
+    const html = el.innerHTML;
+    const m = html.match(/^([^\d]*)([\d.,]+)([\s\S]*)$/);
+    if(!m) return;
+    const prefix = m[1], numStr = m[2], suffix = m[3];
+    const target = parseFloat(numStr.replace(/,/g,""));
+    const dec = (numStr.split(".")[1]||"").length;
+    const t0 = performance.now(), dur = 1200;
+    const step = now=>{
+      const p = Math.min(1,(now-t0)/dur);
+      const eased = 1-Math.pow(1-p,3);
+      const val = target*eased;
+      const str = dec ? val.toFixed(dec) : Math.round(val).toLocaleString("en-US");
+      el.innerHTML = prefix + str + suffix;
+      if(p<1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  if(!reduceMotion){
+    const counters = $$(".hstat .v, .kpi .num");
+    if("IntersectionObserver" in window){
+      const io2 = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{ if(en.isIntersecting){ animateCount(en.target); io2.unobserve(en.target); } });
+      },{threshold:.5});
+      counters.forEach(el=>io2.observe(el));
+    } else {
+      counters.forEach(animateCount);
+    }
   }
 
 })();
