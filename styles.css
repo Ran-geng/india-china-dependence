@@ -278,6 +278,9 @@ img{max-width:100%}
 .alt-list li{font-size:13px;color:var(--ink-soft);padding-left:18px;position:relative}
 .alt-list li::before{content:"▸";position:absolute;left:0;color:var(--teal)}
 .alt-list b{color:var(--ink)}
+.diversify-box{margin-top:14px;padding:14px 16px;border-left:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 10%,transparent);border-radius:8px}
+.diversify-box .d-title{font-size:13px;margin:0 0 6px;color:var(--teal)}
+.diversify-box p{font-size:13px;line-height:1.7;color:var(--ink-soft);margin:0}
 .co-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .co-list li{font-size:13px;color:var(--ink-soft);padding-left:18px;position:relative;line-height:1.6}
 .co-list li::before{content:"▸";position:absolute;left:0;color:var(--china)}
@@ -427,6 +430,35 @@ img{max-width:100%}
 .collapse-sec:not(.collapsed) .collapse-icon .chev{ transform:rotate(180deg); }
 .collapse-body{ padding:0; }
 .collapse-sec.collapsed .collapse-body{ display:none; }
+.collapse-body .src-registry{ padding:0 22px; }
+.collapse-body .update-note{ margin:0 22px 22px; }
+
+/* ===== 贸易流（详情弹窗内）===== */
+.flow-list{ display:flex; flex-direction:column; gap:14px; margin:6px 0 4px; }
+.flow-item{
+  border:1px solid var(--line); border-radius:12px;
+  background:var(--surface-2); padding:12px 14px;
+}
+.flow-chain{
+  display:flex; flex-wrap:wrap; align-items:center; gap:6px;
+  font-size:13px; line-height:1.5; margin-bottom:8px;
+}
+.flow-chain .arrow{ color:var(--ink-mute); font-weight:700; }
+.flow-chain .f-seller{ font-weight:700; color:var(--cn,#d8332a); }
+.flow-chain .f-buyer{ font-weight:700; color:var(--in,#1f7a4d); }
+.flow-chain .f-trans{ font-weight:700; color:#b8860b; background:rgba(184,134,11,.12); padding:1px 7px; border-radius:6px; }
+.flow-chain .f-down{ color:var(--ink-mute); }
+.flow-badges{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+.badge{
+  font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px;
+  border:1px solid transparent; white-space:nowrap;
+}
+.badge.b-trans{ background:rgba(184,134,11,.16); color:#8a6500; border-color:rgba(184,134,11,.4); }
+.badge.b-mil{ background:rgba(216,51,42,.16); color:#b01b13; border-color:rgba(216,51,42,.45); }
+.badge.b-doc{ background:rgba(31,122,77,.16); color:#176b41; border-color:rgba(31,122,77,.4); }
+.badge.b-rep{ background:rgba(90,100,120,.16); color:#4a5568; border-color:rgba(90,100,120,.4); }
+.flow-note{ font-size:12px; line-height:1.7; color:var(--ink-mute); }
+.flow-note .cite-ref{ font-size:11px; }
 /* 内层卡片融入折叠容器，避免双重边框 */
 .collapse-sec .tia-card,
 .collapse-sec .xcheck-card{
