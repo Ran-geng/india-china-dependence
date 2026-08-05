@@ -278,6 +278,9 @@ img{max-width:100%}
 .alt-list li{font-size:13px;color:var(--ink-soft);padding-left:18px;position:relative}
 .alt-list li::before{content:"▸";position:absolute;left:0;color:var(--teal)}
 .alt-list b{color:var(--ink)}
+.diversify-box{margin-top:14px;padding:14px 16px;border-left:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 10%,transparent);border-radius:8px}
+.diversify-box .d-title{font-size:13px;margin:0 0 6px;color:var(--teal)}
+.diversify-box p{font-size:13px;line-height:1.7;color:var(--ink-soft);margin:0}
 .co-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .co-list li{font-size:13px;color:var(--ink-soft);padding-left:18px;position:relative;line-height:1.6}
 .co-list li::before{content:"▸";position:absolute;left:0;color:var(--china)}

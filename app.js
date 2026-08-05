@@ -325,6 +325,11 @@
       <ul class="alt-list">
         ${d.detail.alternatives.map(a=>`<li><b>${a.country}</b> — ${a.note}</li>`).join("")}
       </ul>
+      ${d.detail.diversify ? `
+      <div class="diversify-box">
+        <h4 class="d-title">多元化来源可能性（标注）</h4>
+        <p>${d.detail.diversify}</p>
+      </div>` : ""}
       ${d.detail.sellers ? `
       <h4>中国主要出口商（对华供应方）</h4>
       <ul class="co-list">
