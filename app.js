@@ -386,7 +386,7 @@
       </ul>` : ""}
       ${d.detail.coNote ? `<div class="mini-note">注：${d.detail.coNote}</div>` : ""}
       ${(typeof TRADE_FLOWS!=="undefined" && TRADE_FLOWS[d.name]) ? `
-      <h4>贸易流（中国供应商 → 印度采购商 → 下游）<span class="tag-sub" style="background:var(--cn)">可交互</span></h4>
+      <h4>贸易流（中国供应商 → 印度采购商 → 下游）</h4>
       <div class="flow-list">
         ${TRADE_FLOWS[d.name].map(flowItemHTML).join("")}
       </div>
