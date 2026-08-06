@@ -335,6 +335,37 @@
       </div>`;
   }
 
+  /* 企业卡片：摘要行（名称 + 类型 + 关键指标），点击展开 profile 详情 */
+  function coCardHTML(c){
+    const p = c.profile || {};
+    const rows = [
+      ["总部", p.hq], ["成立", p.founded],
+      ["主营业务", p.business], ["主要产品", p.products],
+      ["对印贸易", p.tradeVolume], ["数据来源", p.sources],
+      ["备注", p.note]
+    ].filter(r=>r[1]);
+    const grid = rows.map(r=>`<div class="co-cell ${r[0]==="总部"||r[0]==="成立"?"":"span2"}">
+        <span class="co-lbl">${r[0]}</span><span class="co-val">${r[1]}</span>
+      </div>`).join("");
+    return `<div class="co-card" data-co>
+      <div class="co-summary" tabindex="0" aria-expanded="false">
+        <div class="co-summ-main">
+          <span class="co-name">${c.name}</span>
+          ${c.type ? `<span class="co-type">${c.type}</span>` : ""}
+        </div>
+        <div class="co-summ-side">
+          ${c.top ? `<span class="co-top">${c.top}</span>` : ""}
+          ${c.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
+          <span class="co-toggle" aria-hidden="true">＋</span>
+        </div>
+      </div>
+      <div class="co-detail" hidden>
+        <div class="co-grid">${grid}</div>
+      </div>
+    </div>`;
+  }
+
+
   function openModal(idx){
     if(!modal) return;
     const d = DEPENDENCE_INDUSTRIES[idx];
@@ -374,16 +405,16 @@
         <h4 class="d-title">多元化来源可能性（标注）</h4>
         <p>${d.detail.diversify}</p>
       </div>` : ""}
-      ${d.detail.sellers ? `
+      ${d.detail.sellers && d.detail.sellers.length ? `
       <h4>中国主要出口商（出口方）</h4>
-      <ul class="co-list">
-        ${d.detail.sellers.map(s=>`<li class="co-item"><div class="co-head"><span class="co-name">${s.name}</span></div>${s.type?`<div class="co-type">${s.type}</div>`:""}<div class="co-note">${s.note}</div></li>`).join("")}
-      </ul>` : ""}
-      ${d.detail.buyers ? `
+      <div class="co-list">
+        ${d.detail.sellers.map(coCardHTML).join("")}
+      </div>` : ""}
+      ${d.detail.buyers && d.detail.buyers.length ? `
       <h4>印度主要采购商（进口方）</h4>
-      <ul class="co-list">
-        ${d.detail.buyers.map(b=>`<li class="co-item"><div class="co-head"><span class="co-name">${b.name}</span>${b.military?'<span class="badge b-mil">⚠ 军工</span>':""}</div>${b.type?`<div class="co-type">${b.type}</div>`:""}<div class="co-note">${b.note}</div></li>`).join("")}
-      </ul>` : ""}
+      <div class="co-list">
+        ${d.detail.buyers.map(coCardHTML).join("")}
+      </div>` : ""}
       ${d.detail.coNote ? `<div class="mini-note">注：${d.detail.coNote}</div>` : ""}
       ${(typeof TRADE_FLOWS!=="undefined" && TRADE_FLOWS[d.name]) ? `
       <h4>贸易流（中国供应商 → 印度采购商 → 下游）</h4>
@@ -446,6 +477,22 @@
         if(!opened) cap.classList.remove("show");
       });
       item.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); item.click(); }});
+    });
+
+    /* 企业卡片：点击摘要行展开 / 收起详情 */
+    $$(".co-card").forEach(card=>{
+      const summ = card.querySelector(".co-summary");
+      const det  = card.querySelector(".co-detail");
+      if(!summ || !det) return;
+      const toggle = ()=>{
+        const opened = card.classList.toggle("open");
+        det.hidden = !opened;
+        summ.setAttribute("aria-expanded", opened ? "true" : "false");
+      };
+      summ.addEventListener("click", toggle);
+      summ.addEventListener("keydown", e=>{
+        if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(); }
+      });
     });
 
     /* 分析报告 DOCX 下载 */
