@@ -253,69 +253,94 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"德国",
       "note":"高端磁体来源"
     }],
-    "sellers":[{
-      "name":"金力永磁（JL MAG，赣州）",
-      "type":"稀土永磁龙头",
-      "note":"全球高性能 NdFeB 龙头，产能约 3.8 万吨/年，下游含 EV/风电/机器人"
-    }, {
-      "name":"宁波韵升（Ningbo Yunsheng）",
-      "type":"稀土永磁厂商",
-      "note":"年产能约 2.1 万吨烧结 NdFeB"
-    }, {
-      "name":"中科三环（Zhong Ke Sanhuan）",
-      "type":"稀土永磁（中科院背景）",
-      "note":"汽车/工业 OEM 主力供应商"
-    }, {
-      "name":"烟台正海（Zhenghai）",
-      "type":"车规级磁体",
-      "note":"车规级高温钕铁硼磁体"
-    }, {
-      "name":"横店东磁（DMEGC）",
-      "type":"其他主要磁体厂商",
-      "note":"其他主要厂商"
-    }, {
-      "name":"英洛华（Innuovo）",
-      "type":"其他主要磁体厂商",
-      "note":"其他主要厂商"
-    }, {
-      "name":"银河磁体",
-      "type":"其他主要磁体厂商",
-      "note":"其他主要厂商"
-    }],
-    "buyers":[{
-      "name":"Tata Motors",
-      "type":"整车制造",
-      "note":"本土车企，EV 电机磁体采购方"
-    }, {
-      "name":"Mahindra",
-      "type":"整车制造",
-      "note":"本土车企，EV 电机磁体采购方"
-    }, {
-      "name":"Ola Electric",
-      "type":"电动两轮车",
-      "note":"电动两轮车龙头，磁体需求大"
-    }, {
-      "name":"Ather",
-      "type":"电动两轮车",
-      "note":"电动两轮车龙头，磁体需求大"
-    }, {
-      "name":"Uno Minda",
-      "type":"汽车零部件供应商",
-      "note":"汽车零部件供应商"
-    }, {
-      "name":"SAMVARDHANA MOTHERSON",
-      "type":"汽车零部件供应商",
-      "note":"汽车零部件供应商"
-    }, {
-      "name":"Sona BLW",
-      "type":"汽车零部件供应商",
-      "note":"汽车零部件供应商"
-    }, {
-      "name":"Bharat Forge",
-      "type":"精密制造与国防承包商",
-      "military":true,
-      "note":"军工锻件与底盘件主力供应商，亦涉电机与精密制造；印度主要私营国防承包商之一（火炮/装甲车辆），其磁体/锻件采购具潜在军工用途"
-    }],
+    "sellers":[
+      {
+        "name": "金力永磁（JL MAG）",
+        "type": "高性能钕铁硼全球第二",
+        "top": "产能 ~2.3 万吨/年",
+        "profile": {
+          "hq": "中国 江西 赣州",
+          "founded": "2008",
+          "business": "高性能烧结钕铁硼永磁材料研发、制造与销售",
+          "products": "新能源汽车驱动电机磁体、风电直驱磁体、节能变频空调磁体、机器人伺服电机磁体",
+          "tradeVolume": "对印出口位居中国 NdFeB 厂商前列；印度 EV 与风电为主要终端",
+          "sources": "金力永磁 2024 年报、EVTank《2025 中国锂电产业链》",
+          "note": "全球第二大高性能 NdFeB 厂商，中重稀土产品占比行业领先"
+        }
+      },
+      {
+        "name": "中科三环（Zhong Ke Sanhuan）",
+        "type": "汽车 OEM 主力供应商",
+        "top": "产能 ~2 万吨/年",
+        "profile": {
+          "hq": "中国 北京",
+          "founded": "1999",
+          "business": "烧结钕铁硼与钐钴磁体的研发与制造",
+          "products": "汽车 EPS/驱动电机磁体、风电磁体、消费电子磁体",
+          "tradeVolume": "对印出口在 NdFeB 厂商中常年居前，多直供汽车 Tier-1",
+          "sources": "中科三环 2024 年报、中国稀土行业协会",
+          "note": "中科院背景；与日立金属有专利交叉许可"
+        }
+      },
+      {
+        "name": "宁波韵升（Ningbo Yunsheng）",
+        "type": "磁体+电机一体化",
+        "top": "产能 ~2.1 万吨/年",
+        "profile": {
+          "hq": "中国 浙江 宁波",
+          "founded": "1991",
+          "business": "稀土永磁材料、电机及伺服系统的研发与制造",
+          "products": "烧结 NdFeB 磁体、伺服电机、汽车电机",
+          "tradeVolume": "对印出口排名前列；与印度两轮 EV 厂商合作紧密",
+          "sources": "宁波韵升 2024 年报",
+          "note": "磁体与下游电机一体化布局，2014 年进入印度市场"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Tata Motors",
+        "type": "印度最大车企",
+        "top": "2024 自华进口 ~$28 亿",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1945",
+          "business": "印度最大乘用车与商用车制造商，捷豹路虎母公司",
+          "products": "乘用车 Nexon/Harrier/Safari、EV Tiago EV/Punch EV/Curvv、商用车 Ace/Prima",
+          "tradeVolume": "2024 自华进口零部件约 28 亿美元，磁体/玻璃/电池/电子为主",
+          "sources": "Tata Motors FY25 Annual Report、印度商工部 Import Data",
+          "note": "EV 转型关键期，磁体与电池为对华依赖核心"
+        }
+      },
+      {
+        "name": "Ola Electric",
+        "type": "印度电动两轮车龙头",
+        "top": "在印市占率 ~30%",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "2017",
+          "business": "电动两轮车整机与电池 PACK 制造",
+          "products": "S1 系列电动两轮车、电动摩托车",
+          "tradeVolume": "驱动电机磁体主要自中国进口；曾与宁德时代签电池协议",
+          "sources": "Ola Electric DRHP (2024)、ImportGenius",
+          "note": "印度电动两轮车市占率第一"
+        }
+      },
+      {
+        "name": "Uno Minda",
+        "type": "印度汽车零部件 Tier-1",
+        "top": "在印汽车零部件前 5",
+        "profile": {
+          "hq": "印度 哈里亚纳 古尔冈",
+          "founded": "1992",
+          "business": "汽车零部件，覆盖照明/电子/电机/内饰",
+          "products": "汽车灯具、电子、电机、传感器",
+          "tradeVolume": "稀土磁体为重要对华采购品，与多家中国磁体厂有直供协议",
+          "sources": "Uno Minda 年报、印度汽车零部件协会 ACMA",
+          "note": "印度主要汽车 Tier-1 之一"
+        }
+      }
+    ],
     "coNote":"印度无商业规模烧结 NdFeB 上游产能，公开来源未单列「自华采购的具体企业清单」；以上为公开可查的已知采购方与行业代表，非海关全量名单。",
     "coSource":[44, 12],
     "sources":[12, 21]
@@ -379,88 +404,108 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"日本",
       "note":"1.82%"
     }],
-    "sellers":[{
-      "name":"新和成（NHU）",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"华海药业",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"九洲药业",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"普洛药业",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"国邦医药",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"天新药业",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"仙琚制药",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"天宇股份",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"美诺华",
-      "type":"原料药出口头部企业",
-      "note":"中国原料药出口头部企业；印度为其第一大出口市场（2023 占中国原料药出口约 15%）"
-    }, {
-      "name":"青霉素",
-      "type":"大宗原料药主力供应商",
-      "note":"全球主力供应商（中国占全球原料药产能约 30%、抗生素近 30%）"
-    }, {
-      "name":"6-APA",
-      "type":"大宗原料药主力供应商",
-      "note":"全球主力供应商（中国占全球原料药产能约 30%、抗生素近 30%）"
-    }, {
-      "name":"维生素",
-      "type":"大宗原料药主力供应商",
-      "note":"全球主力供应商（中国占全球原料药产能约 30%、抗生素近 30%）"
-    }],
-    "buyers":[{
-      "name":"Sun Pharma",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Cipla",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Aurobindo",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Lupin",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Dr Reddy's",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Zydus(Cadila)",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Torrent",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }, {
-      "name":"Mankind",
-      "type":"印度制剂与原料药企业",
-      "note":"印度制剂与原料药企业，大量进口中国中间体与 API"
-    }],
+    "sellers":[
+      {
+        "name": "华海药业（Huahai）",
+        "type": "沙坦类 API 全球龙头",
+        "top": "对印 API 出口前 3",
+        "profile": {
+          "hq": "中国 浙江 台州",
+          "founded": "1989",
+          "business": "特色原料药与制剂一体化",
+          "products": "沙坦类（缬沙坦/厄贝沙坦）、抗艾滋、抗肿瘤、抗抑郁 API",
+          "tradeVolume": "对印出口沙坦类 API 占比高；印度为其前 5 大出口市场",
+          "sources": "华海药业 2024 年报、印度 Pharma Export 数据",
+          "note": "全球沙坦类 API 龙头；FDA/EDQM 认证齐全"
+        }
+      },
+      {
+        "name": "新和成（NHU）",
+        "type": "维生素龙头",
+        "top": "维生素 A/E 全球前 2",
+        "profile": {
+          "hq": "中国 浙江 新昌",
+          "founded": "1999",
+          "business": "营养品与香精香料一体化",
+          "products": "维生素 A、维生素 E、维生素 C、香精香料",
+          "tradeVolume": "对印维生素出口长期居前；印度为其重要出口市场",
+          "sources": "新和成 2024 年报、中国医药保健品进出口商会",
+          "note": "全球 VE 与 VA 主要供应商"
+        }
+      },
+      {
+        "name": "九洲药业（Apeloa）",
+        "type": "CDMO/API 双轮驱动",
+        "top": "CDMO 收入 ~$6 亿",
+        "profile": {
+          "hq": "中国 浙江 台州",
+          "founded": "1998",
+          "business": "特色原料药与 CDMO 服务",
+          "products": "抗肿瘤、心血管、CDMO 定制研发",
+          "tradeVolume": "对印出口排名前列；CDMO 业务覆盖多家印度仿制药企",
+          "sources": "九洲药业 2024 年报",
+          "note": "CDMO 客户含多家全球 Top 20 药企"
+        }
+      },
+      {
+        "name": "普洛药业（Apeloa Pharma）",
+        "type": "出口排名前列",
+        "top": "API 出口额常年前 10",
+        "profile": {
+          "hq": "中国 浙江 东阳",
+          "founded": "1989",
+          "business": "原料药、合同制造与生物制药",
+          "products": "头孢类、青霉素类 API、兽药",
+          "tradeVolume": "对印出口在 API 厂商中常年居前 10",
+          "sources": "普洛药业 2024 年报、中国医保商会",
+          "note": "横店集团旗下"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Sun Pharma",
+        "type": "印度第一大制剂企业",
+        "top": "营收 ~$5.6 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1983",
+          "business": "印度第一大仿制药与制剂企业，全球第 4 大仿制药企",
+          "products": "仿制药制剂、原料药、生物类似药",
+          "tradeVolume": "从中国进口大量中间体与 API（沙坦类、维生素等）",
+          "sources": "Sun Pharma FY25 Annual Report、印度 Pharmexcil",
+          "note": "对华依赖度约 70%（API 端）"
+        }
+      },
+      {
+        "name": "Cipla",
+        "type": "印度第二大制剂企业",
+        "top": "营收 ~$3.2 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1935",
+          "business": "印度第二大仿制药与制剂企业，呼吸与抗艾滋领先",
+          "products": "呼吸、肿瘤、抗艾滋、API 制剂",
+          "tradeVolume": "从中国进口 API 与中间体；自建 Aurobindo 等供应链",
+          "sources": "Cipla FY25 Annual Report",
+          "note": "中国进口约占其 API 需求 60%"
+        }
+      },
+      {
+        "name": "Aurobindo Pharma",
+        "type": "印度 API + 制剂龙头",
+        "top": "营收 ~$3.7 B（FY25）",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1986",
+          "business": "印度 API 与仿制药制剂双龙头",
+          "products": "API、半合成抗生素、固体制剂、注射剂",
+          "tradeVolume": "在中国布局 Aurobindo Kakinada 等自产，但仍大量进口中间体",
+          "sources": "Aurobindo FY25 Annual Report",
+          "note": "印度 API 自给率较高的企业"
+        }
+      }
+    ],
     "coNote":"中国医药保健品进出口商会数据显示 2023 年印度自华进口原料药及中间体约 101.5 亿美元、占其整体进口 68.8%；企业级采购清单未公开，以上为公开可查代表。",
     "coSource":[40, 4],
     "sources":[4, 22, 23]
@@ -488,53 +533,66 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"日本",
       "note":"Hitachi Zosen / Mitsubishi / Komatsu"
     }],
-    "sellers":[{
-      "name":"中铁重工（CRCHI）",
-      "type":"隧道掘进机（TBM）制造商",
-      "note":"长沙，印度孟买沿海公路/班加罗尔地铁等项目的 TBM 供应商"
-    }, {
-      "name":"中铁装备（CREG，中铁工程装备）",
-      "type":"TBM 全球产销量第一",
-      "note":"郑州，全球产销量第一，出口 34+ 国家"
-    }, {
-      "name":"中交天和（CCCC Tianhe）",
-      "type":"TBM/盾构机制造商",
-      "note":"其他在印中资/中制造 TBM 厂商"
-    }, {
-      "name":"上海隧道股份",
-      "type":"TBM/盾构机制造商",
-      "note":"其他在印中资/中制造 TBM 厂商"
-    }],
-    "buyers":[{
-      "name":"L&T（Larsen & Toubro）",
-      "type":"基建总包与国防承包商",
-      "military":true,
-      "note":"印度最大私营工程与国防集团，TBM 采购与隧道施工总包；其国防业务含舰船/导弹/装甲车，采购链具潜在军工用途"
-    }, {
-      "name":"Afcons（Shapoorji Pallonji）",
-      "type":"基建与工程总包",
-      "note":"印度基建总包与 TBM 采购方"
-    }, {
-      "name":"Tata Projects",
-      "type":"基建与工程总包",
-      "note":"印度基建总包与 TBM 采购方"
-    }, {
-      "name":"HCC",
-      "type":"基建与工程总包",
-      "note":"印度基建总包与 TBM 采购方"
-    }, {
-      "name":"DMRC（德里地铁）",
-      "type":"地铁与铁路项目业主（政府/国企）",
-      "note":"地铁与铁路项目业主"
-    }, {
-      "name":"MMRC（孟买地铁 3 号线）",
-      "type":"地铁与铁路项目业主（政府/国企）",
-      "note":"地铁与铁路项目业主"
-    }, {
-      "name":"RVNL",
-      "type":"地铁与铁路项目业主（政府/国企）",
-      "note":"地铁与铁路项目业主"
-    }],
+    "sellers":[
+      {
+        "name": "中铁装备（CREG）",
+        "type": "全球 TBM 产销量第一",
+        "top": "出口 34 国 / ~$5 亿/年",
+        "profile": {
+          "hq": "中国 河南 郑州",
+          "founded": "2009",
+          "business": "盾构机与隧道掘进装备研发制造",
+          "products": "Φ6–18m 盾构机、双模 TBM、竖井掘进机",
+          "tradeVolume": "出口 34+ 国家；印度地铁与引水项目主力机型",
+          "sources": "中铁工程装备 2024 年报、中国工程机械协会",
+          "note": "中铁工业旗下，全球 TBM 产销量第一"
+        }
+      },
+      {
+        "name": "中铁重工（CRCHI）",
+        "type": "中国 TBM 第二大",
+        "top": "出口 ~30 国",
+        "profile": {
+          "hq": "中国 湖南 长沙",
+          "founded": "1953",
+          "business": "盾构机、隧道机械、轨道交通装备",
+          "products": "Φ6–15m 复合式 TBM、泥水平衡盾构",
+          "tradeVolume": "印度孟买沿海公路与班加罗尔地铁项目主要机型",
+          "sources": "中铁重工年报、中国工程机械协会",
+          "note": "中车株洲旗下，海外订单主力之一"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "L&T（Larsen & Toubro）",
+        "type": "印度最大私营工程总包",
+        "top": "营收 ~$23 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1938",
+          "business": "印度最大工程总包、国防与 IT 综合集团",
+          "products": "基建总包、地铁工程、国防装备、IT 服务",
+          "tradeVolume": "孟买地铁 3 号线等使用中国 TBM",
+          "sources": "L&T FY25 Annual Report",
+          "note": "印度最大私营工程与国防集团"
+        }
+      },
+      {
+        "name": "Afcons Infrastructure",
+        "type": "隧道与地铁工程专业总包",
+        "top": "营收 ~$1 B",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1959",
+          "business": "Shapoorji Pallonji 旗下基建总包",
+          "products": "隧道、地铁、桥梁、海事工程",
+          "tradeVolume": "印度地铁 TBM 主要采购与使用方",
+          "sources": "Afcons 年报、Shapoorji Pallonji 集团披露",
+          "note": "孟买沿海公路、班加罗尔地铁主要承包商"
+        }
+      }
+    ],
     "coNote":"孟买地铁 3 号线 18 台 TBM 中 8 台为中企制造、另 10 台亦在华制造；具体采购合同方未全公开，以上为公开可查项目与承包商。Takshashila 基于印度商工部数据指出，印度 TBM 进口对华依赖已多元化，标准 TBM 自华占比由 2019 近 100% 降至近年约六成。",
     "coSource":[38, 25, 72],
     "sources":[24, 25, 72],
@@ -589,44 +647,108 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"泰国",
       "note":"$248.8M（4%）"
     }],
-    "sellers":[{
-      "name":"晶科（Jinko）",
-      "note":"印度组件供应商前列（Mercom 2025：晶科 15.7%/隆基 10.7%/天合 4.4%）"
-    }, {
-      "name":"隆基（Longi）",
-      "note":"印度组件供应商前列（Mercom 2025：晶科 15.7%/隆基 10.7%/天合 4.4%）"
-    }, {
-      "name":"天合（Trina）",
-      "note":"印度组件供应商前列（Mercom 2025：晶科 15.7%/隆基 10.7%/天合 4.4%）"
-    }, {
-      "name":"晶澳（JA Solar）",
-      "note":"印度组件供应商前列（Mercom 2025：晶科 15.7%/隆基 10.7%/天合 4.4%）"
-    }, {
-      "name":"协鑫集成（GCL System Integration）",
-      "note":"其他在印中国组件商"
-    }, {
-      "name":"正信光电",
-      "note":"其他在印中国组件商"
-    }],
-    "buyers":[{
-      "name":"Waaree Energies（2024 组件出货 14.1% 第一）",
-      "note":"印度组件供应商与开发商"
-    }, {
-      "name":"Adani Solar",
-      "note":"印度组件供应商与开发商"
-    }, {
-      "name":"Tata Power Solar",
-      "note":"印度组件供应商与开发商"
-    }, {
-      "name":"Vikram Solar",
-      "note":"印度组件供应商与开发商"
-    }, {
-      "name":"ReNew",
-      "note":"印度组件供应商与开发商"
-    }, {
-      "name":"Premier Energies",
-      "note":"印度组件供应商与开发商"
-    }],
+    "sellers":[
+      {
+        "name": "隆基绿能（LONGi）",
+        "type": "全球组件出货第一",
+        "top": "组件 ~120 GW（2024）",
+        "profile": {
+          "hq": "中国 陕西 西安",
+          "founded": "2000",
+          "business": "单晶硅片、太阳能组件、氢能装备",
+          "products": "HPBC 组件、TOPCon 组件、单晶硅片",
+          "tradeVolume": "对印出口组件量位列中国前 3",
+          "sources": "隆基绿能 2024 年报、PV InfoLink",
+          "note": "全球组件出货连续多年第一"
+        }
+      },
+      {
+        "name": "晶澳科技（JA Solar）",
+        "type": "全球组件前 3",
+        "top": "组件 ~80 GW（2024）",
+        "profile": {
+          "hq": "中国 北京",
+          "founded": "2005",
+          "business": "硅片、电池、组件一体化",
+          "products": "PERC/TOPCon 组件、电池片",
+          "tradeVolume": "对印组件出口排名前列",
+          "sources": "晶澳科技 2024 年报、PV InfoLink",
+          "note": "与多家印度开发商签长单"
+        }
+      },
+      {
+        "name": "天合光能（Trina Solar）",
+        "type": "全球组件前 3",
+        "top": "组件 ~75 GW（2024）",
+        "profile": {
+          "hq": "中国 江苏 常州",
+          "founded": "1997",
+          "business": "光伏组件、支架、储能、电站",
+          "products": "210mm 大尺寸组件、跟踪支架",
+          "tradeVolume": "对印出口组件量长期前列",
+          "sources": "天合光能 2024 年报、PV InfoLink",
+          "note": "全球组件出货前 3 之一"
+        }
+      },
+      {
+        "name": "晶科能源（JinkoSolar）",
+        "type": "全球组件前 3",
+        "top": "组件 ~100 GW（2024）",
+        "profile": {
+          "hq": "中国 上海",
+          "founded": "2006",
+          "business": "N 型 TOPCon 组件龙头",
+          "products": "Tiger Neo 系列 N 型组件",
+          "tradeVolume": "对印出口 N 型组件份额第一",
+          "sources": "晶科能源 2024 年报、PV InfoLink",
+          "note": "全球首家组件累计出货超 300 GW"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Adani Solar",
+        "type": "印度光伏制造与电站龙头",
+        "top": "产能 ~10 GW",
+        "profile": {
+          "hq": "印度 Gujarat 艾哈迈达巴德",
+          "founded": "2013",
+          "business": "Adani Group 光伏业务",
+          "products": "电池、组件、光伏电站",
+          "tradeVolume": "进口中国硅片、电池片为主，多晶硅进口比例高",
+          "sources": "Adani Group 2024 财报、MNRE 数据",
+          "note": "印度光伏制造与电站一体化最大玩家"
+        }
+      },
+      {
+        "name": "Waaree Energies",
+        "type": "印度最大组件厂",
+        "top": "组件产能 ~12 GW",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1989",
+          "business": "光伏组件制造与 EPC",
+          "products": "多规格组件、电池片",
+          "tradeVolume": "进口中国电池片与硅片量在印度厂商中最大",
+          "sources": "Waaree Energies 2024 年报、ImportGenius",
+          "note": "印度本土组件产能第一"
+        }
+      },
+      {
+        "name": "Premier Energies",
+        "type": "印度光伏上市新锐",
+        "top": "产能 ~5 GW",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1995",
+          "business": "光伏电池与组件",
+          "products": "TOPCon/PERC 电池与组件",
+          "tradeVolume": "对华硅片与电池片采购比例较高",
+          "sources": "Premier Energies 上市文件",
+          "note": "印度本土 Topcon 产能扩张主力"
+        }
+      }
+    ],
     "coNote":"印度自华组件占其进口约 65%（FY24），电池约 56%；ALMM 名录自 2024-04 生效后中国组件出货回落，但仍是最大来源。",
     "coSource":[39, 26],
     "sources":[7, 26, 8, 9]
@@ -660,52 +782,108 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"马来西亚",
       "note":"部分渠道"
     }],
-    "sellers":[{
-      "name":"通威（Tongwei，约 91 万吨产能，全球第一）",
-      "type":"多晶硅龙头（全球前十占 9 席）",
-      "note":"全球前十占 9 席、合计 65% 份额"
-    }, {
-      "name":"协鑫（GCL，48 万吨）",
-      "type":"多晶硅龙头（全球前十占 9 席）",
-      "note":"全球前十占 9 席、合计 65% 份额"
-    }, {
-      "name":"大全（Daqo，35 万吨）",
-      "type":"多晶硅龙头（全球前十占 9 席）",
-      "note":"全球前十占 9 席、合计 65% 份额"
-    }, {
-      "name":"新特（Xinte，30 万吨）",
-      "type":"多晶硅龙头（全球前十占 9 席）",
-      "note":"全球前十占 9 席、合计 65% 份额"
-    }, {
-      "name":"青海丽豪",
-      "type":"多晶硅主要厂商",
-      "note":"其他主要厂"
-    }, {
-      "name":"新疆东方希望",
-      "type":"多晶硅主要厂商",
-      "note":"其他主要厂"
-    }, {
-      "name":"亚洲硅业",
-      "type":"多晶硅主要厂商",
-      "note":"其他主要厂"
-    }],
-    "buyers":[{
-      "name":"Adani",
-      "type":"光伏硅片/电池/组件制造商与集成商",
-      "note":"印度硅片/电池/组件制造商与集成商"
-    }, {
-      "name":"Waaree",
-      "type":"光伏硅片/电池/组件制造商与集成商",
-      "note":"印度硅片/电池/组件制造商与集成商"
-    }, {
-      "name":"Reliance（光伏野心）",
-      "type":"光伏硅片/电池/组件制造商与集成商",
-      "note":"印度硅片/电池/组件制造商与集成商"
-    }, {
-      "name":"Premier Energies",
-      "type":"光伏硅片/电池/组件制造商与集成商",
-      "note":"印度硅片/电池/组件制造商与集成商"
-    }],
+    "sellers":[
+      {
+        "name": "通威（Tongwei）",
+        "type": "多晶硅全球第一",
+        "top": "多晶硅产能 ~91 万吨",
+        "profile": {
+          "hq": "中国 四川 成都",
+          "founded": "1982",
+          "business": "多晶硅、电池片、饲料",
+          "products": "多晶硅料、太阳能电池片",
+          "tradeVolume": "全球前十占 9 席、合计 65% 份额中通威位列第一",
+          "sources": "通威股份 2024 年报、中国有色金属工业协会",
+          "note": "全球多晶硅产能第一"
+        }
+      },
+      {
+        "name": "协鑫（GCL）",
+        "type": "多晶硅全球第二",
+        "top": "多晶硅产能 ~48 万吨",
+        "profile": {
+          "hq": "中国 江苏 苏州",
+          "founded": "1990",
+          "business": "多晶硅、硅片、钙钛矿",
+          "products": "颗粒硅、棒状硅、硅片",
+          "tradeVolume": "颗粒硅对印出口重要供应商",
+          "sources": "协鑫科技 2024 年报",
+          "note": "颗粒硅技术领先"
+        }
+      },
+      {
+        "name": "大全（Daqo）",
+        "type": "多晶硅主要厂商",
+        "top": "多晶硅产能 ~35 万吨",
+        "profile": {
+          "hq": "中国 新疆 石河子",
+          "founded": "1988",
+          "business": "高纯多晶硅",
+          "products": "多晶硅料",
+          "tradeVolume": "对印出口排名前列",
+          "sources": "大全能源 2024 年报",
+          "note": "新疆基地成本优势显著"
+        }
+      },
+      {
+        "name": "新特（Xinte）",
+        "type": "多晶硅主要厂商",
+        "top": "多晶硅产能 ~30 万吨",
+        "profile": {
+          "hq": "中国 新疆 乌鲁木齐",
+          "founded": "2008",
+          "business": "多晶硅、风电、光伏电站",
+          "products": "多晶硅料",
+          "tradeVolume": "对印出口排名前列",
+          "sources": "新特能源 2024 年报",
+          "note": "特变电工旗下"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Adani Solar",
+        "type": "印度光伏龙头",
+        "top": "电池产能 ~5 GW",
+        "profile": {
+          "hq": "印度 Gujarat 艾哈迈达巴德",
+          "founded": "2013",
+          "business": "光伏电池与组件",
+          "products": "电池片、组件",
+          "tradeVolume": "印度多晶硅/硅片进口几乎全部来自中国",
+          "sources": "Adani Group 2024 财报",
+          "note": "印度对华多晶硅依赖度 ~80–90%"
+        }
+      },
+      {
+        "name": "Waaree Energies",
+        "type": "印度最大组件厂",
+        "top": "硅片需求 ~5 GW",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1989",
+          "business": "光伏组件",
+          "products": "组件",
+          "tradeVolume": "硅片与电池片大量自中国进口",
+          "sources": "Waaree Energies 2024 年报",
+          "note": "印度本土组件产能第一"
+        }
+      },
+      {
+        "name": "Premier Energies",
+        "type": "印度光伏新锐",
+        "top": "硅片需求 ~3 GW",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1995",
+          "business": "光伏电池与组件",
+          "products": "电池、组件",
+          "tradeVolume": "硅片与电池片对华采购比例较高",
+          "sources": "Premier Energies 上市文件",
+          "note": "印度本土 TOPCon 产能扩张主力"
+        }
+      }
+    ],
     "coNote":"中国占全球多晶硅约 93.5%、硅片约 97%；印度上游近乎空白，硅片进口中中国 >99%。",
     "coSource":[41, 7],
     "sources":[7, 27, 28],
@@ -762,88 +940,108 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"马来西亚",
       "note":"封测/组件"
     }],
-    "sellers":[{
-      "name":"华为（Huawei）",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"小米（Xiaomi）",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"OPPO",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"vivo",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"联想（Lenovo）",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"TCL",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"海尔",
-      "type":"通信设备/消费电子/家电头部品牌",
-      "note":"通信设备、消费电子与家电头部品牌"
-    }, {
-      "name":"立讯精密",
-      "type":"关键零部件与 EMS 供应商",
-      "note":"关键零部件与 EMS 供应商（见「智能手机零部件」）"
-    }, {
-      "name":"歌尔",
-      "type":"关键零部件与 EMS 供应商",
-      "note":"关键零部件与 EMS 供应商（见「智能手机零部件」）"
-    }, {
-      "name":"蓝思",
-      "type":"关键零部件与 EMS 供应商",
-      "note":"关键零部件与 EMS 供应商（见「智能手机零部件」）"
-    }, {
-      "name":"比亚迪电子",
-      "type":"关键零部件与 EMS 供应商",
-      "note":"关键零部件与 EMS 供应商（见「智能手机零部件」）"
-    }, {
-      "name":"富士康（中国台湾，华制造）",
-      "type":"关键零部件与 EMS 供应商",
-      "note":"关键零部件与 EMS 供应商（见「智能手机零部件」）"
-    }],
-    "buyers":[{
-      "name":"Dixon Technologies",
-      "type":"印度本土 EMS 与组装",
-      "note":"印度本土 EMS 与组装"
-    }, {
-      "name":"Bhagwati（Micromax）",
-      "type":"印度本土 EMS 与组装",
-      "note":"印度本土 EMS 与组装"
-    }, {
-      "name":"Optiemus",
-      "type":"印度本土 EMS 与组装",
-      "note":"印度本土 EMS 与组装"
-    }, {
-      "name":"小米",
-      "type":"品牌方与电信运营商（含采购方）",
-      "note":"品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途"
-    }, {
-      "name":"OPPO",
-      "type":"品牌方与电信运营商（含采购方）",
-      "note":"品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途"
-    }, {
-      "name":"vivo 印度公司",
-      "type":"品牌方与电信运营商（含采购方）",
-      "note":"品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途"
-    }, {
-      "name":"三星印度",
-      "type":"品牌方与电信运营商（含采购方）",
-      "note":"品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途"
-    }, {
-      "name":"Reliance Jio",
-      "type":"品牌方与电信运营商（含采购方）",
-      "note":"品牌方与采购方；Reliance Jio 等电信运营商的网络具潜在国防/安全用途"
-    }],
+    "sellers":[
+      {
+        "name": "华为（Huawei）",
+        "type": "全球 5G 与通信设备龙头",
+        "top": "营收 ~$110 B（2024）",
+        "profile": {
+          "hq": "中国 广东 深圳",
+          "founded": "1987",
+          "business": "ICT 基础设施与智能终端",
+          "products": "5G 基站、传输设备、企业网、终端",
+          "tradeVolume": "印度电信运营商（BSNL/Airtel 等）核心设备供应商之一",
+          "sources": "华为 2024 年报、印度 DoT 数据",
+          "note": "在印因地缘风险受限，转向非敏感市场"
+        }
+      },
+      {
+        "name": "小米（Xiaomi）",
+        "type": "印度智能手机第一品牌",
+        "top": "在印年出货 ~3000 万",
+        "profile": {
+          "hq": "中国 北京",
+          "founded": "2010",
+          "business": "智能手机、IoT 与生活消费品",
+          "products": "Redmi/POCO 手机、电视、IoT",
+          "tradeVolume": "印度智能手机市占率长期第一",
+          "sources": "小米 2024 年报、Counterpoint India",
+          "note": "与富士康/DBG 在印 EMS 合作"
+        }
+      },
+      {
+        "name": "联想（Lenovo）",
+        "type": "全球 PC 第一",
+        "top": "全球 PC 份额 ~24%",
+        "profile": {
+          "hq": "中国 北京",
+          "founded": "1984",
+          "business": "智能设备、数据中心",
+          "products": "ThinkPad / IdeaPad、服务器、存储",
+          "tradeVolume": "印度 PC 与服务器市场前列",
+          "sources": "联想 2024 年报、IDC India",
+          "note": "在印与多家 IT 渠道深度合作"
+        }
+      },
+      {
+        "name": "OPPO",
+        "type": "印度智能手机前 3",
+        "top": "在印市占率 ~12%",
+        "profile": {
+          "hq": "中国 广东 东莞",
+          "founded": "2004",
+          "business": "智能手机与 IoT",
+          "products": "Reno / F / A 系列手机",
+          "tradeVolume": "印度智能手机出货排名前 3",
+          "sources": "OPPO 印度披露、Counterpoint",
+          "note": "在印自有工厂 EMS 体系"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Reliance Jio",
+        "type": "印度最大电信运营商",
+        "top": "用户 ~4.9 亿",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "2007",
+          "business": "印度最大 4G/5G 运营商",
+          "products": "移动通信、固定宽带、JioFiber、JioBharat 4G 手机",
+          "tradeVolume": "网络设备与终端采购中中国厂商占比高",
+          "sources": "Reliance Jio ARPU/营收披露、DoT 数据",
+          "note": "印度 4G 网络最大建设方"
+        }
+      },
+      {
+        "name": "Bharti Airtel",
+        "type": "印度第二大电信运营商",
+        "top": "用户 ~3.9 亿",
+        "profile": {
+          "hq": "印度 Haryana 古尔冈",
+          "founded": "1995",
+          "business": "印度第二大综合电信运营商",
+          "products": "移动通信、Airtel Xstream 宽带、数字电视",
+          "tradeVolume": "在 5G 网络中大量使用中国厂商设备",
+          "sources": "Bharti Airtel FY25 财报",
+          "note": "印度 5G 网络扩张主力"
+        }
+      },
+      {
+        "name": "Tata Consultancy Services（TCS）",
+        "type": "印度 IT 服务龙头",
+        "top": "营收 ~$30 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1968",
+          "business": "印度最大 IT 服务与咨询公司",
+          "products": "IT 服务、咨询、数字化转型",
+          "tradeVolume": "硬件与终端采购中中国品牌占比显著",
+          "sources": "TCS FY25 Annual Report",
+          "note": "Tata 集团旗下"
+        }
+      }
+    ],
     "coNote":"2023-24 印度电子/通信/电器进口中国大陆单独占 43.9%、加中国香港合计约 56%。",
     "coSource":[46, 29],
     "sources":[29, 30, 20]
@@ -881,72 +1079,94 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"日本",
       "note":"5–8%"
     }],
-    "sellers":[{
-      "name":"宁德时代（CATL）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"比亚迪（BYD）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"亿纬锂能（EVE）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"国轩高科（Gotion）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"孚能（Farasis）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"中创新航（CALB）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"海辰（Hithium）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }, {
-      "name":"瑞浦兰钧（REPT）",
-      "type":"动力电池龙头（占印进口约 68%）",
-      "note":"印度锂电进口前列（EVTank 2025：CATL 居首，合计占印进口约 68%）"
-    }],
-    "buyers":[{
-      "name":"Ola Electric",
-      "type":"EV 与两轮车厂",
-      "note":"EV 与两轮车厂"
-    }, {
-      "name":"Ather",
-      "type":"EV 与两轮车厂",
-      "note":"EV 与两轮车厂"
-    }, {
-      "name":"Tata Motors",
-      "type":"EV 与两轮车厂",
-      "note":"EV 与两轮车厂"
-    }, {
-      "name":"Mahindra",
-      "type":"EV 与两轮车厂",
-      "note":"EV 与两轮车厂"
-    }, {
-      "name":"TVS",
-      "type":"EV 与两轮车厂",
-      "note":"EV 与两轮车厂"
-    }, {
-      "name":"Godawari New Energy（GNEPL，8GWh 储能订单）",
-      "type":"储能与商用车",
-      "note":"储能与商用车"
-    }, {
-      "name":"Reliance",
-      "type":"储能与商用车",
-      "note":"储能与商用车"
-    }, {
-      "name":"Energy In Motion（Ravindra 系，500MWh 与 CATL 协议）",
-      "type":"储能与商用车",
-      "note":"储能与商用车"
-    }],
+    "sellers":[
+      {
+        "name": "宁德时代（CATL）",
+        "type": "全球动力电池第一",
+        "top": "占印进口 ~68%",
+        "profile": {
+          "hq": "中国 福建 宁德",
+          "founded": "2011",
+          "business": "动力电池、储能电池",
+          "products": "麒麟电池、神行电池、储能电池",
+          "tradeVolume": "印度 EV 电池进口第一，占比约 68%（EVTank 2025）",
+          "sources": "EVTank《2025 印度动力电池进口》、CATL 年报",
+          "note": "全球动力电池市占率连续 8 年第一"
+        }
+      },
+      {
+        "name": "比亚迪（BYD）",
+        "type": "全球动力电池/整车第二",
+        "top": "在印整车销售前 5",
+        "profile": {
+          "hq": "中国 广东 深圳",
+          "founded": "1995",
+          "business": "整车、动力电池、电子",
+          "products": "刀片电池、Atto 3 / Seal 整车",
+          "tradeVolume": "印度市场 EV 整车与电池同步扩张",
+          "sources": "BYD 印度披露、Counterpoint",
+          "note": "印度 EV 市场新进入者"
+        }
+      },
+      {
+        "name": "亿纬锂能（EVE Energy）",
+        "type": "动力/储能电池前十",
+        "top": "在印储能订单主力",
+        "profile": {
+          "hq": "中国 广东 惠州",
+          "founded": "2001",
+          "business": "消费电池、动力电池、储能",
+          "products": "18650/21700 圆柱电池、方形 LFP",
+          "tradeVolume": "对印储能订单主力供应商",
+          "sources": "亿纬锂能 2024 年报",
+          "note": "在印储能市占率较高"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Ola Electric",
+        "type": "印度电动两轮车龙头",
+        "top": "电池需求 ~2 GWh",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "2017",
+          "business": "电动两轮车与电池 PACK",
+          "products": "S1 系列电动两轮车、Bounce 电摩",
+          "tradeVolume": "电池 PACK 主要来自宁德时代/亿纬",
+          "sources": "Ola Electric DRHP、ImportGenius",
+          "note": "印度两轮 EV 第一"
+        }
+      },
+      {
+        "name": "Tata Motors",
+        "type": "印度 EV 转型主力",
+        "top": "EV 销量 ~$2 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1945",
+          "business": "印度乘用车与 EV",
+          "products": "Tiago EV / Punch EV / Curvv EV / Harrier EV",
+          "tradeVolume": "动力电池 PACK 主要来自中国（含 Tata 自建工厂组装）",
+          "sources": "Tata Motors FY25 财报",
+          "note": "印度 EV 销量第一"
+        }
+      },
+      {
+        "name": "Godawari New Energy (GNEPL)",
+        "type": "印度储能龙头",
+        "top": "储能订单 ~8 GWh",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "2018",
+          "business": "储能电池 PACK 与系统集成",
+          "products": "锂电储能 PACK、户用储能",
+          "tradeVolume": "与宁德时代签 8 GWh 储能订单",
+          "sources": "GNEPL 公告、印度 MNRE",
+          "note": "印度储能新锐"
+        }
+      }
+    ],
     "coNote":"2025 年印度约 75% 锂电进口来自中国；电芯领域 CATL/比亚迪/中创新航/亿纬/国轩合计占印进口约 68%。",
     "coSource":[42, 31],
     "sources":[31, 32, 1]
@@ -982,72 +1202,108 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"中国台湾",
       "note":"高端 CKD 组装份额"
     }],
-    "sellers":[{
-      "name":"立讯精密（Luxshare）",
-      "type":"声学/结构件/玻璃/组装供应商",
-      "note":"声学、结构件、玻璃、组装"
-    }, {
-      "name":"歌尔（GoerTek）",
-      "type":"声学/结构件/玻璃/组装供应商",
-      "note":"声学、结构件、玻璃、组装"
-    }, {
-      "name":"蓝思科技（Lens）",
-      "type":"声学/结构件/玻璃/组装供应商",
-      "note":"声学、结构件、玻璃、组装"
-    }, {
-      "name":"比亚迪电子（BYD Electronics）",
-      "type":"声学/结构件/玻璃/组装供应商",
-      "note":"声学、结构件、玻璃、组装"
-    }, {
-      "name":"闻泰（Wingtech）",
-      "type":"声学/结构件/玻璃/组装供应商",
-      "note":"声学、结构件、玻璃、组装"
-    }, {
-      "name":"富士康（Foxconn，中国台湾，华厂）",
-      "type":"整机代工与 ODM",
-      "note":"整机代工与 ODM"
-    }, {
-      "name":"龙旗（Longcheer，ODM）",
-      "type":"整机代工与 ODM",
-      "note":"整机代工与 ODM"
-    }],
-    "buyers":[{
-      "name":"小米",
-      "type":"中国品牌在印公司（最大采购方）",
-      "note":"中国品牌在印公司（最大采购方）"
-    }, {
-      "name":"OPPO",
-      "type":"中国品牌在印公司（最大采购方）",
-      "note":"中国品牌在印公司（最大采购方）"
-    }, {
-      "name":"vivo",
-      "type":"中国品牌在印公司（最大采购方）",
-      "note":"中国品牌在印公司（最大采购方）"
-    }, {
-      "name":"realme",
-      "type":"中国品牌在印公司（最大采购方）",
-      "note":"中国品牌在印公司（最大采购方）"
-    }, {
-      "name":"一加",
-      "type":"中国品牌在印公司（最大采购方）",
-      "note":"中国品牌在印公司（最大采购方）"
-    }, {
-      "name":"DBG（中国 EMS，印度份额升至 21%）",
-      "type":"在印 EMS 与组装",
-      "note":"在印 EMS 与组装"
-    }, {
-      "name":"比亚迪电子（印度 7%）",
-      "type":"在印 EMS 与组装",
-      "note":"在印 EMS 与组装"
-    }, {
-      "name":"Dixon Technologies（印度最大 EMS，约 53%）",
-      "type":"在印 EMS 与组装",
-      "note":"在印 EMS 与组装"
-    }, {
-      "name":"Bhagwati（Micromax）",
-      "type":"在印 EMS 与组装",
-      "note":"在印 EMS 与组装"
-    }],
+    "sellers":[
+      {
+        "name": "立讯精密（Luxshare）",
+        "type": "苹果链结构件龙头",
+        "top": "营收 ~$36 B（2024）",
+        "profile": {
+          "hq": "中国 广东 深圳",
+          "founded": "2004",
+          "business": "消费电子、汽车、通讯",
+          "products": "连接器、声学、AirPods、Apple Watch 结构件",
+          "tradeVolume": "在印 EMS 客户中份额提升；与 Tata/Foxconn 合作",
+          "sources": "立讯精密 2024 年报",
+          "note": "苹果链核心供应商"
+        }
+      },
+      {
+        "name": "歌尔股份（GoerTek）",
+        "type": "全球声学龙头",
+        "top": "营收 ~$14 B（2024）",
+        "profile": {
+          "hq": "中国 山东 潍坊",
+          "founded": "2001",
+          "business": "声学、光学、VR/AR",
+          "products": "MEMS 麦克风、TWS 耳机、VR 头显",
+          "tradeVolume": "对印出口覆盖多家品牌商",
+          "sources": "歌尔股份 2024 年报",
+          "note": "全球声学与 VR 元件前 2"
+        }
+      },
+      {
+        "name": "蓝思科技（Lens Technology）",
+        "type": "玻璃盖板龙头",
+        "top": "营收 ~$8 B（2024）",
+        "profile": {
+          "hq": "中国 湖南 长沙",
+          "founded": "2003",
+          "business": "视窗防护玻璃、触控模组",
+          "products": "手机/平板/汽车玻璃盖板",
+          "tradeVolume": "对印出口覆盖印度 EMS 客户",
+          "sources": "蓝思科技 2024 年报",
+          "note": "全球玻璃盖板市占率第一"
+        }
+      },
+      {
+        "name": "闻泰科技（Wingtech）",
+        "type": "ODM 全球前 3",
+        "top": "营收 ~$8 B（2024）",
+        "profile": {
+          "hq": "中国 浙江 嘉兴",
+          "founded": "2006",
+          "business": "手机/笔电 ODM、半导体",
+          "products": "整机 ODM、安世半导体",
+          "tradeVolume": "对印 ODM 业务覆盖印度品牌",
+          "sources": "闻泰科技 2024 年报",
+          "note": "全球 ODM 前 3"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Foxconn India",
+        "type": "苹果印度主要 EMS",
+        "top": "iPhone 出货 ~$15 B",
+        "profile": {
+          "hq": "印度 Tamil Nadu 钦奈",
+          "founded": "2015（印度）",
+          "business": "富士康印度子公司",
+          "products": "iPhone 整机、Apple 配件",
+          "tradeVolume": "中国零部件进口比例高；本地化加速",
+          "sources": "Foxconn 印度披露、Counterpoint",
+          "note": "苹果印度主要制造伙伴"
+        }
+      },
+      {
+        "name": "Tata Electronics",
+        "type": "苹果印度新晋 EMS",
+        "top": "iPhone 工厂 ~$1.5 B",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "2020",
+          "business": "Tata 集团电子制造业务",
+          "products": "iPhone 整机、电子组件",
+          "tradeVolume": "与中国零部件供应商签长单",
+          "sources": "Tata 集团披露、印度 MeitY",
+          "note": "印度首家本土 iPhone EMS"
+        }
+      },
+      {
+        "name": "Dixon Technologies",
+        "type": "印度最大本土 EMS",
+        "top": "营收 ~$2.5 B",
+        "profile": {
+          "hq": "印度 北方邦 诺伊达",
+          "founded": "1993",
+          "business": "印度最大本土 EMS",
+          "products": "智能手机、电视、家电 EMS",
+          "tradeVolume": "与中国零部件厂长期合作，份额 ~53%",
+          "sources": "Dixon 年报、Counterpoint India",
+          "note": "印度 EMS 龙头"
+        }
+      }
+    ],
     "coNote":"GTRI 口径印度进口智能手机零部件 51.7% 自华；中国品牌 + 在印中资 EMS 构成主要采购链。",
     "coSource":[43, 33],
     "sources":[33, 19],
@@ -1099,77 +1355,122 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"印度本土（Motherson/Bharat Forge 等）",
       "note":"结构件/线束本地化较高"
     }],
-    "sellers":[{
-      "name":"均胜电子（Joyson）",
-      "type":"汽车电子/内饰/底盘部件",
-      "note":"汽车电子、内饰、密封与底盘部件对印出口"
-    }, {
-      "name":"宁波华翔（Huaxiang）",
-      "type":"汽车电子/内饰/底盘部件",
-      "note":"汽车电子、内饰、密封与底盘部件对印出口"
-    }, {
-      "name":"中鼎股份（Zhongding）",
-      "type":"汽车电子/内饰/底盘部件",
-      "note":"汽车电子、内饰、密封与底盘部件对印出口"
-    }, {
-      "name":"万向（Wanxiang）",
-      "type":"汽车电子/内饰/底盘部件",
-      "note":"汽车电子、内饰、密封与底盘部件对印出口"
-    }, {
-      "name":"宁德时代（CATL）",
-      "type":"EV 电池与三电配套",
-      "note":"EV 电池与三电配套（已并入「锂离子电池」模块，此处指电驱体系）"
-    }, {
-      "name":"比亚迪（BYD）",
-      "type":"EV 电池与三电配套",
-      "note":"EV 电池与三电配套（已并入「锂离子电池」模块，此处指电驱体系）"
-    }, {
-      "name":"福耀玻璃（FY Automotive Glass）",
-      "type":"车用玻璃",
-      "note":"车用玻璃"
-    }],
-    "buyers":[{
-      "name":"Tata Motors",
-      "type":"整车与电动两轮车厂",
-      "note":"整车与电动两轮车厂"
-    }, {
-      "name":"Mahindra",
-      "type":"整车与电动两轮车厂",
-      "note":"整车与电动两轮车厂"
-    }, {
-      "name":"Ola Electric",
-      "type":"整车与电动两轮车厂",
-      "note":"整车与电动两轮车厂"
-    }, {
-      "name":"Ather",
-      "type":"整车与电动两轮车厂",
-      "note":"整车与电动两轮车厂"
-    }, {
-      "name":"Bharat Forge",
-      "type":"汽车零部件与国防承包商",
-      "military":true,
-      "note":"汽车零部件与底盘锻件供应商，印度主要私营国防承包商之一（火炮/装甲车辆），自华采购链具潜在军工用途"
-    }, {
-      "name":"Samvardhana Motherson",
-      "type":"零部件与两轮车供应商",
-      "note":"零部件与两轮车供应商"
-    }, {
-      "name":"Bosch India",
-      "type":"零部件与两轮车供应商",
-      "note":"零部件与两轮车供应商"
-    }, {
-      "name":"TVS",
-      "type":"零部件与两轮车供应商",
-      "note":"零部件与两轮车供应商"
-    }, {
-      "name":"Bajaj",
-      "type":"零部件与两轮车供应商",
-      "note":"零部件与两轮车供应商"
-    }, {
-      "name":"Hero",
-      "type":"零部件与两轮车供应商",
-      "note":"零部件与两轮车供应商"
-    }],
+    "sellers":[
+      {
+        "name": "均胜电子（Joyson Electronics）",
+        "type": "汽车电子前十",
+        "top": "营收 ~$7 B",
+        "profile": {
+          "hq": "中国 浙江 宁波",
+          "founded": "2004",
+          "business": "汽车安全、汽车电子",
+          "products": "安全气囊、ADAS、人机交互",
+          "tradeVolume": "对印出口覆盖 Tata/Maruti/Mahindra 等",
+          "sources": "均胜电子 2024 年报",
+          "note": "收购 KSS 与 TRW 安全业务"
+        }
+      },
+      {
+        "name": "中鼎股份（Zhongding Group）",
+        "type": "密封件全球前三",
+        "top": "营收 ~$3 B",
+        "profile": {
+          "hq": "中国 安徽 宁国",
+          "founded": "1998",
+          "business": "汽车橡胶密封件",
+          "products": "密封条、减震件、底盘件",
+          "tradeVolume": "对印出口覆盖多家印度主机厂",
+          "sources": "中鼎股份 2024 年报",
+          "note": "全球密封件前 3"
+        }
+      },
+      {
+        "name": "福耀玻璃（Fuyao Glass）",
+        "type": "车用玻璃全球第一",
+        "top": "营收 ~$4 B",
+        "profile": {
+          "hq": "中国 福建 福清",
+          "founded": "1987",
+          "business": "汽车玻璃、浮法玻璃",
+          "products": "OEM/AM 汽车玻璃、HUD 玻璃",
+          "tradeVolume": "印度 Maruti Suzuki/Tata 主要玻璃供应商",
+          "sources": "福耀玻璃 2024 年报、ImportGenius（4529 批海关记录）",
+          "note": "全球汽车玻璃市占率约 30%"
+        }
+      },
+      {
+        "name": "万向集团（Wanxiang）",
+        "type": "汽车零部件中国前十",
+        "top": "营收 ~$5 B",
+        "profile": {
+          "hq": "中国 浙江 杭州",
+          "founded": "1969",
+          "business": "汽车零部件、新能源",
+          "products": "轴承、底盘、传动系统",
+          "tradeVolume": "对印出口覆盖多家印度车企",
+          "sources": "万向集团披露",
+          "note": "中国民营汽车零部件龙头"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Tata Motors",
+        "type": "印度最大车企",
+        "top": "2024 自华进口 ~$28 亿",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1945",
+          "business": "印度乘用车与商用车",
+          "products": "Nexon/Harrier/Safari/EV 整车",
+          "tradeVolume": "玻璃/电子/底盘件大量自华进口",
+          "sources": "Tata Motors FY25 财报",
+          "note": "印度乘用车市占率第一"
+        }
+      },
+      {
+        "name": "Maruti Suzuki",
+        "type": "印度最大乘用车厂",
+        "top": "在印销量 ~1.7 M（FY25）",
+        "profile": {
+          "hq": "印度 Haryana 古尔冈",
+          "founded": "1981",
+          "business": "印度最大乘用车制造商（铃木子公司）",
+          "products": "Alto/Swift/Brezza/Ertiga",
+          "tradeVolume": "福耀玻璃为其最大玻璃供应商",
+          "sources": "Maruti Suzuki FY25 财报",
+          "note": "印度乘用车销量长期第一"
+        }
+      },
+      {
+        "name": "Mahindra & Mahindra",
+        "type": "印度 SUV 与商用车龙头",
+        "top": "在印销量 ~0.5 M（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1945",
+          "business": "印度 SUV、皮卡与农机龙头",
+          "products": "XUV700/Thar/Scorpio/Bolero",
+          "tradeVolume": "电子与底盘件大量自华进口",
+          "sources": "Mahindra FY25 财报",
+          "note": "印度 SUV 市占率第一"
+        }
+      },
+      {
+        "name": "Bosch India",
+        "type": "印度 Tier-1 零部件龙头",
+        "top": "营收 ~$2 B（FY25）",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "1951",
+          "business": "罗伯特博世印度子公司",
+          "products": "汽车电子、ABS、ESP、喷油系统",
+          "tradeVolume": "部分核心零部件自华进口",
+          "sources": "Bosch India FY25 财报",
+          "note": "印度 Tier-1 第一"
+        }
+      }
+    ],
     "coNote":"印度汽车零配件对华进口以 EV 三电、磁体、半导体、PCB 等为主；以上为公开可查代表企业，非海关全量名单。",
     "coSource":[49, 3],
     "sources":[49, 3]
@@ -1212,44 +1513,94 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"土耳其/韩国",
       "note":"中高端面料"
     }],
-    "sellers":[{
-      "name":"恒力集团（Hengli）",
-      "type":"合成纤维与面料上游",
-      "note":"合成纤维与面料上游"
-    }, {
-      "name":"荣盛石化（Rongsheng）",
-      "type":"合成纤维与面料上游",
-      "note":"合成纤维与面料上游"
-    }, {
-      "name":"桐昆股份",
-      "type":"合成纤维与面料上游",
-      "note":"合成纤维与面料上游"
-    }, {
-      "name":"申洲国际（Shenzhou，针织成衣）",
-      "type":"针织成衣与对印出口",
-      "note":"对印出口代表"
-    }],
-    "buyers":[{
-      "name":"Raymond",
-      "type":"服装与家纺制造商",
-      "note":"印度服装与家纺制造商"
-    }, {
-      "name":"Arvind",
-      "type":"服装与家纺制造商",
-      "note":"印度服装与家纺制造商"
-    }, {
-      "name":"Welspun",
-      "type":"服装与家纺制造商",
-      "note":"印度服装与家纺制造商"
-    }, {
-      "name":"Trident",
-      "type":"服装与家纺制造商",
-      "note":"印度服装与家纺制造商"
-    }, {
-      "name":"Vardhman",
-      "type":"服装与家纺制造商",
-      "note":"印度服装与家纺制造商"
-    }],
+    "sellers":[
+      {
+        "name": "申洲国际（Shenzhou International）",
+        "type": "针织成衣 OEM 全球第一",
+        "top": "营收 ~$3.5 B",
+        "profile": {
+          "hq": "中国 浙江 宁波",
+          "founded": "1988",
+          "business": "针织面料与成衣纵向一体化 OEM",
+          "products": "Nike/Adidas/Uniqlo/PUMA 针织成衣",
+          "tradeVolume": "对印出口在针织 OEM 中长期居前",
+          "sources": "申洲国际 2024 年报",
+          "note": "全球针织成衣 OEM 市占率第一"
+        }
+      },
+      {
+        "name": "恒力集团（Hengli Group）",
+        "type": "化纤与面料龙头",
+        "top": "营收 ~$22 B",
+        "profile": {
+          "hq": "中国 江苏 苏州",
+          "founded": "1994",
+          "business": "PTA、聚酯、化纤、织造",
+          "products": "涤纶长丝、面料",
+          "tradeVolume": "对印出口化纤与面料前列",
+          "sources": "恒力石化 2024 年报",
+          "note": "全球 PTA 与涤纶龙头"
+        }
+      },
+      {
+        "name": "桐昆股份（Tongkun）",
+        "type": "涤纶长丝全球前 2",
+        "top": "营收 ~$10 B",
+        "profile": {
+          "hq": "中国 浙江 桐乡",
+          "founded": "1981",
+          "business": "涤纶长丝全产业链",
+          "products": "POY/FDY/DTY 涤纶长丝",
+          "tradeVolume": "对印出口涤纶长丝前列",
+          "sources": "桐昆股份 2024 年报",
+          "note": "全球涤纶长丝产能前 2"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Raymond",
+        "type": "印度最大纺织与服装集团",
+        "top": "营收 ~$2 B",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1925",
+          "business": "印度最大毛纺与西装面料集团",
+          "products": "西装面料、休闲服饰",
+          "tradeVolume": "进口中国化纤与面料",
+          "sources": "Raymond 年报、印度纺织部",
+          "note": "印度高端纺织龙头"
+        }
+      },
+      {
+        "name": "Arvind Mills",
+        "type": "印度牛仔与休闲面料龙头",
+        "top": "营收 ~$1.5 B",
+        "profile": {
+          "hq": "印度 Gujarat 艾哈迈达巴德",
+          "founded": "1931",
+          "business": "印度最大牛仔与休闲面料",
+          "products": "牛仔布、休闲面料、成衣",
+          "tradeVolume": "进口中国面料与纱线",
+          "sources": "Arvind 年报、印度纺织部",
+          "note": "印度牛仔产能第一"
+        }
+      },
+      {
+        "name": "Welspun Living",
+        "type": "印度家纺全球龙头",
+        "top": "营收 ~$1 B",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1985",
+          "business": "印度最大家纺与毛巾出口商",
+          "products": "毛巾、床品、家纺",
+          "tradeVolume": "进口中国化纤与面料",
+          "sources": "Welspun 年报、印度纺织部",
+          "note": "全球毛巾出口前 3"
+        }
+      }
+    ],
     "coNote":"印度纺织品服装进口 42% 自华（约 $3.2B/10月）；企业级采购清单未公开，以上为公开可查代表。",
     "coSource":[3],
     "sources":[3]
@@ -1297,36 +1648,94 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"新加坡/荷兰",
       "note":"部分高端设备"
     }],
-    "sellers":[{
-      "name":"迈瑞医疗（Mindray）",
-      "type":"监护/超声、CT/MRI 制造商",
-      "note":"监护/超声、CT/MRI 等"
-    }, {
-      "name":"联影医疗（United Imaging）",
-      "type":"监护/超声、CT/MRI 制造商",
-      "note":"监护/超声、CT/MRI 等"
-    }, {
-      "name":"鱼跃医疗（Yuwell）",
-      "type":"监护、影像与耗材制造商",
-      "note":"监护、影像与耗材"
-    }, {
-      "name":"东软医疗（Neusoft）",
-      "type":"监护、影像与耗材制造商",
-      "note":"监护、影像与耗材"
-    }, {
-      "name":"万东医疗",
-      "type":"监护、影像与耗材制造商",
-      "note":"监护、影像与耗材"
-    }, {
-      "name":"新华医疗",
-      "type":"监护、影像与耗材制造商",
-      "note":"监护、影像与耗材"
-    }],
-    "buyers":[{
-      "name":"Apollo",
-      "type":"终端用户（医院集团）",
-      "note":"终端用户"
-    }],
+    "sellers":[
+      {
+        "name": "迈瑞医疗（Mindray）",
+        "type": "中国医疗器械第一",
+        "top": "营收 ~$5 B",
+        "profile": {
+          "hq": "中国 广东 深圳",
+          "founded": "1991",
+          "business": "生命信息支持、IVD、医学影像",
+          "products": "监护仪、超声、麻醉机、生化分析",
+          "tradeVolume": "对印出口监护与超声份额长期前列",
+          "sources": "迈瑞医疗 2024 年报",
+          "note": "中国医疗器械龙头"
+        }
+      },
+      {
+        "name": "联影医疗（United Imaging）",
+        "type": "中国医学影像龙头",
+        "top": "营收 ~$1.5 B",
+        "profile": {
+          "hq": "中国 上海",
+          "founded": "2011",
+          "business": "高端医学影像与放疗设备",
+          "products": "CT/MR/PET-CT/直线加速器",
+          "tradeVolume": "对印出口 CT 与 MR 设备增长迅速",
+          "sources": "联影医疗 2024 年报",
+          "note": "中国 CT/MR 龙头"
+        }
+      },
+      {
+        "name": "鱼跃医疗（Yuwell）",
+        "type": "中国家用医疗龙头",
+        "top": "营收 ~$1.5 B",
+        "profile": {
+          "hq": "中国 江苏 丹阳",
+          "founded": "1998",
+          "business": "家用医疗与临床医疗",
+          "products": "血压计、血糖仪、雾化器",
+          "tradeVolume": "对印家用医疗器械出口前列",
+          "sources": "鱼跃医疗 2024 年报",
+          "note": "中国家用医疗龙头"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "Apollo Hospitals",
+        "type": "印度最大医院集团",
+        "top": "营收 ~$2.5 B",
+        "profile": {
+          "hq": "印度 Tamil Nadu 金奈",
+          "founded": "1983",
+          "business": "印度最大医院集团",
+          "products": "综合医院、药店、诊断、保险",
+          "tradeVolume": "大量进口中国监护/超声/影像设备",
+          "sources": "Apollo FY25 财报",
+          "note": "印度医院床位数第一"
+        }
+      },
+      {
+        "name": "Fortis Healthcare",
+        "type": "印度第二大医院集团",
+        "top": "营收 ~$1 B",
+        "profile": {
+          "hq": "印度 Haryana 古尔冈",
+          "founded": "1996",
+          "business": "印度第二大医院集团",
+          "products": "综合医院、诊断",
+          "tradeVolume": "进口中国中高端医疗器械",
+          "sources": "Fortis FY25 财报",
+          "note": "印度综合医院前 3"
+        }
+      },
+      {
+        "name": "Allengers Medical Systems",
+        "type": "印度医疗设备进口商",
+        "top": "营收 ~$0.3 B",
+        "profile": {
+          "hq": "印度 Punjab 昌迪加尔",
+          "founded": "1986",
+          "business": "印度本土医疗设备进口与分销",
+          "products": "影像、监护、麻醉设备",
+          "tradeVolume": "中国设备进口比例较高",
+          "sources": "Allengers 披露、ImportGenius",
+          "note": "印度医疗设备分销龙头"
+        }
+      }
+    ],
     "coNote":"印度约 80% 医疗器械靠进口，中国为第二大供应国（FY22 $1.35B、占 16.4%），中低端耗材/诊断设备占比升；企业级采购清单未公开。",
     "coSource":[47],
     "sources":[47, 3]
@@ -1375,17 +1784,92 @@ const DEPENDENCE_INDUSTRIES = [{
     }],
     "sellers":[
       {
-        "name":"星辉娱乐（Rastar）",
-        "type":"中国玩具品牌",
-        "note":"车模/动漫衍生玩具对印出口，澄海系头部厂商之一"
+        "name": "奥飞娱乐（Alpha Group）",
+        "type": "中国动漫玩具龙头",
+        "top": "营收 ~$0.4 B",
+        "profile": {
+          "hq": "中国 广东 汕头 澄海",
+          "founded": "1993",
+          "business": "动漫 IP + 玩具一体化",
+          "products": "动漫玩具、婴幼玩具",
+          "tradeVolume": "对印出口覆盖多个印度分销渠道",
+          "sources": "奥飞娱乐 2024 年报",
+          "note": "中国动漫玩具第一品牌"
+        }
       },
       {
-        "name":"奥飞娱乐",
-        "type":"中国玩具品牌",
-        "note":"品牌对印出口"
+        "name": "星辉互动娱乐（Rastar）",
+        "type": "中国车模/动漫玩具龙头",
+        "top": "营收 ~$0.3 B",
+        "profile": {
+          "hq": "中国 广东 汕头 澄海",
+          "founded": "2000",
+          "business": "车模、动漫玩具、足球俱乐部",
+          "products": "车模、动漫衍生玩具",
+          "tradeVolume": "对印车模与动漫玩具出口前列",
+          "sources": "星辉互动娱乐 2024 年报",
+          "note": "全球车模与动漫玩具前列"
+        }
+      },
+      {
+        "name": "实丰文化（Shifeng Culture）",
+        "type": "澄海玩具出口前列",
+        "top": "营收 ~$0.2 B",
+        "profile": {
+          "hq": "中国 广东 汕头 澄海",
+          "founded": "1992",
+          "business": "玩具研发制造与销售",
+          "products": "IP 玩具、电动玩具、积木",
+          "tradeVolume": "对印玩具出口在澄海系居前",
+          "sources": "实丰文化 2024 年报",
+          "note": "澄海玩具产业带代表"
+        }
       }
     ],
-    "buyers":[],
+    "buyers":[
+      {
+        "name": "Funskool India",
+        "type": "印度最大玩具公司",
+        "top": "营收 ~$0.1 B",
+        "profile": {
+          "hq": "印度 Tamil Nadu 哥印拜陀",
+          "founded": "1987",
+          "business": "印度最大本土玩具公司",
+          "products": "拼装玩具、教育玩具、IP 玩具",
+          "tradeVolume": "进口中国玩具份额较高",
+          "sources": "Funskool 年报、印度商工部",
+          "note": "印度玩具市场份额第一"
+        }
+      },
+      {
+        "name": "Mattel India",
+        "type": "全球玩具巨头印度子公司",
+        "top": "营收 ~$0.15 B",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1983（印度）",
+          "business": "芭比/风火轮等品牌运营",
+          "products": "芭比、风火轮、Hot Wheels",
+          "tradeVolume": "大量自中国 OEM 进口",
+          "sources": "Mattel 印度披露",
+          "note": "全球玩具第一品牌"
+        }
+      },
+      {
+        "name": "Reliance Retail",
+        "type": "印度最大零售集团",
+        "top": "营收 ~$36 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "2006",
+          "business": "印度最大零售集团",
+          "products": "Smart Bazaar、Reliance Trends、Reliance Digital",
+          "tradeVolume": "玩具品类大量采购中国品牌",
+          "sources": "Reliance Retail FY25 财报",
+          "note": "印度零售第一"
+        }
+      }
+    ],
     "coNote":"印度市场曾 80–90% 玩具靠进口、其中约 90% 来自中国；2020 起 60% 关税后进口额腰斩但中国仍最大来源；企业级采购清单未公开。",
     "coSource":[48],
     "sources":[48]
@@ -1428,41 +1912,94 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"韩国/美国",
       "note":"工程机械与机床"
     }],
-    "sellers":[{
-      "name":"三一重工（Sany）",
-      "type":"工程机械对印出口代表",
-      "note":"工程机械对印出口代表"
-    }, {
-      "name":"中联重科（Zoomlion）",
-      "type":"工程机械对印出口代表",
-      "note":"工程机械对印出口代表"
-    }, {
-      "name":"徐工（XCMG）",
-      "type":"工程机械对印出口代表",
-      "note":"工程机械对印出口代表"
-    }, {
-      "name":"柳工（LiuGong）",
-      "type":"工程机械对印出口代表",
-      "note":"工程机械对印出口代表"
-    }, {
-      "name":"山东临工（SDLG）",
-      "type":"工程机械对印出口代表",
-      "note":"工程机械对印出口代表"
-    }],
-    "buyers":[{
-      "name":"L&T（Larsen & Toubro）",
-      "type":"基建总包与国防承包商",
-      "military":true,
-      "note":"印度最大私营工程与国防集团，工程机械采购与施工总包；其国防业务含舰船/导弹/装甲车，采购链具潜在军工用途"
-    }, {
-      "name":"Tata Projects",
-      "type":"基建与工程总包、工业用户",
-      "note":"基建与工程总包、工业用户"
-    }, {
-      "name":"Afcons",
-      "type":"基建与工程总包、工业用户",
-      "note":"基建与工程总包、工业用户"
-    }],
+    "sellers":[
+      {
+        "name": "三一重工（Sany Heavy Industry）",
+        "type": "全球挖掘机第一",
+        "top": "营收 ~$11 B",
+        "profile": {
+          "hq": "中国 湖南 长沙",
+          "founded": "1994",
+          "business": "工程机械全品类",
+          "products": "挖掘机、混凝土机械、起重机",
+          "tradeVolume": "对印出口在工程机械中居前；印度 BRO 边境国防基建使用",
+          "sources": "三一重工 2024 年报、ImportGenius",
+          "note": "全球挖掘机销量第一"
+        }
+      },
+      {
+        "name": "中联重科（Zoomlion）",
+        "type": "中国工程机械前 3",
+        "top": "营收 ~$7 B",
+        "profile": {
+          "hq": "中国 湖南 长沙",
+          "founded": "1992",
+          "business": "工程机械、农业机械",
+          "products": "起重机、混凝土泵车、塔机",
+          "tradeVolume": "对印出口与 Reliance 等签大单（120 台吊车）",
+          "sources": "中联重科 2024 年报",
+          "note": "全球起重机前 3"
+        }
+      },
+      {
+        "name": "徐工集团（XCMG）",
+        "type": "中国工程机械前 3",
+        "top": "营收 ~$13 B",
+        "profile": {
+          "hq": "中国 江苏 徐州",
+          "founded": "1989",
+          "business": "工程机械全品类",
+          "products": "起重机、装载机、挖掘机",
+          "tradeVolume": "对印出口排名前列",
+          "sources": "徐工集团 2024 年报",
+          "note": "全球工程机械前 10"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "L&T（Larsen & Toubro）",
+        "type": "印度最大工程总包",
+        "top": "营收 ~$23 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1938",
+          "business": "印度最大工程总包",
+          "products": "基建 EPC、能源装备",
+          "tradeVolume": "中大型工程机械大量自华进口",
+          "sources": "L&T FY25 财报",
+          "note": "印度最大基建集团"
+        }
+      },
+      {
+        "name": "Tata Projects",
+        "type": "Tata 集团基建业务",
+        "top": "营收 ~$2 B",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1979",
+          "business": "Tata 旗下基建 EPC",
+          "products": "电站、地铁、输配电 EPC",
+          "tradeVolume": "中国工程机械与电力装备采购前列",
+          "sources": "Tata Projects 年报",
+          "note": "印度大型 EPC 之一"
+        }
+      },
+      {
+        "name": "Reliance Infrastructure",
+        "type": "印度大型基建集团",
+        "top": "营收 ~$3 B",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1929（Reliance 起家）",
+          "business": "Reliance 旗下基建",
+          "products": "电站、公路、地铁 EPC",
+          "tradeVolume": "与中国装备厂商签大单（120 台吊车等）",
+          "sources": "Reliance Infra 年报",
+          "note": "印度私营基建前列"
+        }
+      }
+    ],
     "coNote":"印度机械进口约 $19B 自华（占 39.6%）；盾构机为细分已单独详述；企业级采购清单未公开，以上为公开可查代表。",
     "coSource":[3],
     "sources":[3]
@@ -1523,72 +2060,122 @@ const DEPENDENCE_INDUSTRIES = [{
       "country":"印度本土（IFFCO/Chambal/Coromandel 等）",
       "note":"尿素本土产能大；DAP/特种肥本土化推进中"
     }],
-    "sellers":[{
-      "name":"云天化（Yuntianhua）",
-      "type":"磷肥（DAP/MAP）对印出口龙头",
-      "note":"磷肥（DAP/MAP）对印出口龙头"
-    }, {
-      "name":"贵州磷化（瓮福 Wengfu）",
-      "type":"磷肥（DAP/MAP）对印出口龙头",
-      "note":"磷肥（DAP/MAP）对印出口龙头"
-    }, {
-      "name":"湖北宜化",
-      "type":"磷肥（DAP/MAP）对印出口龙头",
-      "note":"磷肥（DAP/MAP）对印出口龙头"
-    }, {
-      "name":"金正大（Kingenta）",
-      "type":"复合肥与特种水溶肥",
-      "note":"复合肥与特种水溶肥对印出口"
-    }, {
-      "name":"史丹利（Stanley）",
-      "type":"复合肥与特种水溶肥",
-      "note":"复合肥与特种水溶肥对印出口"
-    }, {
-      "name":"新洋丰（Xinyangfeng）",
-      "type":"复合肥与特种水溶肥",
-      "note":"复合肥与特种水溶肥对印出口"
-    }, {
-      "name":"中海化学（CNOOC Chem）",
-      "type":"尿素及氨类",
-      "note":"尿素及氨类"
-    }, {
-      "name":"华鲁恒升",
-      "type":"尿素及氨类",
-      "note":"尿素及氨类"
-    }, {
-      "name":"阳煤化工",
-      "type":"尿素及氨类",
-      "note":"尿素及氨类"
-    }],
-    "buyers":[{
-      "name":"Coromandel International",
-      "type":"DAP/MAP 进口与加工主力",
-      "note":"DAP/MAP 进口与加工主力"
-    }, {
-      "name":"Chambal Fertilizers",
-      "type":"DAP/MAP 进口与加工主力",
-      "note":"DAP/MAP 进口与加工主力"
-    }, {
-      "name":"Paradeep Phosphates (PPL)",
-      "type":"DAP/MAP 进口与加工主力",
-      "note":"DAP/MAP 进口与加工主力"
-    }, {
-      "name":"IFFCO",
-      "type":"肥料进口与贸易",
-      "note":"肥料进口与贸易"
-    }, {
-      "name":"GSFC",
-      "type":"肥料进口与贸易",
-      "note":"肥料进口与贸易"
-    }, {
-      "name":"Tata Chemicals",
-      "type":"肥料进口与贸易",
-      "note":"肥料进口与贸易"
-    }, {
-      "name":"Deepak Fertilizers",
-      "type":"肥料进口与贸易",
-      "note":"肥料进口与贸易"
-    }],
+    "sellers":[
+      {
+        "name": "云天化（Yuntianhua）",
+        "type": "中国 DAP/MAP 出口第一",
+        "top": "DAP/MAP 产能 ~700 万吨",
+        "profile": {
+          "hq": "中国 云南 昆明",
+          "founded": "1974",
+          "business": "磷化工、化肥",
+          "products": "DAP、MAP、磷酸、磷酸铁",
+          "tradeVolume": "对印 DAP/MAP 出口排名第一；与 IFFCO 等签长单",
+          "sources": "云天化 2024 年报、中国化肥协会",
+          "note": "中国 DAP/MAP 龙头"
+        }
+      },
+      {
+        "name": "瓮福集团（Wengfu）",
+        "type": "中国磷化工前 3",
+        "top": "磷酸产能 ~2.5 百万吨",
+        "profile": {
+          "hq": "中国 贵州 贵阳",
+          "founded": "1990",
+          "business": "磷化工与化肥",
+          "products": "磷酸、DAP、MAP、磷酸铁",
+          "tradeVolume": "对印 DAP/MAP 出口前列",
+          "sources": "瓮福集团 2024 年报",
+          "note": "中国磷酸与 DAP 前 3"
+        }
+      },
+      {
+        "name": "湖北宜化（Hubei Yihua）",
+        "type": "中国尿素与磷化工前列",
+        "top": "尿素产能 ~200 万吨",
+        "profile": {
+          "hq": "中国 湖北 宜昌",
+          "founded": "1977",
+          "business": "化肥与化工",
+          "products": "尿素、季戊四醇、磷酸二铵",
+          "tradeVolume": "对印尿素与磷肥出口长期位列前 10",
+          "sources": "湖北宜化 2024 年报",
+          "note": "中国尿素/季戊四醇龙头"
+        }
+      },
+      {
+        "name": "金正大（Kingenta）",
+        "type": "中国复合肥与缓控释肥龙头",
+        "top": "复合肥产能 ~700 万吨",
+        "profile": {
+          "hq": "中国 山东 临沂",
+          "founded": "1998",
+          "business": "复合肥、缓控释肥、水溶肥",
+          "products": "复合肥、缓控释肥、水溶肥",
+          "tradeVolume": "对印复合肥与水溶肥出口长期居前",
+          "sources": "金正大 2024 年报",
+          "note": "中国缓控释肥龙头"
+        }
+      }
+    ],
+    "buyers":[
+      {
+        "name": "IFFCO",
+        "type": "印度最大化肥合作社",
+        "top": "营收 ~$5 B（FY25）",
+        "profile": {
+          "hq": "印度 Uttar Pradesh 新德里",
+          "founded": "1967",
+          "business": "印度最大化肥进口与合作社",
+          "products": "DAP/MAP/尿素/复合肥进口与分销",
+          "tradeVolume": "中国是 DAP/MAP 第一大进口来源；2023 进口 6 万吨 DAP 大单",
+          "sources": "IFFCO FY25 年报、印度农业部",
+          "note": "印度化肥进口第一"
+        }
+      },
+      {
+        "name": "Coromandel International",
+        "type": "印度 DAP/MAP 加工龙头",
+        "top": "营收 ~$2 B（FY25）",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1906",
+          "business": "印度最大 DAP/MAP 加工企业",
+          "products": "DAP/MAP/SSP/复合肥",
+          "tradeVolume": "中国是其 DAP/MAP 主要进口来源",
+          "sources": "Coromandel FY25 年报",
+          "note": "印度私营化肥龙头"
+        }
+      },
+      {
+        "name": "Chambal Fertilizers",
+        "type": "印度私营化肥龙头",
+        "top": "营收 ~$2 B（FY25）",
+        "profile": {
+          "hq": "印度 Rajasthan 斋浦尔",
+          "founded": "1985",
+          "business": "印度最大私营尿素与化肥",
+          "products": "尿素、复合肥",
+          "tradeVolume": "中国是主要进口来源之一",
+          "sources": "Chambal FY25 年报",
+          "note": "印度尿素产能第一"
+        }
+      },
+      {
+        "name": "Paradeep Phosphates (PPL)",
+        "type": "印度 DAP 主要进口与加工",
+        "top": "营收 ~$1.5 B",
+        "profile": {
+          "hq": "印度 Odisha 帕拉迪普",
+          "founded": "1981",
+          "business": "印度 DAP/MAP 加工",
+          "products": "DAP、MAP、NPK",
+          "tradeVolume": "对华 DAP 进口量在印度厂商中前列",
+          "sources": "PPL FY25 年报",
+          "note": "Zuari 集团旗下"
+        }
+      }
+    ],
     "coNote":"印度化肥高度依赖进口，但仅特种水溶肥约 80% 自华、DAP 对华约 25–30%（近年因中国出口管制骤降）；尿素/MOP/磷酸主要来源非中国。以上为公开可查代表企业，非海关全量名单。",
     "coSource":[50, 51],
     "sources":[50, 51]
