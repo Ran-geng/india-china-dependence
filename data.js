@@ -2203,6 +2203,7 @@ const DEPENDENCE_INDUSTRIES = [{
 const TRADE_FLOWS = {
   "稀土永磁体":[{
     "seller":"金力永磁（JL MAG，赣州）",
+    "year":"2024",
     "goods":"烧结钕铁硼永磁体（NdFeB）",
     "hs":"8505.11",
     "buyer":"Uno Minda（汽车零部件）",
@@ -2216,6 +2217,7 @@ const TRADE_FLOWS = {
     "source":[110, 12]
   }, {
     "seller":"中科三环（Zhong Ke Sanhuan）",
+    "year":"2024",
     "goods":"车规级高温钕铁硼磁体",
     "hs":"8505.11",
     "buyer":"Tata Motors（整车厂）",
@@ -2229,6 +2231,7 @@ const TRADE_FLOWS = {
     "source":[12]
   }, {
     "seller":"宁波韵升（Ningbo Yunsheng）",
+    "year":"2024",
     "goods":"钕铁硼电机磁体",
     "hs":"8505.11",
     "buyer":"Ather（电动两轮车）",
@@ -2242,6 +2245,7 @@ const TRADE_FLOWS = {
     "source":[12]
   }, {
     "seller":"宁波韵升（Ningbo Yunsheng，经香港/新加坡）",
+    "year":"2024",
     "goods":"钕铁硼电机磁体",
     "hs":"8505.11",
     "buyer":"Ola Electric（电动两轮车）",
@@ -2256,6 +2260,7 @@ const TRADE_FLOWS = {
   }],
   "原料药（API/关键起始物料）":[{
     "seller":"新和成（NHU）",
+    "year":"2023",
     "goods":"维生素 API（VE/VA）",
     "hs":"2936.28",
     "buyer":"Sun Pharma",
@@ -2269,6 +2274,7 @@ const TRADE_FLOWS = {
     "source":[40, 22]
   }, {
     "seller":"华海药业",
+    "year":"2024",
     "goods":"沙坦类 API",
     "hs":"2933.99",
     "buyer":"Dr Reddy's",
@@ -2282,6 +2288,7 @@ const TRADE_FLOWS = {
     "source":[22]
   }, {
     "seller":"国邦医药",
+    "year":"2024",
     "goods":"氟苯尼考/喹诺酮类 API",
     "hs":"2941.90",
     "buyer":"Aurobindo",
@@ -2295,6 +2302,7 @@ const TRADE_FLOWS = {
     "source":[22]
   }, {
     "seller":"华北制药（NCPC，青霉素/6-APA 中间体）",
+    "year":"2024",
     "goods":"6-APA（青霉素中间体）",
     "hs":"2941.10",
     "buyer":"Aurobindo / Lyfius Kakinada 青霉素 G→6-APA 厂",
@@ -2309,6 +2317,7 @@ const TRADE_FLOWS = {
   }],
   "盾构机（TBM）":[{
     "seller":"中铁装备 CREG（郑州）",
+    "year":"2025",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
     "buyer":"Mumbai Metro 3 号线（MMRC）",
@@ -2322,6 +2331,7 @@ const TRADE_FLOWS = {
     "source":[25, 11, 38]
   }, {
     "seller":"海瑞克广州（Herrenknecht，德资在华）",
+    "year":"2024",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
     "buyer":"孟买-艾哈迈达巴德高铁项目",
@@ -2335,6 +2345,7 @@ const TRADE_FLOWS = {
     "source":[11, 38]
   }, {
     "seller":"中铁系（中铁重工 CRCHI 等）",
+    "year":"2024",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
     "buyer":"印度 BRO 边境战略通道项目",
@@ -2349,6 +2360,7 @@ const TRADE_FLOWS = {
   }],
   "太阳能电池 / 组件":[{
     "seller":"晶科能源（Jinko）",
+    "year":"2024",
     "goods":"光伏组件（TOPCon）",
     "hs":"8541.42",
     "buyer":"Tata Power Solar",
@@ -2362,6 +2374,7 @@ const TRADE_FLOWS = {
     "source":[26, 39]
   }, {
     "seller":"隆基（LONGi）",
+    "year":"2024",
     "goods":"光伏组件（HPBC/TOPCon）",
     "hs":"8541.42",
     "buyer":"Adani Solar",
@@ -2375,6 +2388,7 @@ const TRADE_FLOWS = {
     "source":[39]
   }, {
     "seller":"天合光能（Trina）",
+    "year":"2024",
     "goods":"光伏组件（210mm 大尺寸）",
     "hs":"8541.42",
     "buyer":"Waaree",
@@ -2389,6 +2403,7 @@ const TRADE_FLOWS = {
   }],
   "多晶硅 / 硅片（上游）":[{
     "seller":"通威（Tongwei）",
+    "year":"2024",
     "goods":"多晶硅料",
     "hs":"2804.61",
     "buyer":"Adani（Jamnagar 建厂）",
@@ -2402,6 +2417,7 @@ const TRADE_FLOWS = {
     "source":[27, 28]
   }, {
     "seller":"协鑫（GCL）",
+    "year":"2024",
     "goods":"颗粒硅/多晶硅",
     "hs":"2804.61",
     "buyer":"Reliance（Jamnagar 光伏野心）",
@@ -2416,6 +2432,7 @@ const TRADE_FLOWS = {
   }],
   "电子 / 电信 / 电气产品":[{
     "seller":"华为（Huawei）",
+    "year":"2020（存量）",
     "goods":"5G 基站与传输设备",
     "hs":"8517.62",
     "buyer":"BSNL / Airtel / Reliance Jio（网络）",
@@ -2429,6 +2446,7 @@ const TRADE_FLOWS = {
     "source":[111, 29]
   }, {
     "seller":"小米（Xiaomi）",
+    "year":"2024",
     "goods":"智能手机整机/模组",
     "hs":"8517.13",
     "buyer":"Dixon Technologies（代工）",
@@ -2442,6 +2460,7 @@ const TRADE_FLOWS = {
     "source":[29, 30]
   }, {
     "seller":"立讯精密（Luxshare）",
+    "year":"2024",
     "goods":"精密连接器与线束",
     "hs":"8536.69",
     "buyer":"富士康 India（EMS）",
@@ -2456,6 +2475,7 @@ const TRADE_FLOWS = {
   }],
   "锂离子电池":[{
     "seller":"宁德时代（CATL）",
+    "year":"2024",
     "goods":"锂离子动力电芯",
     "hs":"8507.60",
     "buyer":"Ola Electric",
@@ -2469,6 +2489,7 @@ const TRADE_FLOWS = {
     "source":[31, 108, 109]
   }, {
     "seller":"比亚迪（BYD）",
+    "year":"2024",
     "goods":"锂离子电池 PACK",
     "hs":"8507.60",
     "buyer":"Tata AutoComp / Tata Motors",
@@ -2482,6 +2503,7 @@ const TRADE_FLOWS = {
     "source":[31]
   }, {
     "seller":"ATL（新能源科技，经东南亚）",
+    "year":"2024",
     "goods":"锂离子电芯",
     "hs":"8507.60",
     "buyer":"印度 Pack 厂",
@@ -2496,6 +2518,7 @@ const TRADE_FLOWS = {
   }],
   "智能手机零部件":[{
     "seller":"舜宇光学 / 丘钛（经 Dixon 印度子公司）",
+    "year":"2024",
     "goods":"手机摄像头模组",
     "hs":"8525.89",
     "buyer":"Dixon Technologies",
@@ -2509,6 +2532,7 @@ const TRADE_FLOWS = {
     "source":[123, 33]
   }, {
     "seller":"立讯精密（Luxshare）",
+    "year":"2024",
     "goods":"精密连接器与结构件",
     "hs":"8536.69",
     "buyer":"塔塔电子（Tata Electronics）",
@@ -2523,6 +2547,7 @@ const TRADE_FLOWS = {
   }],
   "汽车零配件":[{
     "seller":"福耀玻璃（FY Automotive Glass）",
+    "year":"2024",
     "goods":"车用安全玻璃总成",
     "hs":"8708.29",
     "buyer":"Maruti Suzuki（整车厂）",
@@ -2536,6 +2561,7 @@ const TRADE_FLOWS = {
     "source":[123]
   }, {
     "seller":"均胜电子（Joyson）",
+    "year":"2024",
     "goods":"安全气囊与汽车电子",
     "hs":"8708.95",
     "buyer":"Uno Minda（汽车零部件）",
@@ -2549,6 +2575,7 @@ const TRADE_FLOWS = {
     "source":[123]
   }, {
     "seller":"宁波华翔（Huaxiang）",
+    "year":"2024",
     "goods":"汽车内外饰件",
     "hs":"8708.29",
     "buyer":"SAMVARDHANA MOTHERSON（零部件）",
@@ -2564,6 +2591,7 @@ const TRADE_FLOWS = {
   "纺织品和服装":[],
   "医疗器械与科学仪器":[{
     "seller":"迈瑞医疗（Mindray）",
+    "year":"2021（新冠期）",
     "goods":"监护仪/呼吸机/超声",
     "hs":"9018.19",
     "buyer":"AIIMS / HLL Lifecare（医院与采购）",
@@ -2577,6 +2605,7 @@ const TRADE_FLOWS = {
     "source":[121]
   }, {
     "seller":"联影医疗（United Imaging）",
+    "year":"2025",
     "goods":"CT/PET-CT 影像设备",
     "hs":"9022.12",
     "buyer":"Medikabazaar 代理 → Superhealth 等医院",
@@ -2590,6 +2619,7 @@ const TRADE_FLOWS = {
     "source":[122]
   }, {
     "seller":"中国 IVD/耗材（经香港/新加坡/马来）",
+    "year":"2024",
     "goods":"体外诊断试剂与耗材",
     "hs":"3822.00",
     "buyer":"Dr Lal / SRL 等诊断实验室",
@@ -2604,6 +2634,7 @@ const TRADE_FLOWS = {
   }],
   "玩具":[{
     "seller":"中国 OEM（珠三角产业带）",
+    "year":"2024",
     "goods":"塑料/电子玩具",
     "hs":"9503.00",
     "buyer":"Mattel India",
@@ -2617,6 +2648,7 @@ const TRADE_FLOWS = {
     "source":[126]
   }, {
     "seller":"中国 OEM（浙江）",
+    "year":"2024",
     "goods":"玩具与气球",
     "hs":"9503.00",
     "buyer":"Leo Godt / Bharat Balloon",
@@ -2630,6 +2662,7 @@ const TRADE_FLOWS = {
     "source":[126]
   }, {
     "seller":"中国 OEM（经新加坡/香港/越南）",
+    "year":"2024",
     "goods":"玩具",
     "hs":"9503.00",
     "buyer":"印度进口商",
@@ -2644,6 +2677,7 @@ const TRADE_FLOWS = {
   }],
   "工程机械与工业机械（通用）":[{
     "seller":"徐工（XCMG）",
+    "year":"2024",
     "goods":"履带式起重机",
     "hs":"8426.49",
     "buyer":"Reliance Industries（SANSAN 电厂）",
@@ -2657,6 +2691,7 @@ const TRADE_FLOWS = {
     "source":[119]
   }, {
     "seller":"中联重科（Zoomlion）",
+    "year":"2024",
     "goods":"汽车起重机 QY75V",
     "hs":"8705.10",
     "buyer":"Reliance Industries",
@@ -2670,6 +2705,7 @@ const TRADE_FLOWS = {
     "source":[120]
   }, {
     "seller":"三一重工（Sany）",
+    "year":"2024",
     "goods":"挖掘机与混凝土机械",
     "hs":"8429.52",
     "buyer":"L&T / Tata Projects / ONGC / HPCL（EPC）",
@@ -2683,6 +2719,7 @@ const TRADE_FLOWS = {
     "source":[38]
   }, {
     "seller":"三一重工（Sany）",
+    "year":"2024",
     "goods":"挖掘机/工程机械",
     "hs":"8429.52",
     "buyer":"印度 BRO 边境国防基建",
@@ -2697,6 +2734,7 @@ const TRADE_FLOWS = {
   }],
   "化肥（磷酸二铵 DAP / 特种肥）":[{
     "seller":"云天化（Yuntianhua）",
+    "year":"2024",
     "goods":"磷酸二铵（DAP）",
     "hs":"3105.30",
     "buyer":"IFFCO",
@@ -2710,6 +2748,7 @@ const TRADE_FLOWS = {
     "source":[106]
   }, {
     "seller":"贵州磷化（瓮福 Wengfu）",
+    "year":"2024",
     "goods":"磷酸二铵/磷酸一铵（DAP/MAP）",
     "hs":"3105.30",
     "buyer":"Coromandel International",
@@ -2723,6 +2762,7 @@ const TRADE_FLOWS = {
     "source":[106]
   }, {
     "seller":"湖北宜化（车用尿素/AdBlue）",
+    "year":"2025",
     "goods":"车用尿素（AdBlue）",
     "hs":"3102.10",
     "buyer":"印度（SFIA 渠道）",
@@ -2797,7 +2837,7 @@ const DEPENDENCE_REPORTS = {
     substitution: "化肥对华依赖高度分化。特种/水溶肥约 80% 自华（最高），DAP 印度 50–60% 靠进口、其中对华约 25–30%（2023-24 曾达 40%，中国暂停 DAP 出口许可后份额骤降），而尿素、氯化钾(MOP)、磷酸主要来自本土、摩洛哥/约旦/沙特、俄白，并非中国。因此替代重点在特种肥（可转向本土与多元来源）与 DAP（沙特/俄/摩长期协议），中国依赖实际集中在特种肥细分。",
     outlook: "化肥对华依赖呈现『特种肥极高、DAP 中等、尿素/MOP 极低』的强分化。随印度本土特种肥产能与 DAP 长期协议来源多元化，对华依赖（尤其 DAP）已明显下降，真正高依赖仅余特种水溶肥，整体风险可控。"
   }
-};
+}
 
 /* --------- 2.6 印度对华依赖产业「总览分析」报告（隐藏式，默认收起） --------- */
 /* 与单产业报告共用 {type,text} 段落格式（heading/para/bullet），

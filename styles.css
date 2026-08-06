@@ -496,6 +496,8 @@ img{max-width:100%}
   border:1px solid transparent; white-space:nowrap;
 }
 .badge.b-trans{ background:rgba(184,134,11,.16); color:#8a6500; border-color:rgba(184,134,11,.4); }
+.badge.b-year{ background:rgba(184,134,11,.13); color:#7a5c12; border-color:rgba(184,134,11,.35); }
+.badge.b-year::before{ content:"📅 "; font-size:10px; }
 .badge.b-mil{ background:rgba(216,51,42,.16); color:#b01b13; border-color:rgba(216,51,42,.45); }
 .badge.b-doc{ background:rgba(31,122,77,.16); color:#176b41; border-color:rgba(31,122,77,.4); }
 .badge.b-rep{ background:rgba(90,100,120,.16); color:#4a5568; border-color:rgba(90,100,120,.4); }

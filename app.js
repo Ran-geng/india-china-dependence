@@ -331,6 +331,7 @@
         <div class="flow-chain">${seller}<span class="arrow">→</span>${buyer}${trans}${down}</div>
         ${goods}
         <div class="flow-badges">
+          ${f.year ? `<span class="badge b-year">最近年份 ${f.year}</span>` : ""}
           ${f.transship ? `<span class="badge b-trans">中转 · ${f.via}</span>` : ""}
           ${f.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
           <span class="badge ${f.confidence==="documented"?"b-doc":"b-rep"}">${f.confidence==="documented"?"已核实":"代表性推断"}</span>
