@@ -663,9 +663,10 @@
     `${c.monitor}${cite(118)}`
   ].map(t=>`<li>${t}</li>`).join("");
 
-  /* ---------- 转口贸易数据面板（基于官方贸易数据·折线图+数据表）---------- */
+  /* ---------- 转口贸易数据面板（基于官方贸易数据）---------- */
   if (typeof TRANSSHIPMENT_TRADE !== "undefined") {
-    const fmt = v => (v==null||v===undefined) ? "—" : (v>=1000 ? `$${(v/1000).toFixed(2)}B` : `$${v}M`);
+    // 单位统一：所有数值一律以「百万美元 $M」展示，>1000M 用千分位（不再 B/M 混用）
+    const fmt = v => (v==null||v===undefined) ? "—" : `$${Number(v).toLocaleString("en-US")}M`;
     const yoy = (y, py) => (y!=null && py!=null && py>0) ? Math.round((y-py)/py*100) : null;
     const yoyStr = v => v==null ? "—" : (v>=0?`+${v}%`:`${v}%`);
     const allYears = (china, india) => {
@@ -673,29 +674,30 @@
       return [...s].sort((a,b)=>a-b);
     };
 
-    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 品目级，2021–2024 逐年）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF 等官方年度统计，逐年对应）。两者同步增长即构成"双升"证据链。同比 ≥30% 或绝对额创新高的异常项以 <b>红色高亮</b>（整行 + 百分比）+ ▲ 双升徽章标识；无数据年份以「—」留空并注明官方可得性。所有数值均来自官方来源，未做任何推算。`;
-
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 6 位国际编码逐年口径，2021–2024）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF / WITS 等官方年度统计，能拿到的 HS 6 位逐步替换为国家层面）。两者同步增长即构成"双升"证据链。表内<b>单位一律为百万美元 $M</b>（如 $9,910M 即 $9.91B；统一单位便于同比），无数据年份留空并注明官方可得性。异常项以红色高亮 + ▲ 双升徽章标识。所有数值均来自官方来源，未做任何推算。`;
     const flowsHTML = TRANSSHIPMENT_TRADE.map((f,i)=>{
+      const c = f.china, id = f.india;
       const nodes = f.chain.map((p,i)=>{
         const cls = i===0?"cn":(i===f.chain.length-1?"in":"mid");
         return `<span class="node ${cls}">${p}</span>`;
       }).join('<span class="arrow">→</span>');
-      const c = f.china, id = f.india;
       const years = allYears(c, id);
-      const lastC = years.filter(y=>c.years[y]!=null).slice(-2).map(Number);
-      const lastI = years.filter(y=>id.years[y]!=null).slice(-2).map(Number);
-      const cYoy = lastC.length===2 ? yoy(c.years[lastC[1]], c.years[lastC[0]]) : null;
-      const iYoy = lastI.length===2 ? yoy(id.years[lastI[1]], id.years[lastI[0]]) : null;
-      const surgeBoth = (cYoy!=null && cYoy>=30) || (iYoy!=null && iYoy>=30);
-
-      // 数据表行：同比标注（红色高亮）
+      // 双升判定：双侧最近一年同比均≥20% 或同侧最新两年均创历史新高
+      let surgeBoth = false;
+      const cVals = years.map(y=>c.years?.[y]);
+      const iVals = years.map(y=>id.years?.[y]);
+      const cLastYoy = yoy(cVals[cVals.length-1], cVals[cVals.length-2]);
+      const iLastYoy = yoy(iVals[iVals.length-1], iVals[iVals.length-2]);
+      if(f.surge && cLastYoy!=null && iLastYoy!=null && cLastYoy>=20 && iLastYoy>=20) surgeBoth=true;
+      // 表格行
       let rows = "";
       years.forEach((y,idx)=>{
-        const cVal = c.years[y];
-        const iVal = id.years[y];
-        const prevY = idx>0 ? years[idx-1] : null;
-        const cY = (cVal!=null && prevY!=null) ? yoy(cVal, c.years[prevY]) : null;
-        const iY = (iVal!=null && prevY!=null) ? yoy(iVal, id.years[prevY]) : null;
+        const cVal = c.years?.[y], iVal = id.years?.[y];
+        const prevC = idx>0?c.years?.[years[idx-1]]:null;
+        const prevI = idx>0?id.years?.[years[idx-1]]:null;
+        const cY = yoy(cVal, prevC);
+        const iY = yoy(iVal, prevI);
+        // 单行高亮：任一侧同比 ≥30%
         const isSurge = (cY!=null && cY>=30) || (iY!=null && iY>=30);
         rows += `<tr class="${isSurge?'surge-row':''}"><td>${y}</td><td>${fmt(cVal)}</td><td>${cY!=null?(cY>=0?`<span class="up">${yoyStr(cY)}</span>`:`<span class="dn">${yoyStr(cY)}</span>`):"—"}</td><td>${fmt(iVal)}</td><td>${iY!=null?(iY>=0?`<span class="up">${yoyStr(iY)}</span>`:`<span class="dn">${yoyStr(iY)}</span>`):"—"}</td></tr>`;
       });
@@ -706,13 +708,13 @@
         <div class="tflow-head">
           <div class="tflow-chain">${nodes}</div>
           <div class="tflow-badges">
-            ${surgeBoth ? `<span class="tflow-badge surge">▲ 双升</span>` : `<span class="tflow-badge high">高位</span>`}
+            ${surgeBoth ? `<span class="tflow-badge surge">▲ 双升</span>` : `<span class="tflow-badge high">观察</span>`}
             <span class="tflow-badge hs">HS ${f.hs}</span>
           </div>
         </div>
         <div class="tflow-goods">主要商品：<b>${f.goods}</b><span class="hsnote">${f.hsNote}</span></div>
         <table class="tflow-tbl">
-          <thead><tr><th>年份</th><th>中国 → ${f.chain[1]} (${c.unit||'百万美元'})</th><th>同比</th><th>${f.chain[1]} → 印度 (${id.unit||'百万美元'})</th><th>同比</th></tr></thead>
+          <thead><tr><th>年份</th><th>中国 → ${f.chain[1]}（百万 $）</th><th>同比</th><th>${f.chain[1]} → 印度（百万 $）</th><th>同比</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
         <div class="tflow-note">
