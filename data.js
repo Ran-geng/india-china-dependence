@@ -2203,6 +2203,8 @@ const DEPENDENCE_INDUSTRIES = [{
 const TRADE_FLOWS = {
   "稀土永磁体":[{
     "seller":"金力永磁（JL MAG，赣州）",
+    "goods":"烧结钕铁硼永磁体（NdFeB）",
+    "hs":"8505.11",
     "buyer":"Uno Minda（汽车零部件）",
     "transship":false,
     "via":"",
@@ -2214,6 +2216,8 @@ const TRADE_FLOWS = {
     "source":[110, 12]
   }, {
     "seller":"中科三环（Zhong Ke Sanhuan）",
+    "goods":"车规级高温钕铁硼磁体",
+    "hs":"8505.11",
     "buyer":"Tata Motors（整车厂）",
     "transship":false,
     "via":"",
@@ -2225,6 +2229,8 @@ const TRADE_FLOWS = {
     "source":[12]
   }, {
     "seller":"宁波韵升（Ningbo Yunsheng）",
+    "goods":"钕铁硼电机磁体",
+    "hs":"8505.11",
     "buyer":"Ather（电动两轮车）",
     "transship":false,
     "via":"",
@@ -2236,6 +2242,8 @@ const TRADE_FLOWS = {
     "source":[12]
   }, {
     "seller":"宁波韵升（Ningbo Yunsheng，经香港/新加坡）",
+    "goods":"钕铁硼电机磁体",
+    "hs":"8505.11",
     "buyer":"Ola Electric（电动两轮车）",
     "transship":true,
     "via":"香港/新加坡",
@@ -2248,6 +2256,8 @@ const TRADE_FLOWS = {
   }],
   "原料药（API/关键起始物料）":[{
     "seller":"新和成（NHU）",
+    "goods":"维生素 API（VE/VA）",
+    "hs":"2936.28",
     "buyer":"Sun Pharma",
     "transship":false,
     "via":"",
@@ -2259,6 +2269,8 @@ const TRADE_FLOWS = {
     "source":[40, 22]
   }, {
     "seller":"华海药业",
+    "goods":"沙坦类 API",
+    "hs":"2933.99",
     "buyer":"Dr Reddy's",
     "transship":false,
     "via":"",
@@ -2270,6 +2282,8 @@ const TRADE_FLOWS = {
     "source":[22]
   }, {
     "seller":"国邦医药",
+    "goods":"氟苯尼考/喹诺酮类 API",
+    "hs":"2941.90",
     "buyer":"Aurobindo",
     "transship":false,
     "via":"",
@@ -2281,6 +2295,8 @@ const TRADE_FLOWS = {
     "source":[22]
   }, {
     "seller":"华北制药（NCPC，青霉素/6-APA 中间体）",
+    "goods":"6-APA（青霉素中间体）",
+    "hs":"2941.10",
     "buyer":"Aurobindo / Lyfius Kakinada 青霉素 G→6-APA 厂",
     "transship":false,
     "via":"",
@@ -2293,6 +2309,8 @@ const TRADE_FLOWS = {
   }],
   "盾构机（TBM）":[{
     "seller":"中铁装备 CREG（郑州）",
+    "goods":"盾构机（TBM）",
+    "hs":"8430.41",
     "buyer":"Mumbai Metro 3 号线（MMRC）",
     "transship":false,
     "via":"",
@@ -2304,6 +2322,8 @@ const TRADE_FLOWS = {
     "source":[25, 11, 38]
   }, {
     "seller":"海瑞克广州（Herrenknecht，德资在华）",
+    "goods":"盾构机（TBM）",
+    "hs":"8430.41",
     "buyer":"孟买-艾哈迈达巴德高铁项目",
     "transship":false,
     "via":"",
@@ -2315,6 +2335,8 @@ const TRADE_FLOWS = {
     "source":[11, 38]
   }, {
     "seller":"中铁系（中铁重工 CRCHI 等）",
+    "goods":"盾构机（TBM）",
+    "hs":"8430.41",
     "buyer":"印度 BRO 边境战略通道项目",
     "transship":false,
     "via":"",
@@ -2327,6 +2349,8 @@ const TRADE_FLOWS = {
   }],
   "太阳能电池 / 组件":[{
     "seller":"晶科能源（Jinko）",
+    "goods":"光伏组件（TOPCon）",
+    "hs":"8541.42",
     "buyer":"Tata Power Solar",
     "transship":false,
     "via":"",
@@ -2338,6 +2362,8 @@ const TRADE_FLOWS = {
     "source":[26, 39]
   }, {
     "seller":"隆基（LONGi）",
+    "goods":"光伏组件（HPBC/TOPCon）",
+    "hs":"8541.42",
     "buyer":"Adani Solar",
     "transship":false,
     "via":"",
@@ -2349,6 +2375,8 @@ const TRADE_FLOWS = {
     "source":[39]
   }, {
     "seller":"天合光能（Trina）",
+    "goods":"光伏组件（210mm 大尺寸）",
+    "hs":"8541.42",
     "buyer":"Waaree",
     "transship":false,
     "via":"",
@@ -2361,6 +2389,8 @@ const TRADE_FLOWS = {
   }],
   "多晶硅 / 硅片（上游）":[{
     "seller":"通威（Tongwei）",
+    "goods":"多晶硅料",
+    "hs":"2804.61",
     "buyer":"Adani（Jamnagar 建厂）",
     "transship":false,
     "via":"",
@@ -2372,6 +2402,8 @@ const TRADE_FLOWS = {
     "source":[27, 28]
   }, {
     "seller":"协鑫（GCL）",
+    "goods":"颗粒硅/多晶硅",
+    "hs":"2804.61",
     "buyer":"Reliance（Jamnagar 光伏野心）",
     "transship":false,
     "via":"",
@@ -2384,6 +2416,8 @@ const TRADE_FLOWS = {
   }],
   "电子 / 电信 / 电气产品":[{
     "seller":"华为（Huawei）",
+    "goods":"5G 基站与传输设备",
+    "hs":"8517.62",
     "buyer":"BSNL / Airtel / Reliance Jio（网络）",
     "transship":false,
     "via":"",
@@ -2395,6 +2429,8 @@ const TRADE_FLOWS = {
     "source":[111, 29]
   }, {
     "seller":"小米（Xiaomi）",
+    "goods":"智能手机整机/模组",
+    "hs":"8517.13",
     "buyer":"Dixon Technologies（代工）",
     "transship":false,
     "via":"",
@@ -2406,6 +2442,8 @@ const TRADE_FLOWS = {
     "source":[29, 30]
   }, {
     "seller":"立讯精密（Luxshare）",
+    "goods":"精密连接器与线束",
+    "hs":"8536.69",
     "buyer":"富士康 India（EMS）",
     "transship":false,
     "via":"",
@@ -2418,6 +2456,8 @@ const TRADE_FLOWS = {
   }],
   "锂离子电池":[{
     "seller":"宁德时代（CATL）",
+    "goods":"锂离子动力电芯",
+    "hs":"8507.60",
     "buyer":"Ola Electric",
     "transship":false,
     "via":"",
@@ -2429,6 +2469,8 @@ const TRADE_FLOWS = {
     "source":[31, 108, 109]
   }, {
     "seller":"比亚迪（BYD）",
+    "goods":"锂离子电池 PACK",
+    "hs":"8507.60",
     "buyer":"Tata AutoComp / Tata Motors",
     "transship":false,
     "via":"",
@@ -2440,6 +2482,8 @@ const TRADE_FLOWS = {
     "source":[31]
   }, {
     "seller":"ATL（新能源科技，经东南亚）",
+    "goods":"锂离子电芯",
+    "hs":"8507.60",
     "buyer":"印度 Pack 厂",
     "transship":true,
     "via":"东南亚",
@@ -2452,6 +2496,8 @@ const TRADE_FLOWS = {
   }],
   "智能手机零部件":[{
     "seller":"舜宇光学 / 丘钛（经 Dixon 印度子公司）",
+    "goods":"手机摄像头模组",
+    "hs":"8525.89",
     "buyer":"Dixon Technologies",
     "transship":false,
     "via":"",
@@ -2463,6 +2509,8 @@ const TRADE_FLOWS = {
     "source":[123, 33]
   }, {
     "seller":"立讯精密（Luxshare）",
+    "goods":"精密连接器与结构件",
+    "hs":"8536.69",
     "buyer":"塔塔电子（Tata Electronics）",
     "transship":false,
     "via":"",
@@ -2475,6 +2523,8 @@ const TRADE_FLOWS = {
   }],
   "汽车零配件":[{
     "seller":"福耀玻璃（FY Automotive Glass）",
+    "goods":"车用安全玻璃总成",
+    "hs":"8708.29",
     "buyer":"Maruti Suzuki（整车厂）",
     "transship":false,
     "via":"",
@@ -2486,6 +2536,8 @@ const TRADE_FLOWS = {
     "source":[123]
   }, {
     "seller":"均胜电子（Joyson）",
+    "goods":"安全气囊与汽车电子",
+    "hs":"8708.95",
     "buyer":"Uno Minda（汽车零部件）",
     "transship":false,
     "via":"",
@@ -2497,6 +2549,8 @@ const TRADE_FLOWS = {
     "source":[123]
   }, {
     "seller":"宁波华翔（Huaxiang）",
+    "goods":"汽车内外饰件",
+    "hs":"8708.29",
     "buyer":"SAMVARDHANA MOTHERSON（零部件）",
     "transship":false,
     "via":"",
@@ -2510,6 +2564,8 @@ const TRADE_FLOWS = {
   "纺织品和服装":[],
   "医疗器械与科学仪器":[{
     "seller":"迈瑞医疗（Mindray）",
+    "goods":"监护仪/呼吸机/超声",
+    "hs":"9018.19",
     "buyer":"AIIMS / HLL Lifecare（医院与采购）",
     "transship":false,
     "via":"",
@@ -2521,6 +2577,8 @@ const TRADE_FLOWS = {
     "source":[121]
   }, {
     "seller":"联影医疗（United Imaging）",
+    "goods":"CT/PET-CT 影像设备",
+    "hs":"9022.12",
     "buyer":"Medikabazaar 代理 → Superhealth 等医院",
     "transship":false,
     "via":"",
@@ -2532,6 +2590,8 @@ const TRADE_FLOWS = {
     "source":[122]
   }, {
     "seller":"中国 IVD/耗材（经香港/新加坡/马来）",
+    "goods":"体外诊断试剂与耗材",
+    "hs":"3822.00",
     "buyer":"Dr Lal / SRL 等诊断实验室",
     "transship":true,
     "via":"香港/新加坡/马来",
@@ -2544,6 +2604,8 @@ const TRADE_FLOWS = {
   }],
   "玩具":[{
     "seller":"中国 OEM（珠三角产业带）",
+    "goods":"塑料/电子玩具",
+    "hs":"9503.00",
     "buyer":"Mattel India",
     "transship":false,
     "via":"",
@@ -2555,6 +2617,8 @@ const TRADE_FLOWS = {
     "source":[126]
   }, {
     "seller":"中国 OEM（浙江）",
+    "goods":"玩具与气球",
+    "hs":"9503.00",
     "buyer":"Leo Godt / Bharat Balloon",
     "transship":false,
     "via":"",
@@ -2566,6 +2630,8 @@ const TRADE_FLOWS = {
     "source":[126]
   }, {
     "seller":"中国 OEM（经新加坡/香港/越南）",
+    "goods":"玩具",
+    "hs":"9503.00",
     "buyer":"印度进口商",
     "transship":true,
     "via":"新加坡/香港/越南",
@@ -2578,6 +2644,8 @@ const TRADE_FLOWS = {
   }],
   "工程机械与工业机械（通用）":[{
     "seller":"徐工（XCMG）",
+    "goods":"履带式起重机",
+    "hs":"8426.49",
     "buyer":"Reliance Industries（SANSAN 电厂）",
     "transship":false,
     "via":"",
@@ -2589,6 +2657,8 @@ const TRADE_FLOWS = {
     "source":[119]
   }, {
     "seller":"中联重科（Zoomlion）",
+    "goods":"汽车起重机 QY75V",
+    "hs":"8705.10",
     "buyer":"Reliance Industries",
     "transship":false,
     "via":"",
@@ -2600,6 +2670,8 @@ const TRADE_FLOWS = {
     "source":[120]
   }, {
     "seller":"三一重工（Sany）",
+    "goods":"挖掘机与混凝土机械",
+    "hs":"8429.52",
     "buyer":"L&T / Tata Projects / ONGC / HPCL（EPC）",
     "transship":false,
     "via":"",
@@ -2611,6 +2683,8 @@ const TRADE_FLOWS = {
     "source":[38]
   }, {
     "seller":"三一重工（Sany）",
+    "goods":"挖掘机/工程机械",
+    "hs":"8429.52",
     "buyer":"印度 BRO 边境国防基建",
     "transship":false,
     "via":"",
@@ -2623,6 +2697,8 @@ const TRADE_FLOWS = {
   }],
   "化肥（磷酸二铵 DAP / 特种肥）":[{
     "seller":"云天化（Yuntianhua）",
+    "goods":"磷酸二铵（DAP）",
+    "hs":"3105.30",
     "buyer":"IFFCO",
     "transship":false,
     "via":"",
@@ -2634,6 +2710,8 @@ const TRADE_FLOWS = {
     "source":[106]
   }, {
     "seller":"贵州磷化（瓮福 Wengfu）",
+    "goods":"磷酸二铵/磷酸一铵（DAP/MAP）",
+    "hs":"3105.30",
     "buyer":"Coromandel International",
     "transship":false,
     "via":"",
@@ -2645,6 +2723,8 @@ const TRADE_FLOWS = {
     "source":[106]
   }, {
     "seller":"湖北宜化（车用尿素/AdBlue）",
+    "goods":"车用尿素（AdBlue）",
+    "hs":"3102.10",
     "buyer":"印度（SFIA 渠道）",
     "transship":false,
     "via":"",
@@ -2655,7 +2735,7 @@ const TRADE_FLOWS = {
     "note":"2025-10-15 起中方暂停出口覆盖全市场",
     "source":[106]
   }]
-};
+}
 
 /* 按产业名称（与 DEPENDENCE_INDUSTRIES[].name 完全一致）映射。
  * substitution：替代可能性评估；outlook：综合评估与展望。

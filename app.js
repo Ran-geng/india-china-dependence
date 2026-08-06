@@ -326,8 +326,10 @@
     const buyer  = `<span class="chip f-buyer" data-role="印度采购方（进口商）" data-tip="印度采购方">${f.buyer}</span>`;
     const trans  = f.transship ? `<span class="arrow">→</span><span class="chip f-trans" data-role="经第三国中转（规避关税）" data-tip="中转地">经 ${f.via} 中转</span>` : "";
     const down   = `<span class="arrow">→</span><span class="f-down">${f.downstream}</span>`;
+    const goods  = (f.goods || f.hs) ? `<div class="flow-goods"><span class="g-tag">商品</span>${f.goods || "—"}${f.hs ? `　<span class="g-hs">HS ${f.hs}</span>` : ""}</div>` : "";
     return `<div class="flow-item" tabindex="0">
         <div class="flow-chain">${seller}<span class="arrow">→</span>${buyer}${trans}${down}</div>
+        ${goods}
         <div class="flow-badges">
           ${f.transship ? `<span class="badge b-trans">中转 · ${f.via}</span>` : ""}
           ${f.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
