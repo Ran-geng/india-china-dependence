@@ -663,6 +663,54 @@
     `${c.monitor}${cite(118)}`
   ].map(t=>`<li>${t}</li>`).join("");
 
+  /* ---------- 转口贸易数据面板（基于官方贸易数据）---------- */
+  if (typeof TRANSSHIPMENT_TRADE !== "undefined") {
+    const mkStat = (lab, val, cls) => `<div class="tflow-stat"><div class="lab">${lab}</div><div class="val ${cls||""}">${val}</div></div>`;
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>「中国 → 第三国/地区」环节为 <b>UN Comtrade 官方 API（中国海关报送）</b>，HS 品目级、2021–2024 逐年出口额（百万美元）。因 UN Comtrade 免费档仅开放「中国作报告国」，「第三国/地区 → 印度」的 HS 级官方数据无法直接获取，该环节以 <b>印度 DGCI&S/TIA 官方门户</b>与已披露的印度海关执法 / 行业报告作公开佐证（见各条「印度侧佐证」），并已在每条注明。所有数值均来自官方来源，未做任何推算。<b>激增判定</b>：中国官方口径 2023→2024 同比 ≥30% 且绝对额显著（或 2021→2024 累计跃升），红色「▲ 激增」标识。`;
+    const flowsHTML = TRANSSHIPMENT_TRADE.map(f=>{
+      const nodes = f.chain.map((p,i)=>{
+        const cls = i===0?"cn":(i===f.chain.length-1?"in":"mid");
+        return `<span class="node ${cls}">${p}</span>`;
+      }).join('<span class="arrow">→</span>');
+      const ch = f.china;
+      const fmt = v => (v>=1000 ? `$${(v/1000).toFixed(2)}B` : `$${v}M`);
+      const yvals = [];
+      if(ch.y21!==undefined) yvals.push(["2021", fmt(ch.y21)]);
+      if(ch.y22!==undefined) yvals.push(["2022", fmt(ch.y22)]);
+      if(ch.y23!==undefined) yvals.push(["2023", fmt(ch.y23)]);
+      if(ch.y24!==undefined) yvals.push(["2024", fmt(ch.y24)]);
+      // 增长率
+      let growth = "";
+      if(ch.y23 && ch.y24) {
+        const g = (ch.y24 - ch.y23)/ch.y23*100;
+        growth = g>=0 ? `<span class="val up">${g.toFixed(0)}%</span>` : `<span class="val dn">${g.toFixed(0)}%</span>`;
+      }
+      return `<div class="tflow ${f.surge?'surge':''}">
+        <div class="tflow-head">
+          <div class="tflow-chain">${nodes}</div>
+          <div class="tflow-badges">
+            ${f.surge ? `<span class="tflow-badge surge">▲ 激增</span>` : `<span class="tflow-badge" style="background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px">高位</span>`}
+            <span class="tflow-badge hs">HS ${f.hs}</span>
+          </div>
+        </div>
+        <div class="tflow-goods">主要商品：<b>${f.goods}</b>　<span style="color:var(--ink-mute);font-size:12px">${f.hsNote}</span></div>
+        <div class="tflow-stats">
+          ${yvals.map(([yr,v])=>mkStat("中国→"+f.chain[1]+" "+yr, v)).join("")}
+          ${growth ? mkStat("2023→2024 同比", growth) : mkStat("2024 出口", fmt(ch.y24||ch.y23||0))}
+        </div>
+        <div class="tflow-note">
+          <b>中国官方口径：</b>${ch.note}（UN Comtrade，中国海关报送）[130]<br>
+          <b>激增说明：</b>${f.surgeNote}<br>
+          <b>印度侧佐证：</b>${f.indiaSide}
+        </div>
+      </div>`;
+    }).join("");
+    $("#tradeFlowPanel").innerHTML = flowsHTML;
+    // 折叠绑定
+    bindCollapse("transInfoWrap","transInfoToggle","transInfoIcon");
+    bindCollapse("transDataWrap","transDataToggle","transDataIcon");
+  }
+
   /* ---------- 政策时间线 ---------- */
   const tl = (arr,cls)=>arr.map(p=>`
     <div class="tl-item ${cls}">
