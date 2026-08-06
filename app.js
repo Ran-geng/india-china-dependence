@@ -673,7 +673,7 @@
       return [...s].sort((a,b)=>a-b);
     };
 
-    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 品目级，2021–2024 逐年）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF 等年度统计，<b>按公开可得性</b>给出年份）。两者同步增长即构成"双升"证据链。折线图为<b>双 Y 轴</b>（中国→X 左轴、X→印度 右轴，量级差异自动缩放）；最新年同比 ≥30% 或绝对额创新高的异常项以 <b>红色高亮</b> + ▲ 徽章标识。所有数值均来自官方来源，未做任何推算。`;
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 品目级，2021–2024 逐年）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF 等官方年度统计，逐年对应）。两者同步增长即构成"双升"证据链。同比 ≥30% 或绝对额创新高的异常项以 <b>红色高亮</b>（整行 + 百分比）+ ▲ 双升徽章标识；无数据年份以「—」留空并注明官方可得性。所有数值均来自官方来源，未做任何推算。`;
 
     const flowsHTML = TRANSSHIPMENT_TRADE.map((f,i)=>{
       const nodes = f.chain.map((p,i)=>{
@@ -711,7 +711,6 @@
           </div>
         </div>
         <div class="tflow-goods">主要商品：<b>${f.goods}</b><span class="hsnote">${f.hsNote}</span></div>
-        <div class="tflow-chart-wrap"><canvas class="tflow-chart" id="tflow-chart-${i}" height="160"></canvas></div>
         <table class="tflow-tbl">
           <thead><tr><th>年份</th><th>中国 → ${f.chain[1]} (${c.unit||'百万美元'})</th><th>同比</th><th>${f.chain[1]} → 印度 (${id.unit||'百万美元'})</th><th>同比</th></tr></thead>
           <tbody>${rows}</tbody>
@@ -729,37 +728,6 @@
 
     bindCollapse("transInfoWrap","transInfoToggle","transInfoIcon");
     bindCollapse("transDataWrap","transDataToggle","transDataIcon");
-
-    // 渲染折线图（双 Y 轴·中国左、X→印度右）
-    if(typeof Chart!=="undefined"){
-      TRANSSHIPMENT_TRADE.forEach((f,i)=>{
-        const cv = document.getElementById("tflow-chart-"+i);
-        if(!cv) return;
-        const c = f.china, id = f.india;
-        const years = allYears(c, id);
-        const cData = years.map(y => c.years[y] ?? null);
-        const iData = years.map(y => id.years[y] ?? null);
-        new Chart(cv,{
-          type:"line",
-          data:{ labels:years, datasets:[
-            {label:"中国 → "+f.chain[1],data:cData,borderColor:"#b8332b",backgroundColor:"rgba(184,51,43,.1)",yAxisID:"left",tension:.25,spanGaps:true,pointRadius:4,pointBackgroundColor:"#b8332b",borderWidth:2.5,fill:false},
-            {label:f.chain[1]+" → 印度",data:iData,borderColor:"#d9701f",backgroundColor:"rgba(217,112,31,.1)",yAxisID:"right",tension:.25,spanGaps:true,pointRadius:4,pointBackgroundColor:"#d9701f",borderWidth:2.5,borderDash:[6,3],fill:false}
-          ]},
-          options:{
-            responsive:true,maintainAspectRatio:false,
-            plugins:{
-              legend:{position:"top",labels:{font:{size:11},boxWidth:14,padding:8,usePointStyle:true}},
-              tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmt(ctx.parsed.y)}`}}
-            },
-            scales:{x:{ticks:{font:{size:11}},grid:{color:"rgba(40,34,24,.06)"}},
-              y:{position:"left",ticks:{callback:v=>fmt(v),color:"#b8332b",font:{size:10}},title:{display:true,text:"中国→"+f.chain[1]+"（"+c.unit+")",color:"#b8332b",font:{size:10,weight:"600"}},grid:{color:"rgba(184,51,43,.08)"}},
-              y1:{position:"right",ticks:{callback:v=>fmt(v),color:"#d9701f",font:{size:10}},title:{display:true,text:f.chain[1]+"→印度（"+id.unit+")",color:"#d9701f",font:{size:10,weight:"600"}},grid:{drawOnChartArea:false}}
-            },
-            interaction:{mode:"index",intersect:false}
-          }
-        });
-      });
-    }
   }
 
   /* ---------- 政策时间线 ---------- */
