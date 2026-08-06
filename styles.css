@@ -520,9 +520,6 @@ img{max-width:100%}
 .tflow-goods{font-size:13px;color:var(--ink);margin-bottom:12px}
 .tflow-goods b{color:var(--primary)}
 .tflow-goods .hsnote{color:var(--ink-mute);font-size:11.5px;margin-left:6px}
-/* 折线图容器 */
-.tflow-chart-wrap{position:relative;width:100%;height:170px;margin:4px 0 10px;background:var(--surface-2);border-radius:8px;padding:8px 14px}
-.tflow-chart-wrap canvas{width:100%!important;height:100%!important;display:block}
 /* 数据表 */
 .tflow-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:10px}
 .tflow-tbl th,.tflow-tbl td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}
@@ -537,7 +534,7 @@ img{max-width:100%}
 .tflow-note{font-size:12px;line-height:1.75;color:var(--ink-soft);margin-top:8px}
 .tflow-note b{color:var(--ink)}
 .tflow-note .cite-ref{margin-left:2px}
-@media (max-width:600px){ .tflow-chain{font-size:12.5px} .tflow-chart-wrap{height:150px} }
+@media (max-width:600px){ .tflow-chain{font-size:12.5px} .tflow-tbl{font-size:11.5px} }
 /* 内层卡片融入折叠容器，避免双重边框 */
 .collapse-sec .tia-card,
 .collapse-sec .xcheck-card{
