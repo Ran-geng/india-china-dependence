@@ -10,7 +10,8 @@
   const $$ = (s,el=document)=>Array.from(el.querySelectorAll(s));
   const cite = id => `<a class="cite-ref" href="#sources" data-cite="${id}">${id}</a>`;
 
-  /* ---------- 实时数据覆盖（由 update_data.py 经 UN Comtrade 生成） ---------- */
+  /* ---------- 实时数据覆盖（预留接口：由 update_data.py 生成 window.LIVE_TRADE 后启用） ---------- */
+  /* 当前数据文件均未定义 LIVE_TRADE，此段恒不执行；保留供自动更新脚本接入。 */
   const LIVE = (typeof window !== "undefined" && window.LIVE_TRADE) ? window.LIVE_TRADE : null;
   if (LIVE) {
     if (LIVE.tradeHistory) {
@@ -123,6 +124,7 @@
     const B = v => (v/10).toFixed(1);   // 亿 -> 十亿美元
     const sum = a => (a||[]).reduce((x,y)=>x+(+y||0),0);
     let cur = "2025"; if(!M.years[cur]) cur = years[years.length-1];
+    let monthlyChart = null;   // 复用的 Chart 实例（切换年份时先销毁，避免泄漏）
 
     function draw(yr){
       const y = M.years[yr];
@@ -142,7 +144,7 @@
         <div class="monthly-card">
           <h3>月度贸易追踪 · 中印双边（中国海关口径，亿美元）</h3>
           <div class="sub">${M.note}</div>
-          <div class="myr-tabs">${tabs}</div>
+          <div class="monthly-tabs">${tabs}</div>
           <div class="monthly-sum">
             <div class="ms"><b>$${B(tot)}B</b><span>${yr} 年累计双边${isPartial?'（截至 '+y.months[y.months.length-1]+'）':''}</span></div>
             <div class="ms"><b>$${B(exp)}B</b><span>中国对印出口</span></div>
@@ -159,7 +161,8 @@
       if(window.Chart){
         const ctx = document.getElementById("monthlyChart");
         if(ctx){
-          new Chart(ctx,{
+          if(monthlyChart) monthlyChart.destroy();   // 释放旧实例与 resize 监听
+          monthlyChart = new Chart(ctx,{
             type:"bar",
             data:{ labels:y.months,
               datasets:[
@@ -211,6 +214,7 @@
    * ===================================================================== */
   const modal = $("#depModal");
   let currentItem = null, currentTab = "year";
+  let lastFocus = null;   // 记录打开弹窗前的焦点，关闭时归还（a11y）
 
   function tradeTable(arr, isYear){
     if(!arr || !arr.length){
@@ -368,6 +372,7 @@
 
   function openModal(idx){
     if(!modal) return;
+    lastFocus = document.activeElement;
     const d = DEPENDENCE_INDUSTRIES[idx];
     if(!d || !d.detail) return;
     currentItem = d; currentTab = "year";
@@ -440,7 +445,12 @@
     renderTradeBlock();
     modal.classList.add("open");
     modal.setAttribute("aria-hidden","false");
+    /* 锁定背景滚动，并用 padding-right 补偿滚动条宽度避免抖动 */
+    const sw = window.innerWidth - document.documentElement.clientWidth;
+    if(sw > 0) document.body.style.paddingRight = sw + "px";
     document.body.style.overflow = "hidden";
+    const firstFocus = modal.querySelector("#mTabs button, .modal-close, a, button");
+    if(firstFocus) firstFocus.focus({preventScroll:true});
 
     /* 标签切换 */
     const tabs = $("#mTabs");
@@ -527,6 +537,8 @@
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden","true");
     document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
+    if(lastFocus && typeof lastFocus.focus === "function") lastFocus.focus({preventScroll:true});
     currentItem = null;
   }
 
@@ -779,7 +791,6 @@
         INDUSTRY_TOP.forEach((s,i)=>{
           const cv = document.getElementById("topChart"+i);
           if(!cv) return;
-          const hasVal = Array.isArray(s.importValue) && s.importValue.length===s.values.length;
           new Chart(cv,{
             type:"bar",
             data:{
@@ -797,8 +808,7 @@
               plugins:{
                 legend:{display:false},
                 tooltip:{callbacks:{
-                  label:ctx=>`对华依赖度：${ctx.parsed.x}%`,
-                  afterLabel: hasVal ? ctx=>`自华进口：${s.importValue[ctx.dataIndex]} 百万美元` : undefined
+                  label:ctx=>`对华依赖度：${ctx.parsed.x}%`
                 }}
               },
               scales:{
