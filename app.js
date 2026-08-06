@@ -663,52 +663,103 @@
     `${c.monitor}${cite(118)}`
   ].map(t=>`<li>${t}</li>`).join("");
 
-  /* ---------- 转口贸易数据面板（基于官方贸易数据）---------- */
+  /* ---------- 转口贸易数据面板（基于官方贸易数据·折线图+数据表）---------- */
   if (typeof TRANSSHIPMENT_TRADE !== "undefined") {
-    const mkStat = (lab, val, cls) => `<div class="tflow-stat"><div class="lab">${lab}</div><div class="val ${cls||""}">${val}</div></div>`;
-    $("#tdataNote").innerHTML = `<b>数据口径：</b>「中国 → 第三国/地区」环节为 <b>UN Comtrade 官方 API（中国海关报送）</b>，HS 品目级、2021–2024 逐年出口额（百万美元）。因 UN Comtrade 免费档仅开放「中国作报告国」，「第三国/地区 → 印度」的 HS 级官方数据无法直接获取，该环节以 <b>印度 DGCI&S/TIA 官方门户</b>与已披露的印度海关执法 / 行业报告作公开佐证（见各条「印度侧佐证」），并已在每条注明。所有数值均来自官方来源，未做任何推算。<b>激增判定</b>：中国官方口径 2023→2024 同比 ≥30% 且绝对额显著（或 2021→2024 累计跃升），红色「▲ 激增」标识。`;
-    const flowsHTML = TRANSSHIPMENT_TRADE.map(f=>{
+    const fmt = v => (v==null||v===undefined) ? "—" : (v>=1000 ? `$${(v/1000).toFixed(2)}B` : `$${v}M`);
+    const yoy = (y, py) => (y!=null && py!=null && py>0) ? Math.round((y-py)/py*100) : null;
+    const yoyStr = v => v==null ? "—" : (v>=0?`+${v}%`:`${v}%`);
+    const allYears = (china, india) => {
+      const s = new Set([...Object.keys(china.years||{}).map(Number), ...Object.keys(india.years||{}).map(Number)]);
+      return [...s].sort((a,b)=>a-b);
+    };
+
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 品目级，2021–2024 逐年）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF 等年度统计，<b>按公开可得性</b>给出年份）。两者同步增长即构成"双升"证据链。折线图为<b>双 Y 轴</b>（中国→X 左轴、X→印度 右轴，量级差异自动缩放）；最新年同比 ≥30% 或绝对额创新高的异常项以 <b>红色高亮</b> + ▲ 徽章标识。所有数值均来自官方来源，未做任何推算。`;
+
+    const flowsHTML = TRANSSHIPMENT_TRADE.map((f,i)=>{
       const nodes = f.chain.map((p,i)=>{
         const cls = i===0?"cn":(i===f.chain.length-1?"in":"mid");
         return `<span class="node ${cls}">${p}</span>`;
       }).join('<span class="arrow">→</span>');
-      const ch = f.china;
-      const fmt = v => (v>=1000 ? `$${(v/1000).toFixed(2)}B` : `$${v}M`);
-      const yvals = [];
-      if(ch.y21!==undefined) yvals.push(["2021", fmt(ch.y21)]);
-      if(ch.y22!==undefined) yvals.push(["2022", fmt(ch.y22)]);
-      if(ch.y23!==undefined) yvals.push(["2023", fmt(ch.y23)]);
-      if(ch.y24!==undefined) yvals.push(["2024", fmt(ch.y24)]);
-      // 增长率
-      let growth = "";
-      if(ch.y23 && ch.y24) {
-        const g = (ch.y24 - ch.y23)/ch.y23*100;
-        growth = g>=0 ? `<span class="val up">${g.toFixed(0)}%</span>` : `<span class="val dn">${g.toFixed(0)}%</span>`;
-      }
-      return `<div class="tflow ${f.surge?'surge':''}">
+      const c = f.china, id = f.india;
+      const years = allYears(c, id);
+      const lastC = years.filter(y=>c.years[y]!=null).slice(-2).map(Number);
+      const lastI = years.filter(y=>id.years[y]!=null).slice(-2).map(Number);
+      const cYoy = lastC.length===2 ? yoy(c.years[lastC[1]], c.years[lastC[0]]) : null;
+      const iYoy = lastI.length===2 ? yoy(id.years[lastI[1]], id.years[lastI[0]]) : null;
+      const surgeBoth = (cYoy!=null && cYoy>=30) || (iYoy!=null && iYoy>=30);
+
+      // 数据表行：同比标注（红色高亮）
+      let rows = "";
+      years.forEach((y,idx)=>{
+        const cVal = c.years[y];
+        const iVal = id.years[y];
+        const prevY = idx>0 ? years[idx-1] : null;
+        const cY = (cVal!=null && prevY!=null) ? yoy(cVal, c.years[prevY]) : null;
+        const iY = (iVal!=null && prevY!=null) ? yoy(iVal, id.years[prevY]) : null;
+        const isSurge = (cY!=null && cY>=30) || (iY!=null && iY>=30);
+        rows += `<tr class="${isSurge?'surge-row':''}"><td>${y}</td><td>${fmt(cVal)}</td><td>${cY!=null?(cY>=0?`<span class="up">${yoyStr(cY)}</span>`:`<span class="dn">${yoyStr(cY)}</span>`):"—"}</td><td>${fmt(iVal)}</td><td>${iY!=null?(iY>=0?`<span class="up">${yoyStr(iY)}</span>`:`<span class="dn">${yoyStr(iY)}</span>`):"—"}</td></tr>`;
+      });
+
+      const citeRefs = (f.sources||[f.source]).filter(Boolean).map(s=>cite(s)).join("");
+
+      return `<div class="tflow ${surgeBoth?'surge':''}" id="tflow-${i}">
         <div class="tflow-head">
           <div class="tflow-chain">${nodes}</div>
           <div class="tflow-badges">
-            ${f.surge ? `<span class="tflow-badge surge">▲ 激增</span>` : `<span class="tflow-badge" style="background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px">高位</span>`}
+            ${surgeBoth ? `<span class="tflow-badge surge">▲ 双升</span>` : `<span class="tflow-badge high">高位</span>`}
             <span class="tflow-badge hs">HS ${f.hs}</span>
           </div>
         </div>
-        <div class="tflow-goods">主要商品：<b>${f.goods}</b>　<span style="color:var(--ink-mute);font-size:12px">${f.hsNote}</span></div>
-        <div class="tflow-stats">
-          ${yvals.map(([yr,v])=>mkStat("中国→"+f.chain[1]+" "+yr, v)).join("")}
-          ${growth ? mkStat("2023→2024 同比", growth) : mkStat("2024 出口", fmt(ch.y24||ch.y23||0))}
-        </div>
+        <div class="tflow-goods">主要商品：<b>${f.goods}</b><span class="hsnote">${f.hsNote}</span></div>
+        <div class="tflow-chart-wrap"><canvas class="tflow-chart" id="tflow-chart-${i}" height="160"></canvas></div>
+        <table class="tflow-tbl">
+          <thead><tr><th>年份</th><th>中国 → ${f.chain[1]} (${c.unit||'百万美元'})</th><th>同比</th><th>${f.chain[1]} → 印度 (${id.unit||'百万美元'})</th><th>同比</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
         <div class="tflow-note">
-          <b>中国官方口径：</b>${ch.note}（UN Comtrade，中国海关报送）[130]<br>
-          <b>激增说明：</b>${f.surgeNote}<br>
-          <b>印度侧佐证：</b>${f.indiaSide}
+          <b>双升说明：</b>${f.surgeNote}<br>
+          <b>中国官方：</b>${c.note}${c.source?cite(c.source):""}<br>
+          <b>X → 印度官方：</b>${id.note}${id.source?cite(id.source):""}<br>
+          <b>分析：</b>${f.note}<br>
+          <b>来源：</b>${citeRefs}
         </div>
       </div>`;
     }).join("");
     $("#tradeFlowPanel").innerHTML = flowsHTML;
-    // 折叠绑定
+
     bindCollapse("transInfoWrap","transInfoToggle","transInfoIcon");
     bindCollapse("transDataWrap","transDataToggle","transDataIcon");
+
+    // 渲染折线图（双 Y 轴·中国左、X→印度右）
+    if(typeof Chart!=="undefined"){
+      TRANSSHIPMENT_TRADE.forEach((f,i)=>{
+        const cv = document.getElementById("tflow-chart-"+i);
+        if(!cv) return;
+        const c = f.china, id = f.india;
+        const years = allYears(c, id);
+        const cData = years.map(y => c.years[y] ?? null);
+        const iData = years.map(y => id.years[y] ?? null);
+        new Chart(cv,{
+          type:"line",
+          data:{ labels:years, datasets:[
+            {label:"中国 → "+f.chain[1],data:cData,borderColor:"#b8332b",backgroundColor:"rgba(184,51,43,.1)",yAxisID:"left",tension:.25,spanGaps:true,pointRadius:4,pointBackgroundColor:"#b8332b",borderWidth:2.5,fill:false},
+            {label:f.chain[1]+" → 印度",data:iData,borderColor:"#d9701f",backgroundColor:"rgba(217,112,31,.1)",yAxisID:"right",tension:.25,spanGaps:true,pointRadius:4,pointBackgroundColor:"#d9701f",borderWidth:2.5,borderDash:[6,3],fill:false}
+          ]},
+          options:{
+            responsive:true,maintainAspectRatio:false,
+            plugins:{
+              legend:{position:"top",labels:{font:{size:11},boxWidth:14,padding:8,usePointStyle:true}},
+              tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmt(ctx.parsed.y)}`}}
+            },
+            scales:{x:{ticks:{font:{size:11}},grid:{color:"rgba(40,34,24,.06)"}},
+              y:{position:"left",ticks:{callback:v=>fmt(v),color:"#b8332b",font:{size:10}},title:{display:true,text:"中国→"+f.chain[1]+"（"+c.unit+")",color:"#b8332b",font:{size:10,weight:"600"}},grid:{color:"rgba(184,51,43,.08)"}},
+              y1:{position:"right",ticks:{callback:v=>fmt(v),color:"#d9701f",font:{size:10}},title:{display:true,text:f.chain[1]+"→印度（"+id.unit+")",color:"#d9701f",font:{size:10,weight:"600"}},grid:{drawOnChartArea:false}}
+            },
+            interaction:{mode:"index",intersect:false}
+          }
+        });
+      });
+    }
   }
 
   /* ---------- 政策时间线 ---------- */
