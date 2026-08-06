@@ -427,6 +427,8 @@ img{max-width:100%}
 .xcheck-head .flag{width:22px;height:15px;border-radius:3px;display:inline-block;flex:none}
 .xcheck-org{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
 .xcheck-basis{font-size:12px;color:var(--ink-mute);margin-bottom:12px}
+.xcheck-rows{display:flex;flex-direction:column}
+.monthly-block{display:block;width:100%}
 .xcheck-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--line)}
 .xcheck-row:last-of-type{border-bottom:none}
 .xcheck-row span{font-size:13px;color:var(--ink-soft)}
