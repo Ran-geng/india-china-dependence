@@ -674,7 +674,7 @@
       return [...s].sort((a,b)=>a-b);
     };
 
-    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 6 位国际编码逐年口径，2021–2024）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF / WITS 等官方年度统计，能拿到的 HS 6 位逐步替换为国家层面）。两者同步增长即构成"双升"证据链。表内<b>单位一律为百万美元 $M</b>（如 $9,910M 即 $9.91B；统一单位便于同比），无数据年份留空并注明官方可得性。异常项以红色高亮 + ▲ 双升徽章标识。所有数值均来自官方来源，未做任何推算。`;
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 6 位国际编码逐年口径，2021–2025）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF / WITS 等官方年度统计，按可得性逐年对应）。<b>颜色规则</b>：某年份 <b>双侧同比均增长 → 该行整行红色高亮</b>（"双升"）；<b>仅单侧增长</b> 时中国侧与 X→印度侧各自分色（<b style="color:var(--cn)">升=红</b>、<b style="color:var(--teal)">降=绿</b>）；无数据年份留空「—」。表内<b>单位一律为百万美元 $M</b>（如 $9,910M 即 $9.91B）。所有数值均来自官方来源，未做任何推算。`;
     const flowsHTML = TRANSSHIPMENT_TRADE.map((f,i)=>{
       const c = f.china, id = f.india;
       const nodes = f.chain.map((p,i)=>{
@@ -682,24 +682,31 @@
         return `<span class="node ${cls}">${p}</span>`;
       }).join('<span class="arrow">→</span>');
       const years = allYears(c, id);
-      // 双升判定：双侧最近一年同比均≥20% 或同侧最新两年均创历史新高
+      // 双升徽章判定：取「双方都有数据的最近两个年份」，双侧同比均增长（>0）
       let surgeBoth = false;
-      const cVals = years.map(y=>c.years?.[y]);
-      const iVals = years.map(y=>id.years?.[y]);
-      const cLastYoy = yoy(cVals[cVals.length-1], cVals[cVals.length-2]);
-      const iLastYoy = yoy(iVals[iVals.length-1], iVals[iVals.length-2]);
-      if(f.surge && cLastYoy!=null && iLastYoy!=null && cLastYoy>=20 && iLastYoy>=20) surgeBoth=true;
-      // 表格行
+      const overlap = years.filter(y=>c.years?.[y]!=null && id.years?.[y]!=null);
+      if (overlap.length>=2) {
+        const yA = overlap[overlap.length-2], yB = overlap[overlap.length-1];
+        const cYoy = yoy(c.years?.[yB], c.years?.[yA]);
+        const iYoy = yoy(id.years?.[yB], id.years?.[yA]);
+        if (cYoy!=null && iYoy!=null && cYoy>0 && iYoy>0) surgeBoth=true;
+      }
+      // 表格行：双升判定——双侧同比均增长 → 整行红色；单侧升/单侧降 → 单元格分色（升=红、降=绿）
       let rows = "";
       years.forEach((y,idx)=>{
         const cVal = c.years?.[y], iVal = id.years?.[y];
-        const prevC = idx>0?c.years?.[years[idx-1]]:null;
-        const prevI = idx>0?id.years?.[years[idx-1]]:null;
-        const cY = yoy(cVal, prevC);
-        const iY = yoy(iVal, prevI);
-        // 单行高亮：任一侧同比 ≥30%
-        const isSurge = (cY!=null && cY>=30) || (iY!=null && iY>=30);
-        rows += `<tr class="${isSurge?'surge-row':''}"><td>${y}</td><td>${fmt(cVal)}</td><td>${cY!=null?(cY>=0?`<span class="up">${yoyStr(cY)}</span>`:`<span class="dn">${yoyStr(cY)}</span>`):"—"}</td><td>${fmt(iVal)}</td><td>${iY!=null?(iY>=0?`<span class="up">${yoyStr(iY)}</span>`:`<span class="dn">${yoyStr(iY)}</span>`):"—"}</td></tr>`;
+        const prevY = idx>0 ? years[idx-1] : null;
+        const cY = (cVal!=null && prevY!=null) ? yoy(cVal, c.years?.[prevY]) : null;
+        const iY = (iVal!=null && prevY!=null) ? yoy(iVal, id.years?.[prevY]) : null;
+        const cUp = cY!=null && cY>0;
+        const iUp = iY!=null && iY>0;
+        const bothUp = cUp && iUp;                      // 双侧均增长
+        const cCls = cY==null ? "" : (cY>=0 ? "up" : "dn");
+        const iCls = iY==null ? "" : (iY>=0 ? "up" : "dn");
+        const yCls = bothUp ? "surge-row" : "";         // 仅双升整行红
+        const yStr = cY==null ? "—" : yoyStr(cY);
+        const iStr = iY==null ? "—" : yoyStr(iY);
+        rows += `<tr class="${yCls}"><td>${y}</td><td>${fmt(cVal)}</td><td>${cCls?`<span class="${cCls}">${yStr}</span>`:yStr}</td><td>${fmt(iVal)}</td><td>${iCls?`<span class="${iCls}">${iStr}</span>`:iStr}</td></tr>`;
       });
 
       const citeRefs = (f.sources||[f.source]).filter(Boolean).map(s=>cite(s)).join("");
