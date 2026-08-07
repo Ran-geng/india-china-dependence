@@ -702,6 +702,48 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Afcons 年报、Shapoorji Pallonji 集团披露",
           "note": "孟买沿海公路、班加罗尔地铁主要承包商"
         }
+      },
+      {
+        "name": "MMRC（Mumbai Metro Rail Corporation Ltd）",
+        "type": "孟买地铁 3 号线业主",
+        "top": "印度地铁 PPP 业主单位",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "2008",
+          "business": "孟买地铁 3 号线（Colaba-Bandra-SEEPZ）业主",
+          "products": "城市地铁建设运营",
+          "tradeVolume": "通过 L&T-STEC JV 等承包商采购中资 TBM 8 台",
+          "sources": "MMRC 官网、PIB 公告",
+          "note": "孟买首条地下地铁线（含中资 18 台 TBM 中 8 台）"
+        }
+      },
+      {
+        "name": "NHSRCL",
+        "type": "高铁业主单位",
+        "top": "National High Speed Rail Corporation Ltd",
+        "profile": {
+          "hq": "印度 New Delhi",
+          "founded": "2016",
+          "business": "印日合营高铁项目执行单位",
+          "products": "高铁建设运营",
+          "tradeVolume": "通过 L&T/Afcons 承包商采购中资 TBM 12 台（含海瑞克广州 3 台滞留中国港口）",
+          "sources": "NHSRCL 官网、PIB 公告",
+          "note": "印度首条高铁（孟买-艾哈迈达巴德）业主"
+        }
+      },
+      {
+        "name": "BRO（Border Roads Organisation）",
+        "type": "国防部边境公路局",
+        "top": "印度边境战略通道总包",
+        "profile": {
+          "hq": "印度 New Delhi",
+          "founded": "1960",
+          "business": "隶属国防部，建边境公路/隧道/桥",
+          "products": "边境战略通道建设（含阿鲁纳恰尔邦/拉达克）",
+          "tradeVolume": "为 BRO 项目采购中国制挖掘机/装载机/起重机",
+          "sources": "BRO 官网、印度国防部年报",
+          "note": "61 条边境通道计划（含国防用途）"
+        }
       }
     ],
     "coNote":"孟买地铁 3 号线 18 台 TBM 中 8 台为中企制造、另 10 台亦在华制造；具体采购合同方未全公开，以上为公开可查项目与承包商。Takshashila 基于印度商工部数据指出，印度 TBM 进口对华依赖已多元化，标准 TBM 自华占比由 2019 近 100% 降至近年约六成。",
@@ -2592,7 +2634,7 @@ const TRADE_FLOWS = {
     "year":"2025",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
-    "buyer":"Mumbai Metro 3 号线（MMRC）",
+    "buyer":"MMRC（Mumbai Metro Rail Corporation Ltd）",
     "transship":false,
     "via":"",
     "downstream":"孟买地铁隧道掘进（民用基建）",
@@ -2606,7 +2648,7 @@ const TRADE_FLOWS = {
     "year":"2024",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
-    "buyer":"孟买-艾哈迈达巴德高铁项目",
+    "buyer":"NHSRCL（National High Speed Rail Corporation Ltd）",
     "transship":false,
     "via":"",
     "downstream":"高铁隧道施工（民用）",
@@ -2620,7 +2662,7 @@ const TRADE_FLOWS = {
     "year":"2024",
     "goods":"盾构机（TBM）",
     "hs":"8430.41",
-    "buyer":"印度 BRO 边境战略通道项目",
+    "buyer":"BRO（Border Roads Organisation）",
     "transship":false,
     "via":"",
     "downstream":"边境公路/隧道施工（具国防用途）",
@@ -2911,7 +2953,7 @@ const TRADE_FLOWS = {
     "year":"2025",
     "goods":"车用尿素（AdBlue）",
     "hs":"3102.10",
-    "buyer":"印度（SFIA 渠道）",
+    "buyer":"Coromandel International",
     "transship":false,
     "via":"",
     "downstream":"农用/柴油车排放控制",
