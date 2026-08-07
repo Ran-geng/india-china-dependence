@@ -1123,6 +1123,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "TCS FY25 Annual Report",
           "note": "Tata 集团旗下"
         }
+      },
+      {
+        "name": "BSNL",
+        "type": "印度国营电信运营商",
+        "top": "Bharat Sanchar Nigam Limited",
+        "profile": {
+          "hq": "印度 New Delhi",
+          "founded": "2000",
+          "business": "印度国营电信，含军线/边防通信网",
+          "products": "固定与移动通信、政府/国防通信网",
+          "tradeVolume": "华为曾为其主要设备供应商（2018 前）",
+          "sources": "BSNL 官网、印度交通部通信年报",
+          "note": "2020 年印度限制华为后存量设备仍在运行"
+        }
       }
     ],
     "coNote":"2023-24 印度电子/通信/电器进口中国大陆单独占 43.9%、加中国香港合计约 56%。",
@@ -1248,6 +1262,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "GNEPL 公告、印度 MNRE",
           "note": "印度储能新锐"
         }
+      },
+      {
+        "name": "Tata AutoComp",
+        "type": "Tata 系 Tier-1 零部件",
+        "top": "Tata Motors 体系核心供应商",
+        "profile": {
+          "hq": "印度 Maharashtra Pune",
+          "founded": "1997",
+          "business": "Tata 系汽车 Tier-1 集成商",
+          "products": "EV 电池 PACK、线束、后视镜、模组",
+          "tradeVolume": "比亚迪为已知电池供应商之一",
+          "sources": "Tata AutoComp Systems 官网、印度 ACMA",
+          "note": "Tata Motors EV 车型间接电池配套方"
+        }
       }
     ],
     "coNote":"2025 年印度约 75% 锂电进口来自中国；电芯领域 CATL/比亚迪/中创新航/亿纬/国轩合计占印进口约 68%。",
@@ -1340,6 +1368,34 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "对印 ODM 业务覆盖印度品牌",
           "sources": "闻泰科技 2024 年报",
           "note": "全球 ODM 前 3"
+        }
+      },
+      {
+        "name": "舜宇光学（Sunny Optical）",
+        "type": "全球摄像头模组龙头",
+        "top": "全球 Smartphone Lens ~12%",
+        "profile": {
+          "hq": "中国 浙江 余姚",
+          "founded": "1984",
+          "business": "手机摄像头模组与光学镜头",
+          "products": "手机摄像头模组、车载镜头、AR/VR 光学",
+          "tradeVolume": "经 Dixon 收购的印度子公司供货（ImportGenius 可查）",
+          "sources": "舜宇光学科技 2024 年报、ImportGenius 提单",
+          "note": "全球手机摄像头模组前 2"
+        }
+      },
+      {
+        "name": "丘钛（Q-Tech）",
+        "type": "手机摄像头模组头部",
+        "top": "中国手机模组出口前 5",
+        "profile": {
+          "hq": "中国 江苏 昆山",
+          "founded": "2007",
+          "business": "智能手机摄像头模组研发与制造",
+          "products": "手机摄像头模组、IoT 摄像头",
+          "tradeVolume": "经 Dixon 收购的印度子公司供货（ImportGenius 可查）",
+          "sources": "丘钛科技 2024 年报、ImportGenius 提单",
+          "note": "与舜宇同为 Dixon 印度代工供应链核心"
         }
       }
     ],
