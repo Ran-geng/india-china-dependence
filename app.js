@@ -478,6 +478,11 @@
       const cap = item.querySelector(".flow-caption");
       item.querySelectorAll(".chip").forEach(chip=>{
         chip.addEventListener("click", ev=>{
+          // co-jump 按钮：仅触发跳转，角色说明已由跳转后的卡片展开代替
+          if(chip.classList.contains("co-jump")){
+            ev.stopPropagation();  // 阻止冒泡到 .flow-item（避免同时切换贸易流卡片开/关）
+            return;
+          }
           ev.stopPropagation();
           item.querySelectorAll(".chip").forEach(c=>c.classList.remove("picked"));
           chip.classList.add("picked");
@@ -774,9 +779,17 @@
     const jump = e.target.closest(".co-jump");
     if(!jump) return;
     e.preventDefault();
+    e.stopPropagation();
     const name = jump.dataset.jumpName || "";
     const side = jump.dataset.jumpSide || "";
     if(!name) return;
+    // 收起该卡上原有的 picked 状态与 caption
+    const flowItem = jump.closest(".flow-item");
+    if(flowItem){
+      flowItem.querySelectorAll(".chip.picked").forEach(c=>c.classList.remove("picked"));
+      const cap = flowItem.querySelector(".flow-caption");
+      if(cap) cap.classList.remove("show");
+    }
     // 模态内查找同 data-co-name 的企业卡片
     const target = modal.querySelector(`.co-card[data-co-name="${name.replace(/"/g,'\\"')}"]`);
     if(target){
