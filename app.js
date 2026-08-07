@@ -478,11 +478,8 @@
       const cap = item.querySelector(".flow-caption");
       item.querySelectorAll(".chip").forEach(chip=>{
         chip.addEventListener("click", ev=>{
-          // co-jump 按钮：仅触发跳转，角色说明已由跳转后的卡片展开代替
-          if(chip.classList.contains("co-jump")){
-            ev.stopPropagation();  // 阻止冒泡到 .flow-item（避免同时切换贸易流卡片开/关）
-            return;
-          }
+          // co-jump 按钮：委托给 document 级处理器实现跳转，不在此处处理；也不拦截冒泡
+          if(chip.classList.contains("co-jump")) return;
           ev.stopPropagation();
           item.querySelectorAll(".chip").forEach(c=>c.classList.remove("picked"));
           chip.classList.add("picked");
@@ -490,7 +487,9 @@
           cap.classList.add("show");
         });
       });
-      item.addEventListener("click", ()=>{
+      item.addEventListener("click", ev=>{
+        // 点击企业跳转按钮时不切换贸易流卡片
+        if(ev.target.closest(".co-jump")) return;
         const opened = item.classList.toggle("open");
         if(!opened) cap.classList.remove("show");
       });
@@ -790,8 +789,20 @@
       const cap = flowItem.querySelector(".flow-caption");
       if(cap) cap.classList.remove("show");
     }
-    // 模态内查找同 data-co-name 的企业卡片
-    const target = modal.querySelector(`.co-card[data-co-name="${name.replace(/"/g,'\\"')}"]`);
+    // 模态内查找同 data-co-name 的企业卡片（先精确匹配，失败则模糊匹配）
+    const escaped = name.replace(/"/g,'\\"');
+    let target = modal.querySelector(`.co-card[data-co-name="${escaped}"]`);
+    if(!target){
+      // 模糊匹配：查找 data-co-name 中包含 name 或 name 中包含 data-co-name 的卡片
+      const allCards = $$(".co-card", modal);
+      for(const card of allCards){
+        const cn = (card.getAttribute("data-co-name")||"");
+        if(cn.includes(name) || name.includes(cn)){
+          target = card;
+          break;
+        }
+      }
+    }
     if(target){
       // 展开该卡片（若未展开）
       if(!target.classList.contains("open")){
