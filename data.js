@@ -352,6 +352,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Uno Minda 年报、印度汽车零部件协会 ACMA",
           "note": "印度主要汽车 Tier-1 之一"
         }
+      },
+      {
+        "name": "Ather Energy",
+        "type": "印度电动两轮车头部厂商",
+        "top": "在印电动两轮车市占率前 3",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "2013",
+          "business": "印度电动两轮车整车与电池 PACK 制造，由 Hero MotoCorp 控股",
+          "products": "Ather 450X/450S/Rizta 系列电动两轮车、Battery PACK",
+          "tradeVolume": "驱动电机钕铁硼磁体主要自中国进口（宁波韵升、中科三环等）",
+          "sources": "Ather Energy IPO 招股书（2024-2025）、Ather 官网产品供应链披露",
+          "note": "印度电动两轮车头部厂商之一，与 Ola Electric 共占印度主要 EV 两轮市场份额"
+        }
       }
     ],
     "coNote":"印度无商业规模烧结 NdFeB 上游产能，公开来源未单列「自华采购的具体企业清单」；以上为公开可查的已知采购方与行业代表，非海关全量名单。",
@@ -473,6 +487,34 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "普洛药业 2024 年报、中国医保商会",
           "note": "横店集团旗下"
         }
+      },
+      {
+        "name": "华北制药（NCPC）",
+        "type": "中国青霉素/6-APA 龙头",
+        "top": "6-APA 全球产能前列",
+        "profile": {
+          "hq": "中国 河北 石家庄",
+          "founded": "1958",
+          "business": "中国最大抗生素/6-APA 生产基地",
+          "products": "6-APA、青霉素 G 工业盐、阿莫西林克拉维酸钾",
+          "tradeVolume": "印度对其 6-APA 依赖度达 95%（PIB Annexure-I）",
+          "sources": "华北制药 2024 年报、PIB PRID 2237414",
+          "note": "印度 6-APA 中间体的关键来源"
+        }
+      },
+      {
+        "name": "国邦医药",
+        "type": "中国特色原料药龙头",
+        "top": "氟喹诺酮 / 大宗 API 前列",
+        "profile": {
+          "hq": "中国 浙江 新昌",
+          "founded": "1996",
+          "business": "氟喹诺酮类、大宗原料药、动保",
+          "products": "恩诺沙星、氟苯尼考、阿莫西林、克拉维酸",
+          "tradeVolume": "对印氟喹诺酮类 API 出口排名前列",
+          "sources": "国邦医药 2024 年报、中国医保商会",
+          "note": "新和成控股的兄弟企业"
+        }
       }
     ],
     "buyers":[
@@ -516,6 +558,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "在中国布局 Aurobindo Kakinada 等自产，但仍大量进口中间体",
           "sources": "Aurobindo FY25 Annual Report",
           "note": "印度 API 自给率较高的企业"
+        }
+      },
+      {
+        "name": "Dr Reddy's Laboratories",
+        "type": "印度 Top 3 仿制药企",
+        "top": "营收 ~$3.3 B（FY25）",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1984",
+          "business": "印度 Top 3 仿制药与 API 一体化企业",
+          "products": "API、仿制药制剂、生物类似药",
+          "tradeVolume": "自华进口大量中间体与 API（沙坦类、抗肿瘤、抗艾滋等）",
+          "sources": "Dr Reddy's FY25 Annual Report、印度 Pharmexcil",
+          "note": "对华 API 依赖度约 70%，正积极推动 Aurobindo/Kakinada 等本土替代"
         }
       }
     ],
@@ -745,6 +801,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "进口中国电池片与硅片量在印度厂商中最大",
           "sources": "Waaree Energies 2024 年报、ImportGenius",
           "note": "印度本土组件产能第一"
+        }
+      },
+      {
+        "name": "Tata Power Solar",
+        "type": "印度 Tata 系光伏",
+        "top": "组件产能 ~4.4 GW",
+        "profile": {
+          "hq": "印度 Karnataka 班加罗尔",
+          "founded": "1989",
+          "business": "Tata Power 旗下光伏制造与 EPC",
+          "products": "光伏组件、电池片、屋顶/地面电站 EPC",
+          "tradeVolume": "电池片与硅片大量自华进口；ALMM 清单在列",
+          "sources": "Tata Power Solar FY25 财报、Mercom India",
+          "note": "Tata 系，与 Adani Solar 共占印度组件本土产能前列"
         }
       },
       {
@@ -1275,7 +1345,7 @@ const DEPENDENCE_INDUSTRIES = [{
     ],
     "buyers":[
       {
-        "name": "Foxconn India",
+        "name": "富士康 India（Foxconn）",
         "type": "苹果印度主要 EMS",
         "top": "iPhone 出货 ~$15 B",
         "profile": {
@@ -1481,6 +1551,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "部分核心零部件自华进口",
           "sources": "Bosch India FY25 财报",
           "note": "印度 Tier-1 第一"
+        }
+      },
+      {
+        "name": "Samvardhana Motherson",
+        "type": "印度最大汽车零部件集团",
+        "top": "营收 ~$14 B（FY25）",
+        "profile": {
+          "hq": "印度 Uttar Pradesh Noida",
+          "founded": "1975",
+          "business": "全球前列汽车内饰/线束/后视镜系统集成商",
+          "products": "内饰系统、线束、后视镜、模组、聚合物",
+          "tradeVolume": "部分聚合物、模组与电子件自华采购；与比亚迪电子/舜宇等有合作",
+          "sources": "Samvardhana Motherson FY25 Annual Report、印度 ACMA",
+          "note": "印度 Tier-1 上市公司，市值 ~$11 B"
         }
       }
     ],

@@ -789,17 +789,51 @@
       const cap = flowItem.querySelector(".flow-caption");
       if(cap) cap.classList.remove("show");
     }
-    // 模态内查找同 data-co-name 的企业卡片（先精确匹配，失败则模糊匹配）
+    // 模态内查找同 data-co-name 的企业卡片
+    // 1) 精确匹配；2) 按括号前主名匹配；3) 主名互为子串匹配（如 Ather ↔ Ather Energy）；4) 大小写不敏感子串匹配；5) 整体子串模糊匹配（兜底）
     const escaped = name.replace(/"/g,'\\"');
     let target = modal.querySelector(`.co-card[data-co-name="${escaped}"]`);
     if(!target){
-      // 模糊匹配：查找 data-co-name 中包含 name 或 name 中包含 data-co-name 的卡片
+      const baseName = s => { const i = s.indexOf('（'); return i>=0 ? s.slice(0, i) : s; };
+      const lower = s => (s||"").toLowerCase();
+      const flowBase = baseName(name);
+      const flowBaseLower = lower(flowBase);
       const allCards = $$(".co-card", modal);
+      // 2) 按括号前主名精确匹配
       for(const card of allCards){
-        const cn = (card.getAttribute("data-co-name")||"");
-        if(cn.includes(name) || name.includes(cn)){
-          target = card;
-          break;
+        const cn = card.getAttribute("data-co-name")||"";
+        if(baseName(cn) === flowBase){ target = card; break; }
+      }
+      // 3) 主名互为子串（处理「Ather」↔「Ather Energy」）
+      if(!target){
+        for(const card of allCards){
+          const cn = card.getAttribute("data-co-name")||"";
+          const cnBase = baseName(cn);
+          if(cnBase && flowBase && (cnBase.includes(flowBase) || flowBase.includes(cnBase))){
+            target = card;
+            break;
+          }
+        }
+      }
+      // 4) 大小写不敏感子串匹配（处理 SAMVARDHANA vs Samvardhana）
+      if(!target){
+        for(const card of allCards){
+          const cn = lower(card.getAttribute("data-co-name")||"");
+          const cnBase = lower(baseName(card.getAttribute("data-co-name")||""));
+          if(cnBase && flowBaseLower && (cnBase.includes(flowBaseLower) || flowBaseLower.includes(cnBase))){
+            target = card;
+            break;
+          }
+        }
+      }
+      // 5) 整体子串模糊匹配
+      if(!target){
+        for(const card of allCards){
+          const cn = (card.getAttribute("data-co-name")||"");
+          if(cn && (cn.includes(name) || name.includes(cn))){
+            target = card;
+            break;
+          }
         }
       }
     }
