@@ -642,7 +642,35 @@ const DEPENDENCE_INDUSTRIES = [{
           "products": "Φ6–15m 复合式 TBM、泥水平衡盾构",
           "tradeVolume": "印度孟买沿海公路与班加罗尔地铁项目主要机型",
           "sources": "中铁重工年报、中国工程机械协会",
-          "note": "中车株洲旗下，海外订单主力之一"
+          "note": "中铁重工 CRCHI 同义别名（贸易流中亦称「中铁系」）"
+        }
+      },
+      {
+        "name": "中铁系（中铁重工 CRCHI 等）",
+        "type": "中国 TBM 第二大",
+        "top": "出口 ~30 国",
+        "profile": {
+          "hq": "中国 湖南 长沙",
+          "founded": "1953",
+          "business": "盾构机、隧道机械、轨道交通装备",
+          "products": "Φ6–15m 复合式 TBM、泥水平衡盾构",
+          "tradeVolume": "印度孟买沿海公路与班加罗尔地铁项目主要机型",
+          "sources": "中铁重工年报",
+          "note": "与中铁重工（CRCHI）同义"
+        }
+      },
+      {
+        "name": "Lyfius Kakinada",
+        "type": "Aurobindo 旗下 6-APA 厂",
+        "top": "Aurobindo Pharma 子公司",
+        "profile": {
+          "hq": "印度 Andhra Pradesh Kakinada",
+          "founded": "2022（投产）",
+          "business": "Aurobindo Pharma 旗下青霉素 G→6-APA 制造",
+          "products": "6-APA（青霉素中间体）",
+          "tradeVolume": "规划产能降印度对华 6-APA 依赖约 50%",
+          "sources": "Aurobindo Pharma FY25 Annual Report、PIB PRID 2237414",
+          "note": "印度本土 6-APA 产能代表性项目"
         }
       },
       {
@@ -899,6 +927,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "电池片与硅片大量自华进口；ALMM 清单在列",
           "sources": "Tata Power Solar FY25 财报、Mercom India",
           "note": "Tata 系，与 Adani Solar 共占印度组件本土产能前列"
+        }
+      },
+      {
+        "name": "Reliance Industries",
+        "type": "印度信实集团（绿色能源）",
+        "top": "营收 ~$110 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1966",
+          "business": "印度最大私营集团（油气/绿色能源/零售/电信）",
+          "products": "Jamnagar 100GW 光伏野心、SANSAN 电厂",
+          "tradeVolume": "对印光伏/化工/储能大量自华采购（2024+ 启动 Jamnagar 100GW）",
+          "sources": "Reliance Industries FY25 Annual Report、PIB 公告",
+          "note": "印度最大集团；旗下子公司：Reliance Jio/Retail/Infrastructure/New Energy Solar"
         }
       },
       {
@@ -1987,6 +2029,20 @@ const DEPENDENCE_INDUSTRIES = [{
         }
       },
       {
+        "name": "Medikabazaar",
+        "type": "印度最大医疗器械 B2B 平台",
+        "top": "在线医疗器械采购平台",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "2015",
+          "business": "印度医疗设备/耗材在线 B2B 平台/代理",
+          "products": "代理 GE/Philips/Mindray/United Imaging 等品牌",
+          "tradeVolume": "承接印度医院/诊所的 CT/PET-CT/监护仪集中采购",
+          "sources": "Medikabazaar 官网、Tracxn",
+          "note": "经 CDSCO 注册的医疗器械 B2B 渠道"
+        }
+      },
+      {
         "name": "AIIMS",
         "type": "印度国家公立医院",
         "top": "All India Institute of Medical Sciences",
@@ -2309,6 +2365,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "炼厂扩建与维检采购中国制施工与起重机械",
           "sources": "HPCL FY25 Annual Report、印度石油部",
           "note": "印度三大国营炼油商之一"
+        }
+      },
+      {
+        "name": "Reliance Industries",
+        "type": "印度信实集团（EPC/基建/化工）",
+        "top": "营收 ~$110 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1966",
+          "business": "印度最大私营集团，含油气/绿色能源/EPC",
+          "products": "SANSAN 电厂、Jamnagar 100GW 光伏、油气与基建",
+          "tradeVolume": "SANSAN 电厂采购徐工 7×QUY650+10×QUY150 履带吊；自建项目采购中联 120 台 QY75V 汽车吊",
+          "sources": "Reliance Industries FY25 Annual Report、PIB 公告",
+          "note": "印度最大集团（含 Jio/Retail/Infrastructure/New Energy Solar 等子公司）"
         }
       }
     ],
@@ -2830,14 +2900,42 @@ const TRADE_FLOWS = {
     "year":"2024",
     "goods":"安全气囊与汽车电子",
     "hs":"8708.95",
-    "buyer":"Uno Minda（汽车零部件）",
+    "buyer":"Uno Minda",
     "transship":false,
     "via":"",
-    "downstream":"供 Maruti/Tata/Mahindra 整车（自产零部件）",
+    "downstream":"→ Maruti Suzuki 整车（Uno Minda 自产安全气囊集成）",
     "military":false,
     "militaryNote":"未见",
     "confidence":"representative",
-    "note":"汽车电子/内饰供应商；具体直供合同未见公开，为代表性推断",
+    "note":"均胜电子（Joyson）通过 Uno Minda 供货 Maruti Suzuki；直供合同未公开",
+    "source":[123]
+  }, {
+    "seller":"均胜电子（Joyson）",
+    "year":"2024",
+    "goods":"安全气囊与汽车电子",
+    "hs":"8708.95",
+    "buyer":"Uno Minda",
+    "transship":false,
+    "via":"",
+    "downstream":"→ Tata Motors 整车（Uno Minda 自产安全气囊集成）",
+    "military":false,
+    "militaryNote":"未见",
+    "confidence":"representative",
+    "note":"均胜电子（Joyson）通过 Uno Minda 供货 Tata Motors；直供合同未公开",
+    "source":[123]
+  }, {
+    "seller":"均胜电子（Joyson）",
+    "year":"2024",
+    "goods":"安全气囊与汽车电子",
+    "hs":"8708.95",
+    "buyer":"Uno Minda",
+    "transship":false,
+    "via":"",
+    "downstream":"→ Mahindra & Mahindra 整车（Uno Minda 自产安全气囊集成）",
+    "military":false,
+    "militaryNote":"未见",
+    "confidence":"representative",
+    "note":"均胜电子（Joyson）通过 Uno Minda 供货 Mahindra；直供合同未公开",
     "source":[123]
   }, {
     "seller":"宁波华翔（Huaxiang）",
@@ -2854,7 +2952,11 @@ const TRADE_FLOWS = {
     "note":"具体直供合同未见公开，为代表性推断",
     "source":[123]
   }],
-  "纺织品和服装":[],
+  "纺织品和服装":[
+    { "seller":"申洲国际（Shenzhou International）", "goods":"针织面料与服装（内衣/运动）", "hs":"6109/6110", "buyer":"Raymond", "transship":false, "via":"", "downstream":"→ Raymond 自有品牌零售（西装/休闲）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"申洲为耐克/阿迪达斯/优衣库代工；Raymond 为印度最大面料/品牌商之一", "source":[44, 102] },
+    { "seller":"恒力集团（Hengli Group）", "goods":"涤纶长丝/坯布", "hs":"5402/5407", "buyer":"Arvind Mills", "transship":false, "via":"", "downstream":"→ Arvind Mills 自有牛仔/休闲面料与服装", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"恒力为全球最大涤纶生产商之一；Arvind Mills 印度最大牛仔布厂", "source":[44, 102] },
+    { "seller":"桐昆股份（Tongkun）", "goods":"涤纶长丝", "hs":"5402.33", "buyer":"Welspun Living", "transship":false, "via":"", "downstream":"→ Welspun 毛巾/家纺（自有品牌）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"桐昆为全球最大涤纶长丝生产商；Welspun 全球最大毛巾制造商", "source":[44, 102] }
+  ],
   "医疗器械与科学仪器":[
     { "seller":"迈瑞医疗（Mindray）", "goods":"监护仪/呼吸机/超声", "hs":"9018.19", "buyer":"AIIMS（All India Institute of Medical Sciences）", "transship":false, "via":"", "downstream":"医院临床自用（AIIMS 公立医院 ICU/呼吸机/监护）", "year":"2021（新冠期）", "confidence":"documented", "military":false, "militaryNote":"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据", "note":"新冠期供应数千台；AIIMS 为印度国家级公立医院", "source":[121] },
     { "seller":"迈瑞医疗（Mindray）", "goods":"监护仪/呼吸机/超声", "hs":"9018.19", "buyer":"HLL Lifecare", "transship":false, "via":"", "downstream":"医院与政府采购转售（HLL 国营医疗物资公司）", "year":"2021（新冠期）", "confidence":"documented", "military":false, "militaryNote":"未见直接流向武装部队证据", "note":"HLL 为印度卫生部下国营医疗物资采购与供应链公司", "source":[121] },{
@@ -2862,17 +2964,38 @@ const TRADE_FLOWS = {
     "year":"2025",
     "goods":"CT/PET-CT 影像设备",
     "hs":"9022.12",
-    "buyer":"Medikabazaar 代理 → Superhealth 等医院",
+    "buyer":"Medikabazaar（B2B 医疗器械平台）",
     "transship":false,
     "via":"",
-    "downstream":"医院装机 CT/PET-CT 700+ 台",
+    "downstream":"→ Superhealth 连锁医院装机",
+    "year":"2025",
+    "confidence":"documented",
     "military":false,
     "militaryNote":"未见",
-    "confidence":"documented",
-    "note":"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币",
-    "source":[122]
+    "note":"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币；Medikabazaar 为印度最大医疗 B2B 平台之一",
+    "source":[127]
+    },
+    {
+    "seller":"联影医疗（United Imaging）",
+    "year":"2025",
+    "goods":"CT/PET-CT 影像设备",
+    "hs":"9022.12",
+    "buyer":"Medikabazaar（B2B 医疗器械平台）",
+    "transship":false,
+    "via":"",
+    "downstream":"→ Apollo Hospitals 装机",
+    "year":"2024",
+    "confidence":"representative",
+    "military":false,
+    "militaryNote":"未见",
+    "note":"经 Medikabazaar 供货 Apollo；为代表性推断",
+    "source":[127]
   }],
-  "玩具":[],
+  "玩具":[
+    { "seller":"奥飞娱乐（Alpha Group）", "goods":"IP 衍生玩具（动漫/遥控）", "hs":"9503.00/9504.50", "buyer":"Funskool India", "transship":false, "via":"", "downstream":"→ Funskool 自有品牌+零售（玩具反斗城/FirstCry）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"奥飞 IP「超级飞侠/喜羊羊」出口印度；Funskool 印度最大本土玩具厂", "source":[126] },
+    { "seller":"星辉互动娱乐（Rastar）", "goods":"IP 衍生玩具（遥控车/拼装）", "hs":"9503.00", "buyer":"Mattel India", "transship":false, "via":"", "downstream":"→ Mattel India 印度零售（Hot Wheels/Barbie 等）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"星辉互动为宝马奔驰授权玩具龙头；Mattel India 印度最大跨国玩具商", "source":[126] },
+    { "seller":"实丰文化（Shifeng Culture）", "goods":"塑料/拼装玩具", "hs":"9503.00", "buyer":"Reliance Retail", "transship":false, "via":"", "downstream":"→ Reliance Retail 零售渠道（Smart Bazaar/Reliance Trends）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"实丰文化中国 IP 玩具；Reliance Retail 印度最大零售网络之一", "source":[126] }
+  ],
   "工程机械与工业机械（通用）":[{
     "seller":"徐工（XCMG）",
     "year":"2024",
