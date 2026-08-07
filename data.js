@@ -2568,21 +2568,8 @@ const TRADE_FLOWS = {
     "source":[31, 108, 109]
   },
     { "seller":"比亚迪（BYD）", "goods":"锂离子电池 PACK", "hs":"8507.60", "buyer":"Tata AutoComp", "transship":false, "via":"", "downstream":"Tata 系车型 EV/储能电池包配套（Tata AutoComp 集成）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见新证据", "note":"Tata AutoComp 为 Tata 系汽车 Tier-1 集成商；EV 电池与三电配套；具体直供合同未见公开，为代表性推断", "source":[31] },
-    { "seller":"比亚迪（BYD）", "goods":"锂离子电池 PACK", "hs":"8507.60", "buyer":"Tata Motors", "transship":false, "via":"", "downstream":"Tata 整车厂自用（EV 车型动力电池）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见新证据", "note":"Tata Motors EV 车型电池配套；具体直供合同未见公开，为代表性推断", "source":[31] },{
-    "seller":"ATL（新能源科技，经东南亚）",
-    "year":"2024",
-    "goods":"锂离子电芯",
-    "hs":"8507.60",
-    "buyer":"印度 Pack 厂",
-    "transship":true,
-    "via":"东南亚",
-    "downstream":"本地 Pack 后供 EV",
-    "military":false,
-    "militaryNote":"未见新证据",
-    "confidence":"representative",
-    "note":"电芯经东盟中转常见",
-    "source":[31]
-  }],
+    { "seller":"比亚迪（BYD）", "goods":"锂离子电池 PACK", "hs":"8507.60", "buyer":"Tata Motors", "transship":false, "via":"", "downstream":"Tata 整车厂自用（EV 车型动力电池）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见新证据", "note":"Tata Motors EV 车型电池配套；具体直供合同未见公开，为代表性推断", "source":[31] }
+  ],
   "智能手机零部件":[
     { "seller":"舜宇光学（经 Dixon 印度子公司）", "goods":"手机摄像头模组", "hs":"8525.89", "buyer":"Dixon Technologies", "transship":false, "via":"", "downstream":"组装成手机后内销/出口（Dixon 自产整机）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见公开军工端用途证据（消费电子）", "note":"舜宇经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", "source":[123, 33] },
     { "seller":"丘钛（经 Dixon 印度子公司）", "goods":"手机摄像头模组", "hs":"8525.89", "buyer":"Dixon Technologies", "transship":false, "via":"", "downstream":"组装成手机后内销/出口（Dixon 自产整机）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见公开军工端用途证据（消费电子）", "note":"丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", "source":[123, 33] },{
@@ -2660,40 +2647,8 @@ const TRADE_FLOWS = {
     "confidence":"documented",
     "note":"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币",
     "source":[122]
-  },
-    { "seller":"中国 IVD 行业（经香港/新加坡/马来）", "goods":"体外诊断试剂与耗材", "hs":"3822.00", "buyer":"Dr Lal Path Labs", "transship":true, "via":"香港/新加坡/马来", "downstream":"自产检测服务（Dr Lal 全国连锁）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Dr Lal Path Labs 为印度最大诊断连锁之一；约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", "source":[127] },
-    { "seller":"中国 IVD 行业（经香港/新加坡/马来）", "goods":"体外诊断试剂与耗材", "hs":"3822.00", "buyer":"SRL Diagnostics", "transship":true, "via":"香港/新加坡/马来", "downstream":"自产检测服务（SRL 全国连锁）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"SRL Diagnostics 为 Agilus 旗下诊断连锁；约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", "source":[127] }],
-  "玩具":[{
-    "seller":"中国 OEM（珠三角产业带）",
-    "year":"2024",
-    "goods":"塑料/电子玩具",
-    "hs":"9503.00",
-    "buyer":"Mattel India",
-    "transship":false,
-    "via":"",
-    "downstream":"零售（Hamleys/Reliance Retail）/电商",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"documented",
-    "note":"华货占 $40.2M",
-    "source":[126]
-  },
-    { "seller":"中国 OEM（浙江）", "goods":"玩具", "hs":"9503.00", "buyer":"Leo Godt", "transship":false, "via":"", "downstream":"零售/批发（Leo Godt 印度本土玩具品牌）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Leo Godt 为印度本土玩具品牌，对华直供代表", "source":[126] },
-    { "seller":"中国 OEM（浙江）", "goods":"气球与玩具", "hs":"9503.00", "buyer":"Bharat Balloon", "transship":false, "via":"", "downstream":"零售/批发（Bharat Balloon 印度本土）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Bharat Balloon 为印度本土气球与玩具品牌，对华直供代表", "source":[126] },{
-    "seller":"中国 OEM（经新加坡/香港/越南）",
-    "year":"2024",
-    "goods":"玩具",
-    "hs":"9503.00",
-    "buyer":"印度进口商",
-    "transship":true,
-    "via":"新加坡/香港/越南",
-    "downstream":"零售",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"documented",
-    "note":"经新加坡 $13.1M、香港 $2.7M 中转；越南 14 张外资玩具 BIS 许可被用作转口",
-    "source":[126]
   }],
+  "玩具":[],
   "工程机械与工业机械（通用）":[{
     "seller":"徐工（XCMG）",
     "year":"2024",
