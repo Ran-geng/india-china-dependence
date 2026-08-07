@@ -322,8 +322,8 @@
 
   /* ---------- 交互式贸易流卡片 ---------- */
   function flowItemHTML(f){
-    const seller = `<span class="chip f-seller" data-role="中国供应方（对华出口商）" data-tip="中国供应方">${f.seller}</span>`;
-    const buyer  = `<span class="chip f-buyer" data-role="印度采购方（进口商）" data-tip="印度采购方">${f.buyer}</span>`;
+    const seller = `<button type="button" class="chip f-seller co-jump" data-jump-name="${f.seller}" data-jump-side="seller" data-role="中国供应方（对华出口商）" data-tip="点击跳转上方中国主要出口商" title="点击跳转上方中国主要出口商 ${f.seller}">${f.seller}</button>`;
+    const buyer  = `<button type="button" class="chip f-buyer co-jump" data-jump-name="${f.buyer}" data-jump-side="buyer" data-role="印度采购方（进口商）" data-tip="点击跳转上方印度主要采购商" title="点击跳转上方印度主要采购商 ${f.buyer}">${f.buyer}</button>`;
     const trans  = f.transship ? `<span class="arrow">→</span><span class="chip f-trans" data-role="经第三国中转（规避关税）" data-tip="中转地">经 ${f.via} 中转</span>` : "";
     const down   = `<span class="arrow">→</span><span class="f-down">${f.downstream}</span>`;
     const goods  = (f.goods || f.hs) ? `<div class="flow-goods"><span class="g-tag">商品</span>${f.goods || "—"}${f.hs ? `　<span class="g-hs">HS ${f.hs}</span>` : ""}</div>` : "";
@@ -338,7 +338,7 @@
         </div>
         <div class="flow-note">${f.note}${f.military ? (" ｜ "+f.militaryNote) : ""}${f.source?(" "+f.source.map(cite).join(" ")):""}</div>
         <div class="flow-caption" aria-live="polite"></div>
-        <div class="flow-hint"><span class="chev">▾</span> 点击链路节点查看角色 · 点击卡片展开 / 收起</div>
+        <div class="flow-hint"><span class="chev">▾</span> 点击链路节点查看角色 · <b>点击企业名</b>可跳转到上方企业介绍 · 点击卡片展开 / 收起</div>
       </div>`;
   }
 
@@ -354,10 +354,10 @@
     const grid = rows.map(r=>`<div class="co-cell ${r[0]==="总部"||r[0]==="成立"?"":"span2"}">
         <span class="co-lbl">${r[0]}</span><span class="co-val">${r[1]}</span>
       </div>`).join("");
-    return `<div class="co-card" data-co>
+    return `<div class="co-card" data-co data-co-name="${c.name.replace(/"/g,'&quot;')}">
       <div class="co-summary" tabindex="0" aria-expanded="false">
         <div class="co-summ-main">
-          <span class="co-name">${c.name}</span>
+          <span class="co-name" data-co-name="${c.name.replace(/"/g,'&quot;')}">${c.name}</span>
           ${c.type ? `<span class="co-type">${c.type}</span>` : ""}
         </div>
         <div class="co-summ-side">
@@ -768,6 +768,43 @@
       <span class="n">[${s.id}]</span>
       <span>${s.name}<br><a href="${s.url}" target="_blank" rel="noopener">${s.url}</a></span>
     </div>`).join("");
+
+  /* ---------- 贸易流企业名点击：跳转到对应企业卡片并展开 ---------- */
+  document.addEventListener("click", e=>{
+    const jump = e.target.closest(".co-jump");
+    if(!jump) return;
+    e.preventDefault();
+    const name = jump.dataset.jumpName || "";
+    const side = jump.dataset.jumpSide || "";
+    if(!name) return;
+    // 模态内查找同 data-co-name 的企业卡片
+    const target = modal.querySelector(`.co-card[data-co-name="${name.replace(/"/g,'\\"')}"]`);
+    if(target){
+      // 展开该卡片（若未展开）
+      if(!target.classList.contains("open")){
+        const det = target.querySelector(".co-detail");
+        const summ = target.querySelector(".co-summary");
+        if(det && summ){
+          target.classList.add("open");
+          det.hidden = false;
+          summ.setAttribute("aria-expanded","true");
+        }
+      }
+      // 滚动到视口中央（高亮 + 跳位置）
+      target.scrollIntoView({behavior:"smooth", block:"center"});
+      target.style.transition = "box-shadow .35s, transform .35s";
+      target.style.boxShadow = "0 0 0 3px rgba(194,58,50,.55)";
+      target.style.transform = "translateY(-2px)";
+      setTimeout(()=>{ target.style.boxShadow=""; target.style.transform=""; }, 1800);
+    } else {
+      // 模态内未找到同名：浮层提示
+      const tip = document.createElement("div");
+      tip.textContent = `未在上方企业列表中找到「${name}」`;
+      tip.style.cssText = "position:fixed;top:18%;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.96);color:#b00;padding:10px 16px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.18);z-index:200;font-size:14px;";
+      document.body.appendChild(tip);
+      setTimeout(()=>tip.remove(), 2200);
+    }
+  });
 
   /* ---------- 角标点击高亮来源 ---------- */
   document.addEventListener("click",e=>{

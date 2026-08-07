@@ -649,6 +649,11 @@ img{max-width:100%}
 .flow-chain .chip{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
 .flow-chain .chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(40,34,24,.14)}
 .flow-chain .chip.picked{outline:2px solid var(--in);outline-offset:2px}
+.flow-chain .co-jump{border:0;background:transparent;font:inherit;padding:8px 16px;border-radius:10px;cursor:pointer;line-height:1.2}
+.flow-chain .f-seller.co-jump{color:var(--cn,#d8332a);background:var(--cn-soft,#f6e2df);border:1px solid rgba(194,58,50,.4)}
+.flow-chain .f-buyer.co-jump{color:var(--in,#1f7a4d);background:var(--in-soft,#e5f3ee);border:1px solid rgba(31,122,77,.4)}
+.flow-chain .co-jump:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(40,34,24,.16);filter:brightness(1.04)}
+.flow-chain .co-jump:focus-visible{outline:2px solid var(--in);outline-offset:3px}
 .flow-caption{margin-top:10px;font-size:12.5px;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 13px;display:none;line-height:1.6}
 .flow-caption.show{display:block;animation:fadeUp .25s ease both}
 .flow-caption b{color:var(--cn)}
