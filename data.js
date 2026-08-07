@@ -2402,21 +2402,9 @@ const TRADE_FLOWS = {
     "confidence":"representative",
     "note":"公司级直供合同未公开，为代表性推断",
     "source":[22]
-  }, {
-    "seller":"华北制药（NCPC，青霉素/6-APA 中间体）",
-    "year":"2024",
-    "goods":"6-APA（青霉素中间体）",
-    "hs":"2941.10",
-    "buyer":"Aurobindo / Lyfius Kakinada 青霉素 G→6-APA 厂",
-    "transship":false,
-    "via":"",
-    "downstream":"本土自产替代（降依赖约 50%），仍部分依赖中国",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"representative",
-    "note":"公司级直供合同未公开，为代表性推断",
-    "source":[4, 23]
-  }],
+  },
+    { "seller":"华北制药（NCPC，青霉素/6-APA 中间体）", "goods":"6-APA（青霉素中间体）", "hs":"2941.10", "buyer":"Aurobindo Pharma", "transship":false, "via":"", "downstream":"自产制剂（Aurobindo 全集团 6-APA 采购）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"公司级直供合同未公开，为代表性推断", "source":[4, 23] },
+    { "seller":"华北制药（NCPC，青霉素/6-APA 中间体）", "goods":"青霉素 G 工业盐", "hs":"2941.10", "buyer":"Lyfius Kakinada（青霉素 G→6-APA 厂）", "transship":false, "via":"", "downstream":"本土自产替代（Aurobindo 旗下子公司 Lyfius Kakinada）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"Lyfius 为 Aurobindo 旗下位于安得拉邦 Kakinada 的 6-APA 厂，规划降依赖约 50%，为代表性推断", "source":[4, 23] }],
   "盾构机（TBM）":[{
     "seller":"中铁装备 CREG（郑州）",
     "year":"2025",
@@ -2532,22 +2520,11 @@ const TRADE_FLOWS = {
     "note":"上游直供合同未公开，为代表性推断",
     "source":[27]
   }],
-  "电子 / 电信 / 电气产品":[{
-    "seller":"华为（Huawei）",
-    "year":"2020（存量）",
-    "goods":"5G 基站与传输设备",
-    "hs":"8517.62",
-    "buyer":"BSNL / Airtel / Reliance Jio（网络）",
-    "transship":false,
-    "via":"",
-    "downstream":"自组网/运维，供电信与部分政府网络",
-    "military":true,
-    "militaryNote":"印军/边防通信网曾含中国设备隐患；2020 后限制但存量与替代仍存漏洞（关联监控设备禁令背景）",
-    "confidence":"documented",
-    "note":"电信设备具潜在国防/安全用途",
-    "source":[111, 29]
-  }, {
-    "seller":"小米（Xiaomi）",
+  "电子 / 电信 / 电气产品":[
+    { "seller":"华为（Huawei）", "goods":"5G 基站与传输设备", "hs":"8517.62", "buyer":"BSNL", "transship":false, "via":"", "downstream":"自组网/运维（BSNL 国营电信，含部分政府/国防网络）", "year":"2020（存量）", "confidence":"documented", "military":true, "militaryNote":"BSNL 含军方/政府通信网；2020 后限制但存量与替代仍存漏洞", "note":"BSNL 为印度国营电信，含国防/政府网络用途", "source":[111, 29] },
+    { "seller":"华为（Huawei）", "goods":"5G 基站与传输设备", "hs":"8517.62", "buyer":"Bharti Airtel", "transship":false, "via":"", "downstream":"自组网/运维（Airtel 私营电信大网）", "year":"2020（存量）", "confidence":"documented", "military":false, "militaryNote":"未见新证据", "note":"Airtel 为印度最大私营电信之一", "source":[111, 29] },
+    { "seller":"华为（Huawei）", "goods":"5G 基站与传输设备", "hs":"8517.62", "buyer":"Reliance Jio", "transship":false, "via":"", "downstream":"自组网/运维（Reliance 集团 5G 大网）", "year":"2020（存量）", "confidence":"documented", "military":false, "militaryNote":"未见新证据", "note":"Reliance Jio 为 Reliance 旗下电信", "source":[111, 29] },
+    { "seller":"小米（Xiaomi）",
     "year":"2024",
     "goods":"智能手机整机/模组",
     "hs":"8517.13",
@@ -2589,21 +2566,9 @@ const TRADE_FLOWS = {
     "confidence":"documented",
     "note":"锂电自华占 75%（$2.2B）",
     "source":[31, 108, 109]
-  }, {
-    "seller":"比亚迪（BYD）",
-    "year":"2024",
-    "goods":"锂离子电池 PACK",
-    "hs":"8507.60",
-    "buyer":"Tata AutoComp / Tata Motors",
-    "transship":false,
-    "via":"",
-    "downstream":"自产电池包供 EV/储能",
-    "military":false,
-    "militaryNote":"未见新证据",
-    "confidence":"representative",
-    "note":"EV 电池与三电配套；具体直供合同未见公开，为代表性推断",
-    "source":[31]
-  }, {
+  },
+    { "seller":"比亚迪（BYD）", "goods":"锂离子电池 PACK", "hs":"8507.60", "buyer":"Tata AutoComp", "transship":false, "via":"", "downstream":"Tata 系车型 EV/储能电池包配套（Tata AutoComp 集成）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见新证据", "note":"Tata AutoComp 为 Tata 系汽车 Tier-1 集成商；EV 电池与三电配套；具体直供合同未见公开，为代表性推断", "source":[31] },
+    { "seller":"比亚迪（BYD）", "goods":"锂离子电池 PACK", "hs":"8507.60", "buyer":"Tata Motors", "transship":false, "via":"", "downstream":"Tata 整车厂自用（EV 车型动力电池）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见新证据", "note":"Tata Motors EV 车型电池配套；具体直供合同未见公开，为代表性推断", "source":[31] },{
     "seller":"ATL（新能源科技，经东南亚）",
     "year":"2024",
     "goods":"锂离子电芯",
@@ -2618,21 +2583,9 @@ const TRADE_FLOWS = {
     "note":"电芯经东盟中转常见",
     "source":[31]
   }],
-  "智能手机零部件":[{
-    "seller":"舜宇光学 / 丘钛（经 Dixon 印度子公司）",
-    "year":"2024",
-    "goods":"手机摄像头模组",
-    "hs":"8525.89",
-    "buyer":"Dixon Technologies",
-    "transship":false,
-    "via":"",
-    "downstream":"组装成手机后内销/出口（自产整机）",
-    "military":false,
-    "militaryNote":"未见公开军工端用途证据（消费电子）",
-    "confidence":"documented",
-    "note":"舜宇/丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%",
-    "source":[123, 33]
-  }, {
+  "智能手机零部件":[
+    { "seller":"舜宇光学（经 Dixon 印度子公司）", "goods":"手机摄像头模组", "hs":"8525.89", "buyer":"Dixon Technologies", "transship":false, "via":"", "downstream":"组装成手机后内销/出口（Dixon 自产整机）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见公开军工端用途证据（消费电子）", "note":"舜宇经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", "source":[123, 33] },
+    { "seller":"丘钛（经 Dixon 印度子公司）", "goods":"手机摄像头模组", "hs":"8525.89", "buyer":"Dixon Technologies", "transship":false, "via":"", "downstream":"组装成手机后内销/出口（Dixon 自产整机）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见公开军工端用途证据（消费电子）", "note":"丘钛经 Dixon 收购的印度子公司供货（ImportGenius）；零部件自华 51.7%", "source":[123, 33] },{
     "seller":"立讯精密（Luxshare）",
     "year":"2024",
     "goods":"精密连接器与结构件",
@@ -2691,21 +2644,9 @@ const TRADE_FLOWS = {
     "source":[123]
   }],
   "纺织品和服装":[],
-  "医疗器械与科学仪器":[{
-    "seller":"迈瑞医疗（Mindray）",
-    "year":"2021（新冠期）",
-    "goods":"监护仪/呼吸机/超声",
-    "hs":"9018.19",
-    "buyer":"AIIMS / HLL Lifecare（医院与采购）",
-    "transship":false,
-    "via":"",
-    "downstream":"医院临床自用（ICU/呼吸机/监护）",
-    "military":false,
-    "militaryNote":"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据",
-    "confidence":"documented",
-    "note":"新冠期供应数千台",
-    "source":[121]
-  }, {
+  "医疗器械与科学仪器":[
+    { "seller":"迈瑞医疗（Mindray）", "goods":"监护仪/呼吸机/超声", "hs":"9018.19", "buyer":"AIIMS（All India Institute of Medical Sciences）", "transship":false, "via":"", "downstream":"医院临床自用（AIIMS 公立医院 ICU/呼吸机/监护）", "year":"2021（新冠期）", "confidence":"documented", "military":false, "militaryNote":"政府以国防/数据安全为由启动审查，但未见直接流向武装部队证据", "note":"新冠期供应数千台；AIIMS 为印度国家级公立医院", "source":[121] },
+    { "seller":"迈瑞医疗（Mindray）", "goods":"监护仪/呼吸机/超声", "hs":"9018.19", "buyer":"HLL Lifecare", "transship":false, "via":"", "downstream":"医院与政府采购转售（HLL 国营医疗物资公司）", "year":"2021（新冠期）", "confidence":"documented", "military":false, "militaryNote":"未见直接流向武装部队证据", "note":"HLL 为印度卫生部下国营医疗物资采购与供应链公司", "source":[121] },{
     "seller":"联影医疗（United Imaging）",
     "year":"2025",
     "goods":"CT/PET-CT 影像设备",
@@ -2719,21 +2660,9 @@ const TRADE_FLOWS = {
     "confidence":"documented",
     "note":"6 年累计对印超 $1B，2025-12 单笔 20 亿人民币",
     "source":[122]
-  }, {
-    "seller":"中国 IVD/耗材（经香港/新加坡/马来）",
-    "year":"2024",
-    "goods":"体外诊断试剂与耗材",
-    "hs":"3822.00",
-    "buyer":"Dr Lal / SRL 等诊断实验室",
-    "transship":true,
-    "via":"香港/新加坡/马来",
-    "downstream":"自产检测服务",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"documented",
-    "note":"约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）",
-    "source":[127]
-  }],
+  },
+    { "seller":"中国 IVD 行业（经香港/新加坡/马来）", "goods":"体外诊断试剂与耗材", "hs":"3822.00", "buyer":"Dr Lal Path Labs", "transship":true, "via":"香港/新加坡/马来", "downstream":"自产检测服务（Dr Lal 全国连锁）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Dr Lal Path Labs 为印度最大诊断连锁之一；约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", "source":[127] },
+    { "seller":"中国 IVD 行业（经香港/新加坡/马来）", "goods":"体外诊断试剂与耗材", "hs":"3822.00", "buyer":"SRL Diagnostics", "transship":true, "via":"香港/新加坡/马来", "downstream":"自产检测服务（SRL 全国连锁）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"SRL Diagnostics 为 Agilus 旗下诊断连锁；约 40% 被标「印度制造」白牌规避 CDSCO（AiMeD）", "source":[127] }],
   "玩具":[{
     "seller":"中国 OEM（珠三角产业带）",
     "year":"2024",
@@ -2748,21 +2677,9 @@ const TRADE_FLOWS = {
     "confidence":"documented",
     "note":"华货占 $40.2M",
     "source":[126]
-  }, {
-    "seller":"中国 OEM（浙江）",
-    "year":"2024",
-    "goods":"玩具与气球",
-    "hs":"9503.00",
-    "buyer":"Leo Godt / Bharat Balloon",
-    "transship":false,
-    "via":"",
-    "downstream":"零售/批发",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"documented",
-    "note":"对华直供代表",
-    "source":[126]
-  }, {
+  },
+    { "seller":"中国 OEM（浙江）", "goods":"玩具", "hs":"9503.00", "buyer":"Leo Godt", "transship":false, "via":"", "downstream":"零售/批发（Leo Godt 印度本土玩具品牌）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Leo Godt 为印度本土玩具品牌，对华直供代表", "source":[126] },
+    { "seller":"中国 OEM（浙江）", "goods":"气球与玩具", "hs":"9503.00", "buyer":"Bharat Balloon", "transship":false, "via":"", "downstream":"零售/批发（Bharat Balloon 印度本土）", "year":"2024", "confidence":"documented", "military":false, "militaryNote":"未见", "note":"Bharat Balloon 为印度本土气球与玩具品牌，对华直供代表", "source":[126] },{
     "seller":"中国 OEM（经新加坡/香港/越南）",
     "year":"2024",
     "goods":"玩具",
@@ -2805,22 +2722,12 @@ const TRADE_FLOWS = {
     "confidence":"documented",
     "note":"Zoomlion 印度子公司直供",
     "source":[120]
-  }, {
-    "seller":"三一重工（Sany）",
-    "year":"2024",
-    "goods":"挖掘机与混凝土机械",
-    "hs":"8429.52",
-    "buyer":"L&T / Tata Projects / ONGC / HPCL（EPC）",
-    "transship":false,
-    "via":"",
-    "downstream":"基建/能源项目施工",
-    "military":false,
-    "militaryNote":"未见",
-    "confidence":"representative",
-    "note":"经经销商供货，下游为代表性推断",
-    "source":[38]
-  }, {
-    "seller":"三一重工（Sany）",
+  },
+    { "seller":"三一重工（Sany）", "goods":"挖掘机与混凝土机械", "hs":"8429.52", "buyer":"Larsen & Toubro（L&T）", "transship":false, "via":"", "downstream":"基建 EPC 项目施工（L&T 总包）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"经经销商供货，下游为代表性推断", "source":[38] },
+    { "seller":"三一重工（Sany）", "goods":"挖掘机与混凝土机械", "hs":"8429.52", "buyer":"Tata Projects", "transship":false, "via":"", "downstream":"基建 EPC 项目施工（Tata Projects 总包）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"经经销商供货，下游为代表性推断", "source":[38] },
+    { "seller":"三一重工（Sany）", "goods":"挖掘机", "hs":"8429.52", "buyer":"ONGC", "transship":false, "via":"", "downstream":"油气勘探与基建项目（ONGC 国营）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"ONGC 为印度国营油气公司；经经销商供货，为代表性推断", "source":[38] },
+    { "seller":"三一重工（Sany）", "goods":"挖掘机", "hs":"8429.52", "buyer":"HPCL", "transship":false, "via":"", "downstream":"炼化与基建项目（HPCL 国营）", "year":"2024", "confidence":"representative", "military":false, "militaryNote":"未见", "note":"HPCL 为印度国营炼化公司；经经销商供货，为代表性推断", "source":[38] },
+    { "seller":"三一重工（Sany）",
     "year":"2024",
     "goods":"挖掘机/工程机械",
     "hs":"8429.52",
