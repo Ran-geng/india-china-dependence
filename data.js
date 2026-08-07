@@ -573,6 +573,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Dr Reddy's FY25 Annual Report、印度 Pharmexcil",
           "note": "对华 API 依赖度约 70%，正积极推动 Aurobindo/Kakinada 等本土替代"
         }
+      },
+      {
+        "name": "Lyfius Kakinada",
+        "type": "Aurobindo 旗下 6-APA 厂",
+        "top": "Aurobindo Pharma 子公司",
+        "profile": {
+          "hq": "印度 Andhra Pradesh Kakinada",
+          "founded": "2022（投产）",
+          "business": "Aurobindo Pharma 旗下青霉素 G→6-APA 制造",
+          "products": "6-APA（青霉素中间体）",
+          "tradeVolume": "规划产能降印度对华 6-APA 依赖约 50%",
+          "sources": "Aurobindo Pharma FY25 Annual Report、PIB PRID 2237414",
+          "note": "印度本土 6-APA 产能代表性项目"
+        }
       }
     ],
     "coNote":"中国医药保健品进出口商会数据显示 2023 年印度自华进口原料药及中间体约 101.5 亿美元、占其整体进口 68.8%；企业级采购清单未公开，以上为公开可查代表。",
@@ -630,6 +644,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "中铁重工年报、中国工程机械协会",
           "note": "中车株洲旗下，海外订单主力之一"
         }
+      },
+      {
+        "name": "海瑞克广州（Herrenknecht Guangzhou）",
+        "type": "德资在华 TBM 制造",
+        "top": "德国海瑞克集团亚太 TBM 基地",
+        "profile": {
+          "hq": "中国 广东 广州",
+          "founded": "2004",
+          "business": "德国 Herrenknecht 集团在华合资 TBM 制造",
+          "products": "TBM 隧道掘进机（盾构机）",
+          "tradeVolume": "经广州基地供货亚太市场；与中铁装备/中铁重工在印度市场形成竞争",
+          "sources": "海瑞克集团年报、Construction Placements",
+          "note": "全球 TBM 龙头之一（与中铁系并列）"
+        }
       }
     ],
     "buyers":[
@@ -645,6 +673,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "孟买地铁 3 号线等使用中国 TBM",
           "sources": "L&T FY25 Annual Report",
           "note": "印度最大私营工程与国防集团"
+        }
+      },
+      {
+        "name": "Larsen & Toubro（L&T）",
+        "type": "印度最大私营工程总包",
+        "top": "营收 ~$23 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1938",
+          "business": "印度最大工程总包、国防与 IT 综合集团",
+          "products": "基建总包、地铁工程、国防装备、IT 服务",
+          "tradeVolume": "孟买地铁 3 号线等使用中国 TBM",
+          "sources": "L&T FY25 Annual Report",
+          "note": "与 L&T 同义——flow 中用 Larsen & Toubro 命名"
         }
       },
       {
@@ -1550,6 +1592,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "万向集团披露",
           "note": "中国民营汽车零部件龙头"
         }
+      },
+      {
+        "name": "宁波华翔（Huaxiang Group）",
+        "type": "汽车内饰/外饰前 3",
+        "top": "营收 ~$3 B",
+        "profile": {
+          "hq": "中国 浙江 宁波",
+          "founded": "1988",
+          "business": "汽车内饰、外饰、电子系统",
+          "products": "门内饰板、保险杠、空调壳体、电子模组",
+          "tradeVolume": "在印设有工厂，对印出口结构件与电子件",
+          "sources": "宁波华翔 2024 年报",
+          "note": "对印主要内饰供应商之一"
+        }
       }
     ],
     "buyers":[
@@ -1887,6 +1943,34 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Allengers 披露、ImportGenius",
           "note": "印度医疗设备分销龙头"
         }
+      },
+      {
+        "name": "AIIMS",
+        "type": "印度国家公立医院",
+        "top": "All India Institute of Medical Sciences",
+        "profile": {
+          "hq": "印度 New Delhi（新德里总院）",
+          "founded": "1956",
+          "business": "印度国家级公立医院+医学院网络",
+          "products": "急诊/ICU/呼吸机/监护仪等医疗设备",
+          "tradeVolume": "迈瑞等中国头部品牌为其新冠期主要设备供应方",
+          "sources": "AIIMS 政府采购记录、Medical Buyer",
+          "note": "印度顶级公立医院网络"
+        }
+      },
+      {
+        "name": "HLL Lifecare",
+        "type": "国营医疗物资公司",
+        "top": "印度卫生部下属",
+        "profile": {
+          "hq": "印度 Kerala Thiruvananthapuram",
+          "founded": "1966",
+          business: "印度国营医疗物资采购与供应链",
+          "products": "医疗器械、医院耗材、诊断试剂",
+          "tradeVolume": "为中央/邦政府医院采购医疗物资的主要通道",
+          "sources": "HLL Lifecare 官网、印度卫生部年报",
+          "note": "新冠期对中国制呼吸机/监护仪集中采购"
+        }
       }
     ],
     "coNote":"印度约 80% 医疗器械靠进口，中国为第二大供应国（FY22 $1.35B、占 16.4%），中低端耗材/诊断设备占比升；企业级采购清单未公开。",
@@ -2156,6 +2240,34 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Reliance Infra 年报",
           "note": "印度私营基建前列"
         }
+      },
+      {
+        "name": "ONGC",
+        "type": "印度国营油气公司",
+        "top": "Oil and Natural Gas Corporation",
+        "profile": {
+          "hq": "印度 Telangana 海得拉巴",
+          "founded": "1956",
+          "business": "印度最大油气勘探与开采国营公司",
+          "products": "油气勘探、海上平台、油气运输",
+          "tradeVolume": "为勘探项目采购中国制钻机/起重机/柴油发电",
+          "sources": "ONGC FY25 Annual Report、印度石油部",
+          "note": "印度市值前列国营公司"
+        }
+      },
+      {
+        "name": "HPCL",
+        "type": "印度国营炼油厂",
+        "top": "Hindustan Petroleum Corporation",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1952",
+          "business": "印度国营炼油与石化一体化",
+          "products": "炼化产品、石化、燃油零售",
+          "tradeVolume": "炼厂扩建与维检采购中国制施工与起重机械",
+          "sources": "HPCL FY25 Annual Report、印度石油部",
+          "note": "印度三大国营炼油商之一"
+        }
       }
     ],
     "coNote":"印度机械进口约 $19B 自华（占 39.6%）；盾构机为细分已单独详述；企业级采购清单未公开，以上为公开可查代表。",
@@ -2245,6 +2357,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "对印 DAP/MAP 出口前列",
           "sources": "瓮福集团 2024 年报",
           "note": "中国磷酸与 DAP 前 3"
+        }
+      },
+      {
+        "name": "贵州磷化（瓮福 Wengfu）",
+        "type": "中国磷化工央企龙头",
+        "top": "瓮福集团主品牌",
+        "profile": {
+          "hq": "中国 贵州 贵阳",
+          "founded": "1990（瓮福集团）",
+          "business": "中国磷化工/磷酸盐龙头（央企）",
+          "products": "磷酸二铵（DAP）、磷酸、磷矿石",
+          "tradeVolume": "对印 DAP 出口前列；印度为重要海外市场",
+          "sources": "瓮福集团 2024 年报、印度 PIB DGCIS 数据",
+          "note": "瓮福集团主品牌（同一企业）"
         }
       },
       {
