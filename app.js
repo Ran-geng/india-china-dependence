@@ -113,6 +113,8 @@
   renderTiaCross();
   renderCrossCheck();
   renderMonthly();
+  renderMilitaryEntities();
+  renderExportControl();
 
   /* ---------- 月度贸易追踪 · 中印双边（中国海关口径，多年度） ---------- */
   function renderMonthly(){
@@ -320,6 +322,35 @@
     </div>`;
   }
 
+  /* ---------- 出口管制合规标注辅助函数 ---------- */
+  function ecMatch(indName, hs){
+    if(typeof EXPORT_CONTROL === "undefined") return null;
+    const list = EXPORT_CONTROL[indName] || [];
+    if(!hs) return list[0] || null;
+    return list.find(e=>hs.indexOf(e.hs)===0) || list[0] || null;
+  }
+  function ecBadgeHTML(d){
+    const m = ecMatch(d.name, d.detail.hs && d.detail.hs[0] && d.detail.hs[0].code);
+    if(!m) return "";
+    return m.controlled
+      ? ` <span class="badge b-ec b-ec-yes">两用物项 · 需许可证</span>`
+      : ` <span class="badge b-ec b-ec-no">未列管</span>`;
+  }
+  function ecCellHTML(indName, hs){
+    const m = ecMatch(indName, hs);
+    if(!m) return `<span class="ec-na">—</span>`;
+    if(m.controlled){
+      return `<span class="ec-cell ec-yes" title="${m.basis}">● 管制 · 需许可</span>`;
+    }
+    return `<span class="ec-cell ec-no" title="未列入《两用物项出口管制清单》（以技术参数为准）">○ 未列管</span>`;
+  }
+  function ecNoteHTML(d){
+    const m = ecMatch(d.name, d.detail.hs && d.detail.hs[0] && d.detail.hs[0].code);
+    if(!m) return "";
+    const basis = m.basis && m.basis!=="—" ? `　管制依据：${m.basis}。` : "";
+    return `<div class="ec-detail-note">【出口管制】${m.controlled?"列入":"未列入"}《中华人民共和国两用物项出口管制清单》（商务部公告 2024 年第 51 号，2024-12-01 施行）${m.controlled?"，出口需向商务部申请两用物项出口许可证":""}。${basis}${m.note?" "+m.note:""}</div>`;
+  }
+
   /* ---------- 交互式贸易流卡片 ---------- */
   function flowItemHTML(f){
     const seller = `<button type="button" class="chip f-seller co-jump" data-jump-name="${f.seller}" data-jump-side="seller" data-role="中国供应方（对华出口商）" data-tip="点击跳转上方中国主要出口商" title="点击跳转上方中国主要出口商 ${f.seller}">${f.seller}</button>`;
@@ -354,6 +385,16 @@
     const grid = rows.map(r=>`<div class="co-cell ${r[0]==="总部"||r[0]==="成立"?"":"span2"}">
         <span class="co-lbl">${r[0]}</span><span class="co-val">${r[1]}</span>
       </div>`).join("");
+    // 军方关联度（查 MILITARY_LINK 映射，无则默认「无公开军方关联」）
+    let milBadge = "";
+    let milCell = "";
+    if (typeof MILITARY_LINK !== "undefined" && MILITARY_LINK[c.name]) {
+      const m = MILITARY_LINK[c.name];
+      const cls = m.level==="direct" ? "mil-dir" : (m.level==="indirect" ? "mil-ind" : "mil-none");
+      const lbl = m.level==="direct" ? "直接" : (m.level==="indirect" ? "间接" : "无");
+      milBadge = `<span class="badge mil-badge ${cls}">军关联 · ${lbl}</span>`;
+      milCell = `<div class="co-cell span2"><span class="co-lbl">军方关联度</span><span class="co-val"><b class="${cls}">${lbl}</b> — ${m.note}</span></div>`;
+    }
     return `<div class="co-card" data-co data-co-name="${c.name.replace(/"/g,'&quot;')}">
       <div class="co-summary" tabindex="0" aria-expanded="false">
         <div class="co-summ-main">
@@ -362,12 +403,13 @@
         </div>
         <div class="co-summ-side">
           ${c.top ? `<span class="co-top">${c.top}</span>` : ""}
+          ${milBadge}
           ${c.military ? `<span class="badge b-mil">⚠ 军工</span>` : ""}
           <span class="co-toggle" aria-hidden="true">＋</span>
         </div>
       </div>
       <div class="co-detail" hidden>
-        <div class="co-grid">${grid}</div>
+        <div class="co-grid">${grid}${milCell}</div>
       </div>
     </div>`;
   }
@@ -397,11 +439,11 @@
         <button data-t="month">逐月 / 周期</button>
       </div>
       <div id="tradeBlock"></div>
-      <h4>HS 编码分类明细</h4>
-      <table class="hs-table"><thead><tr><th>HS 编码</th><th>品类</th></tr></thead><tbody>
-        ${d.detail.hs.map(h=>`<tr><td class="code">${h.code}</td><td>${h.name}</td></tr>`).join("")}
+      <h4>HS 编码分类明细${ecBadgeHTML(d)}</h4>
+      <table class="hs-table"><thead><tr><th>HS 编码</th><th>品类</th><th>出口管制</th></tr></thead><tbody>
+        ${d.detail.hs.map(h=>`<tr><td class="code">${h.code}</td><td>${h.name}</td><td>${ecCellHTML(d.name, h.code)}</td></tr>`).join("")}
       </tbody></table>
-      <div class="mini-note">注：HS 编码为代表性税号；贸易额单位见上表对应数据行。${d.detail.note?(" "+d.detail.note):""}</div>`;
+      <div class="mini-note">注：HS 编码为代表性税号；贸易额单位见上表对应数据行。${d.detail.note?(" "+d.detail.note):""}${ecNoteHTML(d)}</div>`;
 
     const supplyPane = `
       <h4>印度替代来源国家 / 地区</h4>
@@ -1066,6 +1108,77 @@
       counters.forEach(el=>io2.observe(el));
     } else {
       counters.forEach(animateCount);
+    }
+  }
+
+  /* ---------- 印度军事实体库（折叠板块）渲染 ---------- */
+  function renderMilitaryEntities(){
+    if(typeof MILITARY_ENTITIES === "undefined" || !MILITARY_ENTITIES.length) return;
+    const noteEl = $("#milNote");
+    if(noteEl) noteEl.innerHTML = `<b>说明：</b>本库收录贸易流中涉军 / 国防关联的印方主体（含政府实体与军品企业）。<b>军种关联</b>与<b>采购清单</b>均依据公开资料（印度国防部 / PIB / 企业公告 / 智库研究）整理，每条标注来源；<b>对华供应链关联</b>按「直接 / 间接 / 无」分级——「直接」指有公开证据表明该实体或其项目采购中国物项（如 BRO 边境项目使用中国盾构机的公开报道），「间接」指经集团 / 供应链层面的关联，「无」指无公开军方关联证据。<b>凡无公开采购合同者均明确标注「未见公开合同」，绝不编造。</b>`;
+    const grid = $("#milGrid");
+    if(!grid) return;
+    grid.innerHTML = MILITARY_ENTITIES.map(e=>`
+      <div class="mil-card">
+        <div class="mil-head">
+          <span class="mil-name">${e.name}</span>
+          <span class="mil-type">${e.type}</span>
+        </div>
+        <div class="mil-body">
+          <div class="mil-row"><span class="mil-lbl">隶属</span><span>${e.parent}</span></div>
+          <div class="mil-row"><span class="mil-lbl">军种关联</span><span>${e.services}</span></div>
+          <div class="mil-row"><span class="mil-lbl">采购 / 装备</span><span>${e.procurement}</span></div>
+          <div class="mil-row"><span class="mil-lbl">对华供应链关联</span><span>${e.chinaLink}</span></div>
+          <div class="mil-row"><span class="mil-lbl">公开合同凭证</span><span>${e.contracts}</span></div>
+          <div class="mil-src">来源：${(e.sources||[]).map(cite).join(" ")}</div>
+        </div>
+      </div>`).join("");
+    // 折叠绑定
+    const wrap = $("#milWrap"), tog = $("#milToggle"), icon = $("#milIcon");
+    if(wrap && tog){
+      tog.addEventListener("click", ()=>{
+        const open = wrap.classList.toggle("collapsed") ? false : true;
+        tog.setAttribute("aria-expanded", open?"true":"false");
+        if(icon) icon.innerHTML = open ? `<span class="chev">▾</span> 收起` : `<span class="chev">▾</span> 展开`;
+      });
+    }
+  }
+
+  /* ---------- 出口管制合规参考（折叠板块）渲染 ---------- */
+  function renderExportControl(){
+    if(typeof EXPORT_CONTROL === "undefined") return;
+    const noteEl = $("#ecNote");
+    if(noteEl) noteEl.innerHTML = `<b>说明：</b>本表对照中国《两用物项出口管制清单》（商务部公告 2024 年第 51 号，2024-12-01 起施行；由商务部、工业和信息化部、海关总署、国家密码局联合发布）及各单行管制公告（如商务部 / 海关总署 2025 年第 18 号稀土公告），为本站 14 个产业的代表 HS 编码标注<b>是否列入管制、是否需出口许可证</b>。<b>重要提示：管制判定以物项技术参数为准，HS 编码仅为申报参考</b>——同一税号下是否管制取决于具体性能指标与最终用途；本站标注仅为公开信息整理，不构成法律意见，出口前请向商务部两用物项出口管制业务咨询。`;
+    const wrap = $("#ecTableWrap");
+    if(!wrap) return;
+    const rows = Object.entries(EXPORT_CONTROL).map(([ind, list])=>{
+      const cells = list.map(m=>{
+        const flag = m.controlled
+          ? `<span class="ec-tag ec-yes">列入管制 · 需许可证</span>`
+          : `<span class="ec-tag ec-no">未列管</span>`;
+        return `<tr>
+          <td>${ind}</td>
+          <td class="code">${m.hs}</td>
+          <td>${m.name}</td>
+          <td>${flag}</td>
+          <td class="ec-basis">${m.basis && m.basis!=="—" ? m.basis : "—"}</td>
+          <td class="ec-note-cell">${m.note||""}${(m.sources||[]).length ? "　" + m.sources.map(cite).join(" ") : ""}</td>
+        </tr>`;
+      }).join("");
+      return cells;
+    }).join("");
+    wrap.innerHTML = `<table class="ec-table">
+      <thead><tr><th>产业</th><th>HS 编码</th><th>品类</th><th>管制状态</th><th>管制依据</th><th>说明</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+    // 折叠绑定
+    const wrapEl = $("#ecWrap"), tog = $("#ecToggle"), icon = $("#ecIcon");
+    if(wrapEl && tog){
+      tog.addEventListener("click", ()=>{
+        const open = wrapEl.classList.toggle("collapsed") ? false : true;
+        tog.setAttribute("aria-expanded", open?"true":"false");
+        if(icon) icon.innerHTML = open ? `<span class="chev">▾</span> 收起` : `<span class="chev">▾</span> 展开`;
+      });
     }
   }
 
