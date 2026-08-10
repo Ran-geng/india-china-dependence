@@ -794,6 +794,8 @@
     </div>`).join("");
   $("#policyIndia").innerHTML = tl(POLICIES.india,"in");
   $("#policyChina").innerHTML = tl(POLICIES.china,"cn");
+  bindCollapse("policyIndiaWrap","policyIndiaToggle","policyIndiaIcon");
+  bindCollapse("policyChinaWrap","policyChinaToggle","policyChinaIcon");
 
   /* ---------- 数据来源与更新面板 ---------- */
   $("#lastUpdated").innerHTML =
