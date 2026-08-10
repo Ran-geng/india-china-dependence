@@ -148,7 +148,13 @@ const SOURCES = [
   { id: 137, name: "泰国海关总署（Thai Customs Department）· 泰国对印贸易统计（年度 HS 章级）", url: "https://www.customs.go.th/" },
   { id: 138, name: "马来西亚统计局 DOSM（Department of Statistics Malaysia）· 马来对印贸易统计", url: "https://www.dosm.gov.my/v1/index.php" },
   { id: 139, name: "印度商工部 / PIB（Press Information Bureau）· 印度自各主要伙伴进口历年统计（多国，FY 年度）", url: "https://www.pib.gov.in/" },
-  { id: 140, name: "印度 DGCI&S 国际贸易期刊 ITJ（itj.dgciskol.gov.in）· 印度自各伙伴国 HS 6 位逐年进口（PDF 公开下载） + OEC Observatory of Economic Complexity（CEPII BACI 镜像）", url: "http://itj.dgciskol.gov.in/" }
+  { id: 140, name: "印度 DGCI&S 国际贸易期刊 ITJ（itj.dgciskol.gov.in）· 印度自各伙伴国 HS 6 位逐年进口（PDF 公开下载） + OEC Observatory of Economic Complexity（CEPII BACI 镜像）", url: "http://itj.dgciskol.gov.in/" },
+  { id: 141, name: "BEL（Bharat Electronics Limited）官方公告（2025-04-07）· 空军 EW 套件 ₹2,210 亿订单；2025-03 Ashwini 可运输雷达 ₹2,906 亿合同（MoD）", url: "https://bel-india.in/wp-content/uploads/2025/04/Press-Release-07.04.2025.pdf" },
+  { id: 142, name: "印度国防部 MoD / PIB · 2025 年国防采购与生产年报（DAC 批准 ₹3.84 万亿资本采购；LCA Mk1A 97 架、LCH 156 架、BEL/BDL/AVNL/MIL 合同；2025-26 国防生产 ₹1.54 万亿创纪录）", url: "https://ddindia.co.in/2026/01/year-ender2025defence-strengthens-capability-and-self-reliance" },
+  { id: 143, name: "IDSA / ORF / 印度国防研究与发展组织（DRDO）公开资料 · DRDO 技术转移 2200 项；印度国防工业对华供应链依赖研究（稀土永磁 59.6–81.3%，ORF 2025-11）", url: "https://www.orfonline.org/research/-chokepoint-politics-china-s-rare-earth-statecraft-and-india-s-search-for-strategic-autonomy" },
+  { id: 144, name: "《世界知识》2025-03（兰州大学段彬）· 印度 BRO 2024 年采购 831 台工程机械 ₹253 亿（山特维克 DT820/曼尼通叉车等欧美设备）", url: "https://www.guancha.cn/duanbin/2025_03_19_768962_2.shtml" },
+  { id: 145, name: "搜狐/观察者网（2025）· 藏南隧道（达旺）开通报道，称使用中国 CRCHI 盾构机（2020 孟买沿海公路 8 台中资 TBM 报道）；BRO 边境项目与中国工程机械关联的公开报道", url: "https://www.sohu.com/a/962438814_121142194" },
+  { id: 146, name: "Fortune Business Insights / The Wire / IDSA · 印度国防电子市场与私营军工（TASL C-295 总装、L&T K9 自行榴弹炮等）", url: "https://www.fortunebusinessinsights.com/india-defense-electronics-market-114279" }
 ];
 
 /* --------- 数据源登记表（更新频率 / 覆盖范围 / 接入方式）--------- */
@@ -4009,4 +4015,273 @@ const POLICIES = {
     { year: "2026", title: "2025-10 管制公告继续暂停至 2026-11-10", desc: "经中印磋商，2025-10-09 新发布的 6 项管制公告（超硬材料、稀土设备/原辅料、5 种中重稀土、锂电池及人造石墨负极、以及对「境外含中国稀土成分≥0.1% 物项」的域外管制）暂停实施至 2026-11-10，对印度稀土永磁与锂电池供应链构成窗口期；2026 年内中方多次表态「已依法批准一定数量合规申请」（含 Jay Ushin、Continental、日立 Astemo 印度子公司等）[105]。", source: 105 },
     { year: "2026-H1", title: "中印贸易 H1 创新高、逆差同步扩大", desc: "据中国海关：2026-H1 中印双边贸易 $917.2 亿（同比 +23.6%）；中方对印出口 $794.1 亿（+21.8%）、自印进口 $123.1 亿（+37.2%）；印度逆差 $671 亿（半年）。印度出口高增长集中于 PCB、OLED 显示模组、炼油产品、轻石脑油；中方对印出口以电信设备、锂电池、半导体、服务器、机电为主（InduQin 2026-07）。", source: 53 }
   ]
+};
+
+/* =====================================================================
+ * 出口管制合规参考 —— 对照中国《两用物项出口管制清单》（商务部公告 2024 年第 51 号，
+ * 2024-12-01 起施行；商务部、工业和信息化部、海关总署、国家密码局联合发布）
+ * 以及后续单行管制公告（商务部/海关总署 2025 年第 18 号稀土公告等）标注各产业
+ * 代表 HS 编码是否列入管制、是否需出口许可证。
+ * 重要说明：管制判定以物项技术参数为准，HS 编码仅为申报参考；同一税号下
+ * 是否管制取决于具体性能指标与最终用途。本站仅作公开信息整理，不构成法律意见。
+ * 字段：hs 代表税号；controlled 是否列入管制清单；license 是否需要出口许可证；
+ *       basis 管制依据（清单编码/公告）；note 说明；sources 来源编号。
+ * ===================================================================== */
+const EXPORT_CONTROL = {
+  "稀土永磁体": [{
+    hs: "8505.11", name: "金属永磁体（钕铁硼 NdFeB 为主）",
+    controlled: true, license: true,
+    basis: "1C902.a / 1C904.a / 1C905.a（商务部 海关总署 2025 年第 18 号公告）",
+    note: "含铽/镝的钕铁硼永磁材料、钐钴永磁材料列入管制；2025-04-04 起出口需申请两用物项出口许可证；2025-10 新增 5 种中重稀土管制后暂停至 2026-11-10（[105]）。对印出口需最终用户证明。",
+    sources: [105]
+  }, {
+    hs: "8505.19", name: "其他材料永磁体（铁氧体等）",
+    controlled: false, license: false,
+    basis: "—",
+    note: "铁氧体永磁不在当前管制清单；但含稀土成分的复合磁体需按成分判定。",
+    sources: []
+  }],
+  "原料药（API/关键起始物料）": [{
+    hs: "2941.10", name: "青霉素类及 6-APA 中间体",
+    controlled: false, license: false,
+    basis: "—",
+    note: "原料药/医药中间体不在两用物项管制清单；出口适用药品出口管理（不属出口管制）。",
+    sources: []
+  }],
+  "盾构机（TBM）": [{
+    hs: "8430.31", name: "隧道掘进机（TBM）",
+    controlled: false, license: false,
+    basis: "—",
+    note: "通用 TBM 不在清单；但 2025-08 曾出现对印高铁用盾构机出口审批关注（[11]），出口涉及敏感基建/军工用途时可能触发逐单审查，建议出口前做最终用户核查。",
+    sources: [11]
+  }],
+  "太阳能电池 / 组件": [{
+    hs: "8541.42", name: "光伏电池",
+    controlled: false, license: false,
+    basis: "—",
+    note: "常规硅基光伏电池不在管制清单；含砷化镓（GaAs）等化合物半导体器件需按 3C 类物项判定。",
+    sources: []
+  }],
+  "多晶硅 / 硅片（上游）": [{
+    hs: "2804.61", name: "多晶硅（硅含量≥99.99%）",
+    controlled: false, license: false,
+    basis: "—",
+    note: "太阳能级多晶硅不在管制清单；但高纯度电子级硅（硅外延片等）按 3C 类物项技术参数判定。",
+    sources: []
+  }],
+  "电子 / 电信 / 电气产品": [{
+    hs: "8517.13/8517.62", name: "手机整机/通信基站设备",
+    controlled: false, license: false,
+    basis: "—",
+    note: "商用通信整机不在管制清单；含加密功能产品按 5A 类（电信与信息安全）参数判定，民用标准加密产品多可豁免。",
+    sources: []
+  }],
+  "锂离子电池": [{
+    hs: "8507.60", name: "锂离子蓄电池",
+    controlled: true, license: true,
+    basis: "2025-10-09 公告（暂停实施至 2026-11-10）",
+    note: "2025-10-09 新增锂电池及人造石墨负极管制，11-07 经磋商暂停实施至 2026-11-10（[105]）。当前窗口期内一般出口无需许可，窗口期后需关注恢复情况；碳基负极材料另受 2023-12 石墨管制（[101]）。",
+    sources: [101, 105]
+  }],
+  "智能手机零部件": [{
+    hs: "8525.89/8542.31/8542.32", name: "摄像头模组/处理器/存储芯片",
+    controlled: false, license: false,
+    basis: "—",
+    note: "商用消费级芯片与模组不在管制清单；高性能处理器（性能阈值达标的）按 4A 类/3A 类判定，出口需确认技术指标。",
+    sources: []
+  }],
+  "汽车零配件": [{
+    hs: "8708", name: "汽车零配件",
+    controlled: false, license: false,
+    basis: "—",
+    note: "通用汽车零配件不在管制清单；涉及军用车辆专用部件需按物项属性判定。",
+    sources: []
+  }],
+  "纺织品和服装": [{
+    hs: "5402/5407/6109/6110", name: "化纤面料/针织服装",
+    controlled: false, license: false,
+    basis: "—",
+    note: "普通纺织品不在管制清单；高性能碳纤维等特种纤维（1C108 石墨及制品、碳纤维物项）需单独判定。",
+    sources: []
+  }],
+  "医疗器械与科学仪器": [{
+    hs: "9018/9022", name: "医疗设备/射线装置",
+    controlled: false, license: false,
+    basis: "—",
+    note: "民用医疗影像设备不在管制清单；高功率激光器（6A205 等）需按参数判定。",
+    sources: []
+  }],
+  "玩具": [{
+    hs: "9503.00", name: "玩具",
+    controlled: false, license: false,
+    basis: "—",
+    note: "玩具不在管制清单；含无人机/遥控功能的高性能物项需按 9A 类无人机物项判定。",
+    sources: []
+  }],
+  "工程机械与工业机械（通用）": [{
+    hs: "8426/8429/8705", name: "起重机/挖掘机/特种车辆",
+    controlled: false, license: false,
+    basis: "—",
+    note: "通用工程机械不在管制清单；出口涉及边境基建/国防项目（如 BRO）时建议做最终用户核查，2025-08 盾构机事件为参照（[11]）。",
+    sources: [11]
+  }],
+  "化肥（磷酸二铵 DAP / 特种肥）": [{
+    hs: "3105.30", name: "磷酸二铵 DAP",
+    controlled: false, license: false,
+    basis: "—",
+    note: "化肥不在两用物项管制清单；但受化肥出口许可管理（2025-10 起中方暂停对印化肥出口窗口，[106]），属出口政策管理而非出口管制。",
+    sources: [106]
+  }]
+};
+
+/* =====================================================================
+ * 印度军事实体库 —— 贸易流中涉军/国防关联的印方主体（公开资料整理）
+ * 军种关联与采购信息均标注公开来源；无公开采购合同者明确标注「未见公开合同」，
+ * 绝不编造。字段：
+ *   name 实体名；type 实体类型；parent 隶属/体系；services 军种关联；
+ *   procurement 主要采购/装备（含与华关联）；chinaLink 对华供应链关联（直接/间接/无，附依据）；
+ *   contracts 公开合同凭证（名称+来源编号）；sources 来源编号。
+ * ===================================================================== */
+const MILITARY_ENTITIES = [
+  {
+    name: "DRDO（Defence Research and Development Organisation）",
+    type: "国防研发机构",
+    parent: "印度国防部直属",
+    services: "三军（陆/海/空）+ 战略力量（导弹）",
+    procurement: "主导印度国产导弹（Agni/Pralay/Prithvi/Akash）、高超音速技术、雷达、电子战、无人机等研发；2025 年向工业界转移 2200 项技术。",
+    chinaLink: "间接——高端永磁材料（钕铁硼）、精密电子元件依赖进口，稀土永磁对华依赖 59.6–81.3%（ORF）；DRDO 体系通过国产化清单（Positive Indigenisation Lists）降低进口依赖。",
+    contracts: "无对华公开采购合同；2025 年 MoD 与 BEL/BDL/AVNL 等签订导弹、雷达、弹药合同（印度国防部 2025 年报）",
+    sources: [143]
+  },
+  {
+    name: "HAL（Hindustan Aeronautics Limited）",
+    type: "国防 PSU（飞机与直升机）",
+    parent: "印度国防部下属 DPSU",
+    services: "印度空军（主）+ 陆军航空 + 海军航空",
+    procurement: "LCA Tejas Mk1A（97 架合同 ₹62,370 亿，2025-01 批准，本土含量 64%+）、LCH Prachand（156 架 ₹62,700 亿）、ALH Dhruv、HTT-40 教练机；F404 发动机自美国 GE 采购（113 台，2025-11 协议）。",
+    chinaLink: "间接——航空电子、永磁电机、精密轴承等零部件供应链涉及进口；发动机与关键航电明确来自美/法，未见对华直采合同。",
+    contracts: "LCA Mk1A 97 架合同 ₹62,370 亿（2025-01 DAC 批准）；LCH 156 架 ₹62,700 亿（2025-03 MoD 签约）；F404 发动机协议（2025-11，美国 GE）",
+    sources: [142]
+  },
+  {
+    name: "BEL（Bharat Electronics Limited）",
+    type: "国防 PSU（电子）",
+    parent: "印度国防部下属 DPSU（Navratna）",
+    services: "三军 + 海岸警卫队",
+    procurement: "电子战系统、雷达（Ashwini 可运输雷达 ₹2,906 亿）、软件无线电、光电火控、声呐等；2025-04 获空军 EW 套件 ₹2,210 亿订单。",
+    chinaLink: "间接——高灵敏度接收机、微波器件等子部件历史上依赖进口；BEL 年报与 MoD 采购强调本土化（72% 本土含量条款），未见对华直采合同。",
+    contracts: "空军 EW 套件 ₹2,210 亿（2025-04-07 BEL 公告）；陆军 5 套机动电子系统 ₹1,476 亿（2025-05）；Ashwini 雷达 ₹2,906 亿（2025-03）",
+    sources: [140, 141]
+  },
+  {
+    name: "OFB 体系（军械厂委员会，2021 拆分为 7 家新公司）",
+    type: "国防生产（弹药/武器）",
+    parent: "印度国防部；拆分后含 Munitions India、Armoured Vehicles Nigam（AVNL）、Advanced Weapons & Equipment India（AWEIL）、Yantra India、Gliders India、Troop Comforts、India Optel",
+    services: "印度陆军（主）",
+    procurement: "弹药（PINAKA 火箭弹 HEPF Mk-1）、坦克架桥车（Tank-72 BLT）、Nag 反坦克导弹（NAMIS）、火炮与轻武器等；2025 财年印度国防生产创纪录 ₹1.54 万亿。",
+    chinaLink: "间接——弹药前体化学品、含能材料部分依赖进口（公开报道提及供应链风险），未见对华直采合同。",
+    contracts: "Munitions India：PINAKA HEPF Mk-1 火箭弹合同（2025）；AVNL：Tank-72 架桥坦克、Nag NAMIS 合同（2025，印度国防部）",
+    sources: [142]
+  },
+  {
+    name: "BRO（Border Roads Organisation）",
+    type: "国防部边境公路局",
+    parent: "印度国防部下属",
+    services: "印度陆军/边防（战略边境通道）",
+    procurement: "边境公路、隧道、机场跑道；2024 年采购 831 台大型工程机械（₹253 亿），含瑞典山特维克隧道掘进机、法国曼尼通叉车等（《世界知识》2025-03）；2025 年完成 175 个边境基建项目（₹6,879 亿，含 Shyok 隧道）。",
+    chinaLink: "直接（设备端）——中国 TBM/工程机械曾进入印度基建项目（孟买地铁 8 台中资 TBM、2020 CRCHI 12.19m TBM 报道）；BRO 边境通道项目被公开报道使用中国盾构机（2023 藏南隧道开通，搜狐/观察者网报道），但 BRO 近年公开采购清单以欧美设备为主，对华直采未见官方合同。",
+    contracts: "2024 年 831 台工程机械 ₹253 亿（山特维克/曼尼通等欧美设备，中国青年报/世界知识 2025-03）；边境基建 175 项目 ₹6,879 亿（印度国防部 2025 年报）",
+    sources: [144, 145]
+  },
+  {
+    name: "ISRO（Indian Space Research Organisation）",
+    type: "航天机构（军民两用）",
+    parent: "印度政府（总理府/太空部）",
+    services: "军民两用——侦察/导航/通信卫星支撑国防",
+    procurement: "运载火箭（PSLV/GSLV/LVM3）、卫星（Cartosat 侦察、NavIC 导航）；与 DRDO/国防部共享卫星数据。",
+    chinaLink: "间接——卫星电子元器件、太阳能电池片供应链存在进口依赖；稀土永磁用于卫星姿态控制（对华依赖见稀土板块）。",
+    contracts: "无对华公开采购合同",
+    sources: [143]
+  },
+  {
+    name: "Tata Advanced Systems Limited（TASL）",
+    type: "私营军工（航空航天/导弹集成）",
+    parent: "Tata 集团",
+    services: "印度空军（主）+ 海军",
+    procurement: "C-295 运输机（与空客合作，瓦多达拉总装线 40 架）、F-16/F-21 机身（洛克希德）、Apache 机身（波音）、无人机与雷达集成、导弹发射系统。",
+    chinaLink: "间接——航空结构件/电子元件供应链全球化，未见对华直采合同；属印度「Make in India」军工受益方。",
+    contracts: "C-295 40 架本土组装（空客合作，2024-09 协议）；洛克希德 C-130J MRO 合作（2024-09）；F-16 机身长期供货（洛克希德）",
+    sources: [146]
+  },
+  {
+    name: "L&T Defence（Larsen & Toubro Defence）",
+    type: "私营军工（装备制造）",
+    parent: "Larsen & Toubro 集团",
+    services: "印度陆军（主）+ 海军",
+    procurement: "K9 Vajra-T 自行榴弹炮（印度陆军，100+ 门）、海军舰船（反潜护卫舰）、潜艇分段、导弹发射系统、武器平台。",
+    chinaLink: "间接——L&T 基建/制造体系部分设备与部件供应链涉及进口；军工装备未见对华直采合同。",
+    contracts: "K9 Vajra-T 自行榴弹炮（印度陆军，合同总额 ₹4,366 亿+）；反潜护卫舰与潜艇分段（印度海军）",
+    sources: [142, 146]
+  }
+];
+
+/* =====================================================================
+ * 印方企业「军方关联度」映射 —— 供「查看详情 → 印度主要采购商」卡片显示
+ * 判定依据：实体是否隶属印度国防体系 / 是否被公开报道采购军事用途物项 /
+ * 是否直接服务军方项目。分级：direct（直接，国防体系内/明确军品采购）、
+ * indirect（间接，供应链或项目关联）、none（无公开军方关联）。
+ * 所有判定均附依据；无公开证据者一律标 none，不臆断。
+ * ===================================================================== */
+const MILITARY_LINK = {
+  "BRO（Border Roads Organisation）": { level:"direct", note:"印度国防部下属边境公路局，战略边境通道（含国防用途）项目业主；公开报道称其项目使用中国盾构机/工程机械（2023 藏南隧道）" },
+  "MMRC（Mumbai Metro Rail Corporation Ltd）": { level:"none", note:"孟买地铁 3 号线业主，民用轨道交通；TBM 虽含中资设备但无军事用途证据" },
+  "NHSRCL": { level:"none", note:"孟买-艾哈迈达巴德高铁业主，民用高铁项目" },
+  "Larsen & Toubro（L&T）": { level:"indirect", note:"L&T 集团旗下 L&T Defence 为印度陆军 K9 自行榴弹炮、海军舰船等军品制造商；贸易流中为基建 EPC 采购方，军工关联经集团层面" },
+  "Reliance Industries": { level:"none", note:"印度最大私营集团（油气/光伏/基建）；未见涉军采购公开证据" },
+  "Reliance Infrastructure": { level:"none", note:"Reliance 旗下基建公司；未见涉军采购公开证据" },
+  "Reliance Jio": { level:"none", note:"电信运营商；民用通信" },
+  "Reliance Retail": { level:"none", note:"零售集团；民用" },
+  "Tata Projects": { level:"none", note:"Tata 集团基建 EPC；民用为主，未见涉军采购公开证据" },
+  "Tata Motors": { level:"indirect", note:"Tata 集团旗下含 Tata Advanced Systems（军工）与 Tata Electronics（苹果链）；贸易流为整车/零部件采购方，军工关联经集团层面" },
+  "Tata Electronics": { level:"indirect", note:"苹果链 EMS（承接富士康产能）；集团层面 Tata Advanced Systems 涉军，本实体本身为消费电子制造" },
+  "Tata AutoComp": { level:"indirect", note:"Tata 系汽车零部件 Tier-1；集团层面涉军，本实体为汽车零部件" },
+  "Tata Power Solar": { level:"none", note:"Tata Power 旗下光伏；民用能源" },
+  "BSNL": { level:"indirect", note:"印度国营电信，含军线/边防通信网；华为历史供应商，设备用于政府/国防通信网" },
+  "Bharti Airtel": { level:"none", note:"私营电信运营商；民用通信，未见涉军公开证据" },
+  "ONGC": { level:"none", note:"国营油气勘探公司；民用能源，未见涉军公开证据" },
+  "HPCL": { level:"none", note:"国营炼油公司；民用能源，未见涉军公开证据" },
+  "AIIMS": { level:"none", note:"国家公立医院体系；民用医疗" },
+  "HLL Lifecare": { level:"none", note:"国营医疗物资公司；民用医疗，未见涉军公开证据" },
+  "Medikabazaar": { level:"none", note:"医疗器械 B2B 平台；民用" },
+  "Apollo Hospitals": { level:"none", note:"私营医院集团；民用" },
+  "Fortis Healthcare": { level:"none", note:"私营医院集团；民用" },
+  "Allengers Medical Systems": { level:"none", note:"医疗设备分销；民用" },
+  "Superhealth": { level:"none", note:"私营连锁医院；民用" },
+  "Sun Pharma": { level:"none", note:"制药企业；民用" },
+  "Cipla": { level:"none", note:"制药企业；民用" },
+  "Aurobindo Pharma": { level:"none", note:"制药企业；民用" },
+  "Dr Reddy's Laboratories": { level:"none", note:"制药企业；民用" },
+  "Lyfius Kakinada": { level:"none", note:"Aurobindo 旗下 6-APA 原料药厂；民用制药" },
+  "IFFCO": { level:"none", note:"化肥合作社；农用" },
+  "Coromandel International": { level:"none", note:"化肥企业；农用" },
+  "Chambal Fertilizers": { level:"none", note:"化肥企业；农用" },
+  "Paradeep Phosphates (PPL)": { level:"none", note:"化肥企业；农用" },
+  "Ola Electric": { level:"none", note:"电动两轮车企业；民用" },
+  "Ather Energy": { level:"none", note:"电动两轮车企业；民用" },
+  "Godawari New Energy (GNEPL)": { level:"none", note:"储能企业；民用" },
+  "Uno Minda": { level:"none", note:"汽车零部件 Tier-1；民用整车供应链，未见涉军公开证据" },
+  "Samvardhana Motherson": { level:"none", note:"汽车零部件集团；民用整车供应链，未见涉军公开证据" },
+  "Maruti Suzuki": { level:"none", note:"乘用车厂；民用" },
+  "Mahindra & Mahindra": { level:"indirect", note:"集团含 Mahindra Defence（装甲车/防务），贸易流为乘用车/零部件采购，军工关联经集团层面" },
+  "Bosch India": { level:"none", note:"汽车零部件；民用" },
+  "Dixon Technologies": { level:"none", note:"消费电子 EMS；民用" },
+  "富士康 India（Foxconn）": { level:"none", note:"苹果链 EMS；民用消费电子" },
+  "Adani Solar": { level:"none", note:"光伏企业；民用能源" },
+  "Waaree Energies": { level:"none", note:"光伏企业；民用能源" },
+  "Premier Energies": { level:"none", note:"光伏企业；民用能源" },
+  "Raymond": { level:"none", note:"纺织服装；民用" },
+  "Arvind Mills": { level:"none", note:"纺织服装；民用" },
+  "Welspun Living": { level:"none", note:"家纺；民用" },
+  "Funskool India": { level:"none", note:"玩具公司；民用" },
+  "Mattel India": { level:"none", note:"玩具公司；民用" }
 };
