@@ -196,7 +196,7 @@ img{max-width:100%}
 .disc-toggle .chev{display:inline-block;transition:transform .25s}
 .disclaimer:not(.collapsed) .disc-toggle .chev{transform:rotate(180deg)}
 .disc-body{overflow:hidden;max-height:0;opacity:0;transition:max-height .35s ease,opacity .25s ease,margin-top .3s ease}
-.disclaimer:not(.collapsed) .disc-body{max-height:6000px;opacity:1;margin-top:22px}
+.disclaimer:not(.collapsed) .disc-body{max-height:20000px;opacity:1;margin-top:22px}
 
 /* ---- 印度对华依赖产业总览分析：收起/展开式折叠（浅色卡片） ---- */
 .ov-report{
