@@ -154,7 +154,12 @@ const SOURCES = [
   { id: 143, name: "IDSA / ORF / 印度国防研究与发展组织（DRDO）公开资料 · DRDO 技术转移 2200 项；印度国防工业对华供应链依赖研究（稀土永磁 59.6–81.3%，ORF 2025-11）", url: "https://www.orfonline.org/research/-chokepoint-politics-china-s-rare-earth-statecraft-and-india-s-search-for-strategic-autonomy" },
   { id: 144, name: "《世界知识》2025-03（兰州大学段彬）· 印度 BRO 2024 年采购 831 台工程机械 ₹253 亿（山特维克 DT820/曼尼通叉车等欧美设备）", url: "https://www.guancha.cn/duanbin/2025_03_19_768962_2.shtml" },
   { id: 145, name: "搜狐/观察者网（2025）· 藏南隧道（达旺）开通报道，称使用中国 CRCHI 盾构机（2020 孟买沿海公路 8 台中资 TBM 报道）；BRO 边境项目与中国工程机械关联的公开报道", url: "https://www.sohu.com/a/962438814_121142194" },
-  { id: 146, name: "Fortune Business Insights / The Wire / IDSA · 印度国防电子市场与私营军工（TASL C-295 总装、L&T K9 自行榴弹炮等）", url: "https://www.fortunebusinessinsights.com/india-defense-electronics-market-114279" }
+  { id: 146, name: "Fortune Business Insights / The Wire / IDSA · 印度国防电子市场与私营军工（TASL C-295 总装、L&T K9 自行榴弹炮等）", url: "https://www.fortunebusinessinsights.com/india-defense-electronics-market-114279" },
+  { id: 147, name: "对外经济贸易大学数字经济实验室（UIBE）/ 海关总署 · 《中国芯片产品贸易月度监测报告》（HS 8542 全章出口国别数据，如 2025 中国对越南集成电路出口 180.25 亿个、$266.68 亿）", url: "https://www.fxbaogao.com/detail/5210487" },
+  { id: 148, name: "中国机电产品贸易大数据报告 2025（chwang.com / 中国机电商会电子信息分会）· 2025 中国对香港出口集成电路（HS 8542）$875.1 亿（+29.5%）；手机出口 $1,216.9 亿（-9.4%）；锂离子电池 $820.8 亿（+23.2%）", url: "https://www.chwang.com/article/202909270251" },
+  { id: 149, name: "北极星太阳能光伏网 / 海关总署 · 2025 中国多晶硅（HS 2804.61）出口总额 ¥16.02 亿（-35.5%），出口 41 国，泰国 ¥2.35 亿第 3 / 马来西亚 ¥4.53 亿第 2", url: "https://www.toutiao.com/article/7602939005503619626/" },
+  { id: 150, name: "索比光伏网（solarbe.com）· 2025 中国硅片出口 Top10 国别：印度 21.57 亿片、印尼 6.13 亿片、泰国 5.27 亿片、马来 1.68 亿片、新加坡 0.99 亿片", url: "https://m.solarbe.com/21-0-50017825-1.html" },
+  { id: 151, name: "特能达光伏数据（tendata.cn）· 2025 中国太阳能电池出口总额 ¥2,018 亿（135 亿个 +72.9%），对印尼 ¥84 亿第 5 / 阿联酋 ¥67 亿第 6", url: "https://www.tendata.cn/news/6533.html" }
 ];
 
 /* --------- 数据源登记表（更新频率 / 覆盖范围 / 接入方式）--------- */
