@@ -690,20 +690,6 @@ const DEPENDENCE_INDUSTRIES = [{
     ],
     "buyers":[
       {
-        "name": "L&T（Larsen & Toubro）",
-        "type": "印度最大私营工程总包",
-        "top": "营收 ~$23 B（FY25）",
-        "profile": {
-          "hq": "印度 Maharashtra 孟买",
-          "founded": "1938",
-          "business": "印度最大工程总包、国防与 IT 综合集团",
-          "products": "基建总包、地铁工程、国防装备、IT 服务",
-          "tradeVolume": "孟买地铁 3 号线等使用中国 TBM",
-          "sources": "L&T FY25 Annual Report",
-          "note": "印度最大私营工程与国防集团"
-        }
-      },
-      {
         "name": "Larsen & Toubro（L&T）",
         "type": "印度最大私营工程总包",
         "top": "营收 ~$23 B（FY25）",
@@ -714,7 +700,7 @@ const DEPENDENCE_INDUSTRIES = [{
           "products": "基建总包、地铁工程、国防装备、IT 服务",
           "tradeVolume": "孟买地铁 3 号线等使用中国 TBM",
           "sources": "L&T FY25 Annual Report",
-          "note": "与 L&T 同义——flow 中用 Larsen & Toubro 命名"
+          "note": "印度最大私营工程与国防集团"
         }
       },
       {
@@ -1091,6 +1077,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "Premier Energies 上市文件",
           "note": "印度本土 TOPCon 产能扩张主力"
         }
+      },
+      {
+        "name": "Reliance Industries",
+        "type": "印度信实集团（上游一体化）",
+        "top": "营收 ~$110 B（FY25）",
+        "profile": {
+          "hq": "印度 Maharashtra 孟买",
+          "founded": "1966",
+          "business": "印度最大私营集团，多晶硅/硅片/组件一体化布局",
+          "products": "Jamnagar 100GW 光伏园、多晶硅与硅片产线",
+          "tradeVolume": "多晶硅/硅片几乎全部自华进口（对华依赖 >99%）",
+          "sources": "Reliance Industries FY25 Annual Report、PIB 公告",
+          "note": "上游硅料依赖中国，正推进本土一体化"
+        }
       }
     ],
     "coNote":"中国占全球多晶硅约 93.5%、硅片约 97%；印度上游近乎空白，硅片进口中中国 >99%。",
@@ -1205,6 +1205,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "sources": "OPPO 印度披露、Counterpoint",
           "note": "在印自有工厂 EMS 体系"
         }
+      },
+      {
+        "name": "立讯精密（Luxshare）",
+        "type": "苹果链精密制造龙头",
+        "top": "营收 ~$40 B（2024）",
+        "profile": {
+          "hq": "中国 广东 东莞",
+          "founded": "2004",
+          "business": "精密连接器、声学与整机组装",
+          "products": "连接器、线束、AirPods/iPhone 组装、声学组件",
+          "tradeVolume": "经富士康/纬创等 EMS 间接供应印度电子组装链",
+          "sources": "立讯精密 2024 年报、Counterpoint India",
+          "note": "苹果主要代工方之一，印度链经 EMS 间接进入"
+        }
       }
     ],
     "buyers":[
@@ -1262,6 +1276,34 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "华为曾为其主要设备供应商（2018 前）",
           "sources": "BSNL 官网、印度交通部通信年报",
           "note": "2020 年印度限制华为后存量设备仍在运行"
+        }
+      },
+      {
+        "name": "Dixon Technologies",
+        "type": "印度最大本土 EMS",
+        "top": "营收 ~$3 B（FY25）",
+        "profile": {
+          "hq": "印度 Uttar Pradesh Noida",
+          "founded": "1993",
+          "business": "电子制造服务（EMS/ODM）",
+          "products": "手机整机、电视、PCBA、电子元件",
+          "tradeVolume": "小米/三星/摩托罗拉等品牌在印代工；收购 HKC 印度子公司承接中国电子元件转口/本地化",
+          "sources": "Dixon Technologies FY25 Annual Report、Volza 海关数据",
+          "note": "承接中国电子元件本地化组装的主力"
+        }
+      },
+      {
+        "name": "富士康 India（Foxconn）",
+        "type": "苹果印度主要 EMS",
+        "top": "在印营收 ~$10 B",
+        "profile": {
+          "hq": "印度 Tamil Nadu Chennai（富士康印度）",
+          "founded": "2008（印度建厂）",
+          "business": "全球最大电子代工（EMS），印度组装主力",
+          "products": "iPhone 整机组装、电子元件",
+          "tradeVolume": "中国供应链经富士康印度进入苹果链",
+          "sources": "Foxconn India 披露、Counterpoint",
+          "note": "苹果印度制造核心代工方"
         }
       }
     ],
@@ -1747,6 +1789,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "部分核心零部件自华进口",
           "sources": "Bosch India FY25 财报",
           "note": "印度 Tier-1 第一"
+        }
+      },
+      {
+        "name": "Uno Minda",
+        "type": "印度汽车零部件 Tier-1",
+        "top": "营收 ~$1.5 B（FY25）",
+        "profile": {
+          "hq": "印度 Haryana Gurugram",
+          "founded": "1958",
+          "business": "印度前五大汽车零部件集团",
+          "products": "安全气囊、汽车电子、开关、照明、线束",
+          "tradeVolume": "安全气囊/汽车电子对华采购；与均胜电子等中国供应商合作",
+          "sources": "Uno Minda FY25 Annual Report、印度 ACMA",
+          "note": "供 Maruti/Tata/Mahindra 等整车厂"
         }
       },
       {
@@ -2312,7 +2368,7 @@ const DEPENDENCE_INDUSTRIES = [{
     ],
     "buyers":[
       {
-        "name": "L&T（Larsen & Toubro）",
+        "name": "Larsen & Toubro（L&T）",
         "type": "印度最大工程总包",
         "top": "营收 ~$23 B（FY25）",
         "profile": {
@@ -2393,6 +2449,20 @@ const DEPENDENCE_INDUSTRIES = [{
           "tradeVolume": "SANSAN 电厂采购徐工 7×QUY650+10×QUY150 履带吊；自建项目采购中联 120 台 QY75V 汽车吊",
           "sources": "Reliance Industries FY25 Annual Report、PIB 公告",
           "note": "印度最大集团（含 Jio/Retail/Infrastructure/New Energy Solar 等子公司）"
+        }
+      },
+      {
+        "name": "BRO（Border Roads Organisation）",
+        "type": "国防部边境公路局",
+        "top": "印度国防部下属机构",
+        "profile": {
+          "hq": "印度 New Delhi",
+          "founded": "1960",
+          "business": "印度国防部边境道路建设机构",
+          "products": "边境公路、隧道、机场跑道、战略通道",
+          "tradeVolume": "边境战略通道项目采购中国工程机械（挖掘机/装载机等）",
+          "sources": "BRO 官网、印度国防部年报",
+          "note": "61 条边境通道项目（含国防用途），为 BRO 项目采购中国工程机械"
         }
       }
     ],
