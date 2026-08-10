@@ -711,7 +711,7 @@
 
   /* ---------- 转口贸易数据面板（基于官方贸易数据）---------- */
   if (typeof TRANSSHIPMENT_TRADE !== "undefined") {
-    // 单位统一：所有数值以百万美元展示（表头已注明单位，单元格仅显示金额数字）
+    // 单位统一：所有数值以百万美元展示（列头已注明「金额，百万美元」，单元格仅显示金额数字）
     const fmt = v => (v==null||v===undefined) ? "—" : Number(v).toLocaleString("en-US");
     const yoy = (y, py) => (y!=null && py!=null && py>0) ? Math.round((y-py)/py*100) : null;
     const yoyStr = v => v==null ? "—" : (v>=0?`+${v}%`:`${v}%`);
@@ -720,7 +720,7 @@
       return [...s].sort((a,b)=>a-b);
     };
 
-    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 6 位国际编码逐年口径，2021–2025）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF / WITS 等官方年度统计，按可得性逐年对应）。<b>颜色规则</b>：某年份 <b>双侧同比均增长 → 该行整行红色高亮</b>（"双升"）；<b>仅单侧增长</b> 时中国侧与 X→印度侧各自分色（<b style="color:var(--cn)">升=红</b>、<b style="color:var(--teal)">降=绿</b>）；无数据年份留空「—」。表内<b>单位一律为百万美元</b>（单元格仅显示金额数字，如 9,910 即 $9,910M = $9.91B）。所有数值均来自官方来源，未做任何推算。`;
+    $("#tdataNote").innerHTML = `<b>数据口径：</b>每条卡片以 <b>数据表</b> 并排展示 <b>中国 → 第三国/地区</b>（UN Comtrade 中国海关官方，HS 6 位国际编码逐年口径，2021–2025）<b>与 第三国/地区 → 印度</b>（第三国海关 / 印度 PIB / IBEF / WITS 等官方年度统计，按可得性逐年对应）。<b>颜色规则</b>：某年份 <b>双侧同比均增长 → 该行整行红色高亮</b>（"双升"）；<b>仅单侧增长</b> 时中国侧与 X→印度侧各自分色（<b style="color:var(--cn)">升=红</b>、<b style="color:var(--teal)">降=绿</b>）；无数据年份留空「—」。表内<b>单位一律为百万美元</b>（单元格显示金额数字，如 9,910 即 9,910 百万美元 = $9.91B）。所有数值均来自官方来源，未做任何推算。`;
     const flowsHTML = TRANSSHIPMENT_TRADE.map((f,i)=>{
       const c = f.china, id = f.india;
       const nodes = f.chain.map((p,i)=>{
@@ -767,7 +767,7 @@
         </div>
         <div class="tflow-goods">主要商品：<b>${f.goods}</b><span class="hsnote">${f.hsNote}</span></div>
         <table class="tflow-tbl">
-          <thead><tr><th>年份</th><th>中国 → ${f.chain[1]}（百万 $）</th><th>同比</th><th>${f.chain[1]} → 印度（百万 $）</th><th>同比</th></tr></thead>
+          <thead><tr><th>年份</th><th>中国 → ${f.chain[1]}（金额，百万美元）</th><th>同比</th><th>${f.chain[1]} → 印度（金额，百万美元）</th><th>同比</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
         <div class="tflow-note">
