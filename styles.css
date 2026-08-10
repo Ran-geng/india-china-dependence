@@ -469,6 +469,10 @@ img{max-width:100%}
 .collapse-sec.collapsed .collapse-body{ display:none; }
 .collapse-body .src-registry{ padding:0 24px; }
 .collapse-body .update-note{ margin:0 24px 24px; }
+/* 政策板块折叠：标题旗帜对齐 + 时间线内边距 */
+.policy-col .collapse-title{ display:flex; align-items:center; gap:9px; }
+.policy-col .collapse-title .flag{ margin:0; }
+.policy-col .collapse-body .timeline{ margin:0 24px 6px; }
 
 /* ===== 贸易流（详情弹窗内）===== */
 .flow-list{ display:flex; flex-direction:column; gap:14px; margin:6px 0 4px; }
