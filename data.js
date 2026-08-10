@@ -666,20 +666,6 @@ const DEPENDENCE_INDUSTRIES = [{
         }
       },
       {
-        "name": "Lyfius Kakinada",
-        "type": "Aurobindo 旗下 6-APA 厂",
-        "top": "Aurobindo Pharma 子公司",
-        "profile": {
-          "hq": "印度 Andhra Pradesh Kakinada",
-          "founded": "2022（投产）",
-          "business": "Aurobindo Pharma 旗下青霉素 G→6-APA 制造",
-          "products": "6-APA（青霉素中间体）",
-          "tradeVolume": "规划产能降印度对华 6-APA 依赖约 50%",
-          "sources": "Aurobindo Pharma FY25 Annual Report、PIB PRID 2237414",
-          "note": "印度本土 6-APA 产能代表性项目"
-        }
-      },
-      {
         "name": "海瑞克广州（Herrenknecht Guangzhou）",
         "type": "德资在华 TBM 制造",
         "top": "德国海瑞克集团亚太 TBM 基地",
