@@ -95,10 +95,25 @@ img{max-width:100%}
 .tag-sub{font-size:11px;font-weight:700;color:#fff;background:var(--primary);padding:2px 9px;border-radius:999px;vertical-align:middle;margin-left:6px}
 .chart-note{font-size:13px;line-height:1.75;color:var(--ink-soft);background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--in);border-radius:var(--radius-sm);padding:18px 20px;margin-top:24px}
 .subdep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
-.subdep-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
-.subdep-card h4{font-size:14.5px;color:var(--ink);margin-bottom:12px;font-family:var(--font-display);font-weight:700}
-.subdep-canvas{position:relative;width:100%;height:210px}
+.subdep-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column}
+.subdep-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.subdep-head h4{font-size:14.5px;color:var(--ink);font-family:var(--font-display);font-weight:700;margin:0;line-height:1.35}
+.subdep-badge{flex-shrink:0;font-family:var(--font-mono);font-weight:800;font-size:17px;color:#fff;padding:3px 12px;border-radius:999px;letter-spacing:.3px;box-shadow:0 2px 6px rgba(0,0,0,.14)}
+.subdep-canvas{position:relative;width:100%;height:210px;flex-shrink:0}
 .subdep-note{font-size:12px;color:var(--ink-mute);line-height:1.65;margin-top:12px}
+.subdep-note.folded{max-height:3.9em;overflow:hidden;position:relative}
+.subdep-fold-btn{display:inline-block;margin-left:4px;padding:0 10px;font-size:11.5px;font-weight:600;color:var(--in);background:rgba(224,118,42,.1);border:1px solid rgba(224,118,42,.35);border-radius:999px;cursor:pointer;font-family:inherit;transition:background .15s}
+.subdep-fold-btn:hover{background:rgba(224,118,42,.2)}
+/* 总览条：14 产业按依赖度降序的胶囊色块 */
+.top-overview{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:20px 0 2px}
+.top-overview-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.top-overview-head b{font-size:13.5px;font-family:var(--font-display);color:var(--ink)}
+.ov-hint{font-size:11.5px;color:var(--ink-mute)}
+.top-overview-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ov-chip{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 13px 5px 14px;cursor:default;transition:border-color .15s,transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ov-chip:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.ov-name{font-size:12px;color:var(--ink);font-weight:600;white-space:nowrap}
+.ov-val{font-family:var(--font-mono);font-size:12.5px;font-weight:800}
 @media (max-width:680px){ .subdep-grid{grid-template-columns:1fr} }
 .chart-wrap{position:relative;width:100%;height:340px}
 .chart-wrap.tall{height:420px}
