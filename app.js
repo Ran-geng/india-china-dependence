@@ -879,7 +879,7 @@
     if(ec && ec.item.controlled)
       lines.push(`出口管制：本商品（${ec.item.name}）已列入两用物项管制清单（${ec.item.basis}），中国海关应加强最终用户与最终用途核查，对经 ${f.chain[1]} 转口的异常申报（价格倒挂、目的地与用途不符、多段转运）实施重点查验。`);
     else if(ec && ec.item.note)
-      lines.push(`出口管制：本商品（${ec.item.name}）当前未列入两用物项清单，但海关可参考该条目提示做参数与用途判定——「${ec.item.note.slice(0,60)}…」。`);
+      lines.push(`出口管制：本商品（${ec.item.name}）当前未列入两用物项清单，但海关可参考该条目提示做参数与用途判定——「${(ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim()}」。`);
     else
       lines.push("出口管制：本商品当前未列入两用物项管制清单，按普通货物监管；海关可关注其是否含管制成分（化合物半导体、稀土、石墨等子项）而需逐单判定。");
     lines.push(`原产地核验：配合印方 CAROTAR/原产地证明要求，对中国→${f.chain[1]} 出口的 HS 申报、发票与转口路径做数据比对，识别「第三国洗产地」型规避（[85][114]）。`);
@@ -931,7 +931,7 @@
       lines.push(`监管提示：${ec.item.note||"—"}`);
     } else {
       lines.push(`走私/违规出口管制物品风险：低—中——本商品（${f.goods}）当前未列入两用物项管制清单，走私风险集中于偷逃关税/反倾销税与虚假原产地（参考 DRI 同类案件 [87][116][117]），而非出口管制违规。`);
-      if(ec && ec.item.note) lines.push(`判定提示：${ec.item.note.slice(0,90)}…`);
+      if(ec && ec.item.note) lines.push(`判定提示：${(ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim()}`);
     }
     return lines;
   }
