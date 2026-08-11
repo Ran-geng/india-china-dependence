@@ -992,23 +992,64 @@
       });
     } catch(e){ console.error("catChart 渲染失败：",e); }
 
-    /* 3+4. 产业对华依赖 TOP 品类（原料药 + 其余 8 产业 合并统一渲染） */
+    /* 3+4. 产业对华依赖 TOP 品类（原料药 + 其余 8 产业 合并统一渲染）
+     * 颜色五档色阶：红=高依赖（危险）→ 绿=低依赖（安全），符合「红涨绿跌」语义
+     */
     try {
       const grid = $("#industryTopGrid");
       if (grid) {
+        // 依赖度色阶：≥90 深红 / ≥70 红橙 / ≥50 琥珀 / ≥30 黄绿 / <30 绿
+        const depColor = v => v>=90 ? "#b01b13" : v>=70 ? "#d9502e" : v>=50 ? "#d99a2b" : v>=30 ? "#7fa94a" : "#2e8b66";
+        const repVal = s => Math.max.apply(null, s.values);   // 卡片代表值 = 子项最高依赖
+
+        // 总览条：14 产业按代表依赖度降序，胶囊色块一目了然
+        const ovEl = $("#topOverview");
+        if (ovEl) {
+          ovEl.innerHTML =
+            `<div class="top-overview-head"><b>依赖度总览</b><span class="ov-hint">按代表值降序 · 颜色=依赖档位（红=高 · 绿=低）</span></div>` +
+            `<div class="top-overview-chips">` +
+            [...INDUSTRY_TOP].sort((a,b)=>repVal(b)-repVal(a)).map(s=>{
+              const v = repVal(s);
+              return `<span class="ov-chip" title="${s.name}：代表值 ${v}%">
+                <span class="ov-name">${s.name}</span><span class="ov-val" style="color:${depColor(v)}">${v}%</span>
+              </span>`;
+            }).join("") +
+            `</div>`;
+        }
+
         INDUSTRY_TOP.forEach((s,i)=>{
           const card = document.createElement("div");
           card.className = "subdep-card";
+          const maxV = repVal(s);
           const canvasH = Math.max(210, s.labels.length * 32 + 46); // 子项越多画布越高
+          // 注释折叠：超长 note 默认截断 3 行，点击展开
+          const noteLen = (s.note||"").length;
+          const needFold = noteLen > 110;
           card.innerHTML =
-            `<h4>${s.name} · TOP 品类</h4>` +
+            `<div class="subdep-head">
+              <h4>${s.name} · TOP 品类</h4>
+              <span class="subdep-badge" style="background:${depColor(maxV)}">${maxV}%</span>
+            </div>` +
             `<div class="subdep-canvas" style="height:${canvasH}px"><canvas id="topChart${i}"></canvas></div>` +
-            `<div class="subdep-note">${s.note}　来源 ${cite(s.source)}</div>`;
+            `<div class="subdep-note ${needFold?'folded':''}">${s.note}
+              ${needFold?`<button class="subdep-fold-btn" type="button" aria-expanded="false">展开注释</button>`:""}
+              　来源 ${cite(s.source)}</div>`;
           grid.appendChild(card);
+        });
+        // 注释折叠交互
+        $$(".subdep-fold-btn").forEach(btn=>{
+          btn.addEventListener("click", ()=>{
+            const note = btn.closest(".subdep-note");
+            if(!note) return;
+            const open = note.classList.toggle("folded") ? false : true;
+            btn.setAttribute("aria-expanded", open?"true":"false");
+            btn.textContent = open ? "收起注释" : "展开注释";
+          });
         });
         INDUSTRY_TOP.forEach((s,i)=>{
           const cv = document.getElementById("topChart"+i);
           if(!cv) return;
+          const depColor = v => v>=90 ? "#b01b13" : v>=70 ? "#d9502e" : v>=50 ? "#d99a2b" : v>=30 ? "#7fa94a" : "#2e8b66";
           new Chart(cv,{
             type:"bar",
             data:{
@@ -1016,8 +1057,9 @@
               datasets:[{
                 label:"对华依赖度(%)",
                 data:s.values,
-                backgroundColor:s.values.map(v=> v>=90?C.china : v>=70?"#e07a55" : C.india),
-                borderRadius:4
+                backgroundColor:s.values.map(depColor),
+                borderRadius:4,
+                barPercentage:0.68
               }]
             },
             options:{
@@ -1031,7 +1073,7 @@
               },
               scales:{
                 x:{beginAtZero:true,max:100,grid:{color:C.grid},ticks:{callback:v=>v+"%"}},
-                y:{grid:{display:false}}
+                y:{grid:{display:false},ticks:{font:{size:11.5}}}
               }
             }
           });
