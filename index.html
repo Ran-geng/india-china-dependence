@@ -275,6 +275,15 @@
   </div>
 </footer>
 
+<!-- 转口贸易流评估报告弹窗（点击「评估报告」按钮弹出，支持 DOCX 下载） -->
+<div class="modal" id="flowModal" aria-hidden="true">
+  <div class="modal-mask" id="flowMask"></div>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="flowClose" aria-label="关闭">×</button>
+    <div class="flow-modal-body" id="flowBody"></div>
+  </div>
+</div>
+
 <!-- 产品模块详情弹窗（务必位于脚本之前，确保运行时 DOM 已就绪） -->
 <div class="modal" id="depModal" aria-hidden="true">
   <div class="modal-mask" id="depMask"></div>
