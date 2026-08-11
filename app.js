@@ -679,7 +679,7 @@
       <span class="rel-badge lvl-lowmid">较低</span>
       <span class="rel-badge lvl-low">低</span><span class="rel-scale-desc">推断 / 指控为主</span>
     </div>`;
-  $("#routeFlow").innerHTML = REL_LEGEND + TRANSSHIPMENT_ROUTES.map(r=>{
+  $("#routeFlow").innerHTML = REL_LEGEND + TRANSSHIPMENT_ROUTES.map((r,i)=>{
     const parts = r.path.split("→").map(s=>s.trim());
     const chain = parts.map((p,i)=>{
       const cls = i===0?"cn":(i===parts.length-1?"in":"mid");
@@ -697,6 +697,12 @@
         </div>
         ${r.credNote ? `<div class="rel-note">评估说明：${r.credNote}</div>` : ""}
         <div class="rdata">${r.data}${cite(r.source)}</div>
+        <div class="route-eval">
+          <button class="eval-btn" type="button" data-eval="route" data-idx="${i}">
+            <span class="eval-ico">📋</span> 查看评估报告
+          </button>
+          <span class="eval-hint">点击弹出本转口路径的评估报告（可下载 DOCX）</span>
+        </div>
       </div>`;
   }).join("");
 
@@ -777,6 +783,12 @@
           <b>分析：</b>${f.note}<br>
           <b>来源：</b>${citeRefs}
         </div>
+        <div class="tflow-eval">
+          <button class="eval-btn" type="button" data-eval="trade" data-idx="${i}">
+            <span class="eval-ico">📋</span> 查看评估报告
+          </button>
+          <span class="eval-hint">点击弹出本贸易流的评估报告（可下载 DOCX）</span>
+        </div>
       </div>`;
     }).join("");
     $("#tradeFlowPanel").innerHTML = flowsHTML;
@@ -784,6 +796,155 @@
     bindCollapse("transInfoWrap","transInfoToggle","transInfoIcon");
     bindCollapse("transDataWrap","transDataToggle","transDataIcon");
   }
+
+  /* =====================================================================
+   * 转口贸易流 · 评估报告弹窗（点击「查看评估报告」弹出，可下载 DOCX）
+   * ===================================================================== */
+  const flowModal = $("#flowModal"), flowMask = $("#flowMask"),
+        flowClose = $("#flowClose"), flowBody = $("#flowBody");
+  function closeFlowModal(){
+    if(!flowModal) return;
+    flowModal.classList.remove("open");
+    flowModal.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  function openFlowModal(html){
+    if(!flowModal || !flowBody) return;
+    flowBody.innerHTML = html;
+    flowModal.classList.add("open");
+    flowModal.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    flowModal.scrollTop = 0;
+  }
+  if(flowClose) flowClose.addEventListener("click", closeFlowModal);
+  if(flowMask) flowMask.addEventListener("click", closeFlowModal);
+  document.addEventListener("keydown", e=>{
+    if(e.key==="Escape" && flowModal && flowModal.classList.contains("open")) closeFlowModal();
+  });
+
+  /* 生成贸易流 DOCX 的 sections（评估报告正文） */
+  function flowYears(c, id){
+    const s = new Set([...Object.keys(c.years||{}).map(Number), ...Object.keys(id.years||{}).map(Number)]);
+    return [...s].sort((a,b)=>a-b);
+  }
+  function tradeFlowDocxSections(f){
+    const years = flowYears(f.china, f.india);
+    const secs = [];
+    secs.push({ type:"heading", text:"一、贸易流概况" });
+    secs.push({ type:"para", text:`路径：${f.chain.join(" → ")}` });
+    secs.push({ type:"para", text:`主要商品：${f.goods}（HS ${f.hs}）` });
+    secs.push({ type:"para", text:`HS 说明：${f.hsNote || "—"}` });
+    secs.push({ type:"heading", text:"二、历年数据（单位：百万美元）" });
+    secs.push({ type:"para", text:"（年份 | 中国→中转地 | 中转地→印度）" });
+    years.forEach(y=>{
+      const cv = f.china.years?.[y], iv = f.india.years?.[y];
+      secs.push({ type:"para", text:`${y} | ${cv==null?"—":Number(cv).toLocaleString("en-US")} | ${iv==null?"—":Number(iv).toLocaleString("en-US")}` });
+    });
+    secs.push({ type:"heading", text:"三、趋势与双升判断" });
+    secs.push({ type:"para", text: f.surgeNote || "—" });
+    secs.push({ type:"heading", text:"四、中国侧数据口径" });
+    secs.push({ type:"para", text: f.china.note || "—" });
+    secs.push({ type:"heading", text:"五、中转地→印度侧数据口径" });
+    secs.push({ type:"para", text: f.india.note || "—" });
+    secs.push({ type:"heading", text:"六、分析" });
+    secs.push({ type:"para", text: f.note || "—" });
+    return secs;
+  }
+  /* 生成开源信息转口路径 DOCX 的 sections */
+  function routeDocxSections(r){
+    const secs = [];
+    secs.push({ type:"heading", text:"一、路径与商品" });
+    secs.push({ type:"para", text:`路径：${r.path}` });
+    secs.push({ type:"para", text:`主要商品：${r.goods}` });
+    secs.push({ type:"heading", text:"二、证据与数据" });
+    secs.push({ type:"para", text: r.data || "—" });
+    secs.push({ type:"heading", text:"三、可信度与真实度评级" });
+    secs.push({ type:"para", text:`可信程度：${r.credibility || "—"}` });
+    secs.push({ type:"para", text:`真实程度：${r.authenticity || "—"}` });
+    secs.push({ type:"heading", text:"四、评估说明" });
+    secs.push({ type:"para", text: r.credNote || "—" });
+    return secs;
+  }
+  /* 渲染评估报告弹窗 HTML */
+  function tradeFlowReportHTML(f, i){
+    const years = flowYears(f.china, f.india);
+    const rows = years.map(y=>{
+      const cv = f.china.years?.[y], iv = f.india.years?.[y];
+      return `<tr><td>${y}</td><td>${cv==null?"—":Number(cv).toLocaleString("en-US")}</td><td>${iv==null?"—":Number(iv).toLocaleString("en-US")}</td></tr>`;
+    }).join("");
+    const citeRefs = (f.sources||[f.source]).filter(Boolean).map(s=>cite(s)).join(" ");
+    return `
+      <h3 class="frep-title">转口贸易流评估报告</h3>
+      <div class="frep-meta">路径：${f.chain.map(p=>`<span class="node ${p==="中国"?"cn":(p==="印度"?"in":"mid")}">${p}</span>`).join('<span class="arrow">→</span>')}</div>
+      <div class="frep-meta">主要商品：<b>${f.goods}</b> · HS ${f.hs}</div>
+      <div class="frep-sec"><h4>一、贸易流概况</h4><p>${f.hsNote || "—"}</p></div>
+      <div class="frep-sec"><h4>二、历年数据（单位：百万美元）</h4>
+        <table class="frep-tbl"><thead><tr><th>年份</th><th>中国 → ${f.chain[1]}</th><th>${f.chain[1]} → 印度</th></tr></thead><tbody>${rows}</tbody></table>
+      </div>
+      <div class="frep-sec"><h4>三、趋势与双升判断</h4><p>${f.surgeNote || "—"}</p></div>
+      <div class="frep-sec"><h4>四、中国侧数据口径</h4><p>${f.china.note || "—"}${f.china.source?cite(f.china.source):""}</p></div>
+      <div class="frep-sec"><h4>五、中转地 → 印度侧数据口径</h4><p>${f.india.note || "—"}${f.india.source?cite(f.india.source):""}</p></div>
+      <div class="frep-sec"><h4>六、分析</h4><p>${f.note || "—"}</p></div>
+      <div class="frep-sec"><h4>七、数据来源</h4><p>${citeRefs || "—"}</p></div>
+      <div class="report-actions">
+        <button class="dl-docx" type="button" id="flowDlDocx">⬇ 下载评估报告（DOCX）</button>
+        <span class="dl-hint">点击后浏览器将直接生成并下载 Word 文档，无需联网</span>
+      </div>`;
+  }
+  function routeReportHTML(r, i){
+    return `
+      <h3 class="frep-title">转口路径评估报告</h3>
+      <div class="frep-meta">路径：${r.path.split("→").map(s=>s.trim()).map(p=>`<span class="node ${p==="中国"?"cn":(p==="印度"?"in":"mid")}">${p}</span>`).join('<span class="arrow">→</span>')}</div>
+      <div class="frep-meta">主要商品：<b>${r.goods}</b></div>
+      <div class="frep-sec"><h4>一、证据与数据</h4><p>${r.data || "—"}${r.source?cite(r.source):""}</p></div>
+      <div class="frep-sec"><h4>二、可信度与真实度评级</h4>
+        <p>可信程度：<span class="rel-badge ${relCls(r.credibility||"—")}">${r.credibility||"—"}</span>　真实程度：<span class="rel-badge ${relCls(r.authenticity||"—")}">${r.authenticity||"—"}</span></p>
+      </div>
+      <div class="frep-sec"><h4>三、评估说明</h4><p>${r.credNote || "—"}</p></div>
+      <div class="report-actions">
+        <button class="dl-docx" type="button" id="flowDlDocx">⬇ 下载评估报告（DOCX）</button>
+        <span class="dl-hint">点击后浏览器将直接生成并下载 Word 文档，无需联网</span>
+      </div>`;
+  }
+
+  /* 绑定「查看评估报告」按钮（事件委托，兼容动态渲染） */
+  document.addEventListener("click", e=>{
+    const btn = e.target.closest(".eval-btn");
+    if(!btn) return;
+    const kind = btn.dataset.eval, idx = parseInt(btn.dataset.idx,10);
+    if(kind==="trade" && typeof TRANSSHIPMENT_TRADE!=="undefined" && TRANSSHIPMENT_TRADE[idx]){
+      const f = TRANSSHIPMENT_TRADE[idx];
+      openFlowModal(tradeFlowReportHTML(f, idx));
+      const dl = $("#flowDlDocx");
+      if(dl) dl.addEventListener("click", ()=>{
+        if(!window.IndiaDocx){ alert("报告生成组件未加载（docxGen.js）"); return; }
+        try{
+          window.IndiaDocx.generateDocx({
+            fileName: `转口贸易流评估报告_${f.chain.join("-")}_HS${f.hs}.docx`,
+            title: `转口贸易流评估报告：${f.chain.join(" → ")}（HS ${f.hs}）`,
+            meta: `印度对华产业依赖研究 · 数据整理于 ${typeof LAST_UPDATED!=="undefined"?LAST_UPDATED:"2026"}`,
+            sections: tradeFlowDocxSections(f)
+          });
+        }catch(err){ console.error("DOCX 生成失败：", err); alert("报告生成失败："+err.message); }
+      });
+    }
+    if(kind==="route" && typeof TRANSSHIPMENT_ROUTES!=="undefined" && TRANSSHIPMENT_ROUTES[idx]){
+      const r = TRANSSHIPMENT_ROUTES[idx];
+      openFlowModal(routeReportHTML(r, idx));
+      const dl = $("#flowDlDocx");
+      if(dl) dl.addEventListener("click", ()=>{
+        if(!window.IndiaDocx){ alert("报告生成组件未加载（docxGen.js）"); return; }
+        try{
+          window.IndiaDocx.generateDocx({
+            fileName: `转口路径评估报告_${r.path.replace(/[→\s]/g,"-")}.docx`,
+            title: `转口路径评估报告：${r.path}（${r.goods}）`,
+            meta: `印度对华产业依赖研究 · 数据整理于 ${typeof LAST_UPDATED!=="undefined"?LAST_UPDATED:"2026"}`,
+            sections: routeDocxSections(r)
+          });
+        }catch(err){ console.error("DOCX 生成失败：", err); alert("报告生成失败："+err.message); }
+      });
+    }
+  });
 
   /* ---------- 政策时间线 ---------- */
   const tl = (arr,cls)=>arr.map(p=>`
