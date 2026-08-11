@@ -579,6 +579,12 @@ img{max-width:100%}
 .frep-sec p{font-size:13px;line-height:1.85;color:var(--ink-soft);margin:0}
 .frep-li{font-size:13px;line-height:1.85;color:var(--ink-soft);margin:0 0 7px!important;padding-left:2px}
 .frep-li b{color:var(--ink)}
+.frep-p{font-size:13px;line-height:1.9;color:var(--ink-soft);margin:0 0 10px}
+.frep-p b{color:var(--ink)}
+.frep-verdict{background:linear-gradient(180deg,rgba(224,118,42,.07),rgba(194,58,50,.05));
+  border:1px solid rgba(224,118,42,.28);border-left:4px solid var(--primary);
+  border-radius:10px;padding:14px 18px;margin:14px 0 4px}
+.frep-verdict .frep-p{margin-bottom:0;font-size:13.5px;color:var(--ink)}
 .frep-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
 .frep-tbl th,.frep-tbl td{padding:8px 12px;border:1px solid var(--line);text-align:right}
 .frep-tbl th:first-child,.frep-tbl td:first-child{text-align:left}
