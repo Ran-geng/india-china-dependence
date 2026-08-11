@@ -1014,27 +1014,30 @@
           const maxV = repVal(s);
           const canvasH = Math.max(210, s.labels.length * 32 + 46); // 子项越多画布越高
           const noteLen = (s.note||"").length;
-          const needFold = noteLen > 110;
+          const needFold = noteLen > 80;   // 阈值：>80 字符即默认收起
+          // 用原生 <details>/<summary> 实现折叠：summary（按钮）天然在 note 区域下方可见，不会被截断
           card.innerHTML =
             `<div class="subdep-head">
               <h4>${s.name} · TOP 品类</h4>
               <span class="subdep-badge" style="background:${depColor(maxV)}">${maxV}%</span>
             </div>` +
             `<div class="subdep-canvas" style="height:${canvasH}px"><canvas id="topChart0"></canvas></div>` +
-            `<div class="subdep-note ${needFold?'folded':''}">${s.note}
-              ${needFold?`<button class="subdep-fold-btn" type="button" aria-expanded="false">展开注释</button>`:""}
-              　来源 ${cite(s.source)}</div>`;
+            `<details class="subdep-details"${needFold?'':' open'}>
+              <summary class="subdep-fold-btn" type="button">
+                <span class="chev"></span><span class="lbl">${needFold?'展开注释':'收起注释'}</span>
+              </summary>
+              <div class="subdep-note-body">
+                ${s.note}<br>来源 ${cite(s.source)}
+              </div>
+            </details>`;
           grid.appendChild(card);
 
-          // 注释折叠交互
-          const foldBtn = card.querySelector(".subdep-fold-btn");
-          if(foldBtn){
-            foldBtn.addEventListener("click", ()=>{
-              const note = foldBtn.closest(".subdep-note");
-              if(!note) return;
-              const open = note.classList.toggle("folded") ? false : true;
-              foldBtn.setAttribute("aria-expanded", open?"true":"false");
-              foldBtn.textContent = open ? "收起注释" : "展开注释";
+          // 注释折叠交互：监听原生 toggle 事件更新按钮文字与箭头
+          const dtl = card.querySelector(".subdep-details");
+          if(dtl){
+            const lbl = dtl.querySelector(".lbl");
+            dtl.addEventListener("toggle", ()=>{
+              if(lbl) lbl.textContent = dtl.open ? "收起注释" : "展开注释";
             });
           }
 
