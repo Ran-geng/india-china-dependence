@@ -993,36 +993,26 @@
     } catch(e){ console.error("catChart 渲染失败：",e); }
 
     /* 3+4. 产业对华依赖 TOP 品类（原料药 + 其余 8 产业 合并统一渲染）
+     * 交互式：先展示依赖度总览条（可点击导航），点击某产业 → 下方仅渲染该产业的细分卡片
      * 颜色五档色阶：红=高依赖（危险）→ 绿=低依赖（安全），符合「红涨绿跌」语义
      */
     try {
       const grid = $("#industryTopGrid");
+      const ovEl = $("#topOverview");
       if (grid) {
         // 依赖度色阶：≥90 深红 / ≥70 红橙 / ≥50 琥珀 / ≥30 黄绿 / <30 绿
         const depColor = v => v>=90 ? "#b01b13" : v>=70 ? "#d9502e" : v>=50 ? "#d99a2b" : v>=30 ? "#7fa94a" : "#2e8b66";
         const repVal = s => Math.max.apply(null, s.values);   // 卡片代表值 = 子项最高依赖
+        const sorted = [...INDUSTRY_TOP].sort((a,b)=>repVal(b)-repVal(a)); // 按代表值降序
+        let topChartInst = null;   // 当前产业卡片的 Chart 实例（切换时销毁重建）
 
-        // 总览条：14 产业按代表依赖度降序，胶囊色块一目了然
-        const ovEl = $("#topOverview");
-        if (ovEl) {
-          ovEl.innerHTML =
-            `<div class="top-overview-head"><b>依赖度总览</b><span class="ov-hint">按代表值降序 · 颜色=依赖档位（红=高 · 绿=低）</span></div>` +
-            `<div class="top-overview-chips">` +
-            [...INDUSTRY_TOP].sort((a,b)=>repVal(b)-repVal(a)).map(s=>{
-              const v = repVal(s);
-              return `<span class="ov-chip" title="${s.name}：代表值 ${v}%">
-                <span class="ov-name">${s.name}</span><span class="ov-val" style="color:${depColor(v)}">${v}%</span>
-              </span>`;
-            }).join("") +
-            `</div>`;
-        }
-
-        INDUSTRY_TOP.forEach((s,i)=>{
+        // 渲染单个产业的细分卡片（每次仅渲染一张）
+        function renderTopCard(s){
+          grid.innerHTML = "";
           const card = document.createElement("div");
           card.className = "subdep-card";
           const maxV = repVal(s);
           const canvasH = Math.max(210, s.labels.length * 32 + 46); // 子项越多画布越高
-          // 注释折叠：超长 note 默认截断 3 行，点击展开
           const noteLen = (s.note||"").length;
           const needFold = noteLen > 110;
           card.innerHTML =
@@ -1030,27 +1020,29 @@
               <h4>${s.name} · TOP 品类</h4>
               <span class="subdep-badge" style="background:${depColor(maxV)}">${maxV}%</span>
             </div>` +
-            `<div class="subdep-canvas" style="height:${canvasH}px"><canvas id="topChart${i}"></canvas></div>` +
+            `<div class="subdep-canvas" style="height:${canvasH}px"><canvas id="topChart0"></canvas></div>` +
             `<div class="subdep-note ${needFold?'folded':''}">${s.note}
               ${needFold?`<button class="subdep-fold-btn" type="button" aria-expanded="false">展开注释</button>`:""}
               　来源 ${cite(s.source)}</div>`;
           grid.appendChild(card);
-        });
-        // 注释折叠交互
-        $$(".subdep-fold-btn").forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            const note = btn.closest(".subdep-note");
-            if(!note) return;
-            const open = note.classList.toggle("folded") ? false : true;
-            btn.setAttribute("aria-expanded", open?"true":"false");
-            btn.textContent = open ? "收起注释" : "展开注释";
-          });
-        });
-        INDUSTRY_TOP.forEach((s,i)=>{
-          const cv = document.getElementById("topChart"+i);
+
+          // 注释折叠交互
+          const foldBtn = card.querySelector(".subdep-fold-btn");
+          if(foldBtn){
+            foldBtn.addEventListener("click", ()=>{
+              const note = foldBtn.closest(".subdep-note");
+              if(!note) return;
+              const open = note.classList.toggle("folded") ? false : true;
+              foldBtn.setAttribute("aria-expanded", open?"true":"false");
+              foldBtn.textContent = open ? "收起注释" : "展开注释";
+            });
+          }
+
+          // 柱状图（销毁旧实例避免泄漏/重影）
+          const cv = document.getElementById("topChart0");
           if(!cv) return;
-          const depColor = v => v>=90 ? "#b01b13" : v>=70 ? "#d9502e" : v>=50 ? "#d99a2b" : v>=30 ? "#7fa94a" : "#2e8b66";
-          new Chart(cv,{
+          if(topChartInst) topChartInst.destroy();
+          topChartInst = new Chart(cv,{
             type:"bar",
             data:{
               labels:s.labels,
@@ -1077,7 +1069,34 @@
               }
             }
           });
-        });
+        }
+
+        // 渲染总览条（可点击导航）+ 绑定切换
+        function renderOverview(activeIdx){
+          if(!ovEl) return;
+          ovEl.innerHTML =
+            `<div class="top-overview-head"><b>依赖度总览</b><span class="ov-hint">点击产业查看细分 · 按代表值降序 · 颜色=依赖档位（红=高 · 绿=低）</span></div>` +
+            `<div class="top-overview-chips">` +
+            sorted.map((s,i)=>{
+              const v = repVal(s);
+              return `<button class="ov-chip ${i===activeIdx?'active':''}" data-i="${i}" type="button" title="点击查看「${s.name}」细分（代表值 ${v}%）">
+                <span class="ov-name">${s.name}</span><span class="ov-val" style="color:${depColor(v)}">${v}%</span>
+              </button>`;
+            }).join("") +
+            `</div>`;
+          ovEl.querySelectorAll(".ov-chip").forEach(btn=>{
+            btn.addEventListener("click", ()=>{
+              const idx = parseInt(btn.dataset.i, 10);
+              if(isNaN(idx)) return;
+              renderOverview(idx);
+              renderTopCard(sorted[idx]);
+            });
+          });
+        }
+
+        // 初始：默认选中第一个（代表值最高），渲染其细分卡片
+        renderOverview(0);
+        renderTopCard(sorted[0]);
       }
     } catch(e){ console.error("industryTop 渲染失败：",e); }
   }
