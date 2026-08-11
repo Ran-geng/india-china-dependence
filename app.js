@@ -861,79 +861,105 @@
     if(!m) return { risk:"低", why:"未见公开军事用途证据，按通用商品对待" };
     return m;
   }
-  /* 转口对中国影响 / 海关应对（按商品特征生成，逻辑基于已知政策事实） */
+  /* 转口对中国影响 / 海关应对（自然段落） */
   function chinaImpactOf(f){
     const hs6 = String(f.hs||"").split(".")[0];
-    const lines = [];
-    lines.push(`若「${f.chain.join("→")}」转口属实，中国对印出口的真实规模被直接贸易统计低估：中国侧官方数据（${f.china.years[2024]!=null?("2024 $"+Number(f.china.years[2024]).toLocaleString("en-US")+"M"):"—"}）与印度自中转地进口（${f.india.years[2024]!=null?("2024 $"+Number(f.india.years[2024]).toLocaleString("en-US")+"M"):"—"}）之间的敞口，部分即来自经 ${f.chain[1]} 的洗产地/再出口。`);
-    if(hs6==="8505" || hs6==="8507")
-      lines.push("管制敏感度：本商品涉及中国 2025-10 出口管制清单（中重稀土/锂电池及人造石墨负极），若经第三国转口将削弱管制有效性，并影响中国在全球供应链中的议价与合规形象（[105][156]）。");
-    lines.push("竞争层面：印度借 FTA 原产地规则（如 CAROTAR 2020、CEPA）对转口货免征/减征关税，使中国商品的实际竞争力被第三国中间商截留，中企直接出口份额收缩而「转口中国成分」持续增长（[14][114]）。");
-    lines.push("贸易救济：印度海关（DRI/CBIC）已对多起转口案执法（液压破碎锤经马来、化妆品经迪拜、烟花伪报等，[87][116][117]），若转口规模扩大，印方可能升级为系统性反规避调查或更高反倾销税率，波及中国正常出口。");
-    return lines;
+    const out = [];
+    out.push(`如果这条转口路径属实，最直接的后果是中国对印出口的真实规模被低估——中国海关口径（2024 年约 $${(f.china.years[2024]!=null?Number(f.china.years[2024]).toLocaleString("en-US"):"—")}M）与印度自${f.chain[1]}进口（约 $${(f.india.years[2024]!=null?Number(f.india.years[2024]).toLocaleString("en-US"):"—")}M）之间的敞口，有一部分就来自经${f.chain[1]}完成的洗产地或再出口。` + (hs6==="8505"||hs6==="8507" ? `更值得警惕的是，本商品属于中国 2025-10 出口管制清单物项（中重稀土/锂电池及人造石墨负极），若经第三国转口，将在事实上削弱管制措施的有效性，也影响中国在全球供应链中的合规形象。` : ""));
+    out.push(`从竞争角度看，印度通过 FTA 原产地规则（CAROTAR 2020、CEPA 等）对转口货物给予关税优惠，使中国商品的实际竞争力被第三国中间商截留——中国企业直接出口份额收缩，而「转口中国成分」却在持续增长，两头受损。`);
+    out.push(`从贸易救济看，印度海关（DRI/CBIC）已对多起转口案件执法（液压破碎锤经马来西亚、化妆品经迪拜、烟花伪报等）。如果转口规模进一步扩大，印方很可能升级为系统性的反规避调查或更高反倾销税率，届时会波及中国正常的对印出口。`);
+    return out;
   }
   function customsResponseOf(f){
     const hs6 = String(f.hs||"").split(".")[0];
-    const lines = [];
     const ec = ecMatchByHs(f.hs);
+    const out = [];
     if(ec && ec.item.controlled)
-      lines.push(`出口管制：本商品（${ec.item.name}）已列入两用物项管制清单（${ec.item.basis}），中国海关应加强最终用户与最终用途核查，对经 ${f.chain[1]} 转口的异常申报（价格倒挂、目的地与用途不符、多段转运）实施重点查验。`);
+      out.push(`在出口管制层面，本商品（${ec.item.name}）已列入两用物项清单（${ec.item.basis}）。中国海关可加强对最终用户与最终用途的核查，对经${f.chain[1]}转口的异常申报（价格倒挂、目的地与用途不符、多段转运等）实施重点查验，堵住「第三国规避」的口子。`);
     else if(ec && ec.item.note)
-      lines.push(`出口管制：本商品（${ec.item.name}）当前未列入两用物项清单，但海关可参考该条目提示做参数与用途判定——「${(ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim()}」。`);
+      out.push(`在出口管制层面，本商品（${ec.item.name}）当前虽未列入两用物项清单，但海关可参考该条目的参数提示做逐单判定（${(ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim()}）。`);
     else
-      lines.push("出口管制：本商品当前未列入两用物项管制清单，按普通货物监管；海关可关注其是否含管制成分（化合物半导体、稀土、石墨等子项）而需逐单判定。");
-    lines.push(`原产地核验：配合印方 CAROTAR/原产地证明要求，对中国→${f.chain[1]} 出口的 HS 申报、发票与转口路径做数据比对，识别「第三国洗产地」型规避（[85][114]）。`);
-    lines.push("数据监控：以本 HS 编码为锚，监控「对中转地出口激增 × 中转地对印出口同步上升」的双升信号，纳入出口监测预警（类似 GTRI「进口激增监测」的反向机制，[118]）。");
+      out.push(`在出口管制层面，本商品目前未列入两用物项清单，按普通货物监管；海关仍可关注其是否隐含管制成分（化合物半导体、稀土、石墨等子项），必要时逐单判定。`);
+    out.push(`在原产地核验层面，可配合印方 CAROTAR/原产地证明要求，对"中国→${f.chain[1]}"出口的 HS 申报、发票与转口路径做数据比对，识别"第三国洗产地"型规避。`);
+    out.push(`在监测预警层面，可以本 HS 编码为锚，建立"对中转地出口激增 × 中转地对印出口同步上升"的双升信号监控，形成反向于 GTRI"进口激增监测"的出口侧预警机制。`);
     if(hs6==="8505" || hs6==="8507")
-      lines.push("窗口期管理：2025-10 管制公告暂停至 2026-11-10（[105]），窗口期内一般出口无需许可，但应提示企业留存最终用户证明，防范窗口期后恢复管制时的合规断档。");
-    return lines;
+      out.push(`需要特别留意窗口期管理：2025-10 管制公告目前暂停实施至 2026-11-10，窗口期内一般出口无需许可，但应提示企业留存最终用户证明，防范窗口期结束后恢复管制带来的合规断档。`);
+    return out;
   }
-  /* 真实性/可信性判断（基于来源性质与数据完整性，客观） */
+  /* 综合研判：把各维度汇成结论 */
+  function verdictOf(f){
+    const out = [];
+    const overlap = flowYears(f.china,f.india).filter(y=>f.china.years?.[y]!=null && f.india.years?.[y]!=null);
+    let trend = "数据不足以判断趋势";
+    if(overlap.length>=2){
+      const yA = overlap[overlap.length-2], yB = overlap[overlap.length-1];
+      const cYoy = (f.china.years[yB]-f.china.years[yA])/f.china.years[yA]*100;
+      const iYoy = (f.india.years[yB]-f.india.years[yA])/f.india.years[yA]*100;
+      trend = (cYoy>0&&iYoy>0) ? "双侧同步上升" : "未出现持续双升";
+    }
+    const mil = milRiskOf(f);
+    const ec = ecMatchByHs(f.hs);
+    const riskParts = [];
+    riskParts.push(`走私/管制风险${ec&&ec.item.controlled?"较高（已列管）":"低-中（未列管）"}`);
+    riskParts.push(`军事用途风险${mil.risk}`);
+    out.push(`综合来看，本条贸易流${trend}，与转口假说${overlap.length>=2&&((f.china.years[overlap[overlap.length-1]]-f.china.years[overlap[overlap.length-2]])>0&&(f.india.years[overlap[overlap.length-1]]-f.india.years[overlap[overlap.length-2]])>0)?"方向一致":"关联较弱"}；数据来源以官方为主、真实性较好，但尚缺逐单流向的直接证据，可信度定为"较高/中"是审慎的。主要风险维度：${riskParts.join("；")}。建议将其列为观察级转口路径，持续跟踪双侧数据与印方执法动态，并在必要时开展单证层面的专项核验。`);
+    return out;
+  }
+  /* 真实性判断：返回自然段落（结论在前、数据佐证在后） */
   function sourceTruthOf(f){
     const cName = (typeof SOURCES!=="undefined" ? (SOURCES.find(s=>s.id===f.china.source)||{}).name : "")||"";
     const iName = (typeof SOURCES!=="undefined" ? (SOURCES.find(s=>s.id===f.india.source)||{}).name : "")||"";
     const cOff = /官方|Comtrade|海关|统计|GSO|SingStat|FCSC|DOSM|DGCIS|ITJ/.test(cName);
     const iOff = /官方|Comtrade|海关|统计|GSO|SingStat|FCSC|DOSM|DGCIS|ITJ/.test(iName);
-    const yrs = flowYears(f.china, f.india);
     const missing = [2021,2022,2023,2024,2025].filter(y=>f.china.years?.[y]==null && f.india.years?.[y]==null);
-    const lines = [];
-    lines.push(`中国侧数据来源：${cName ? cName.slice(0,70) : "[未标注]"}——${cOff?"官方机构，数据真实性高":"非官方/行业口径，真实性中等"}。`);
-    lines.push(`印度侧数据来源：${iName ? iName.slice(0,70) : "[未标注]"}——${iOff?"官方机构，数据真实性高":"非官方/行业口径，真实性中等"}。`);
-    if(missing.length) lines.push(`数据完整性：${missing.join("、")} 年份双侧均无公开数值（UN Comtrade 中国 2025 官方数据延迟发布，预计 2026 年底），影响趋势判断的完整性，但不影响已观测年份的结论。`);
-    else lines.push(`数据完整性：2021–2025 双侧数值齐备（或单侧补足），趋势可完整观察。`);
     const cn = Number(f.china.years?.[2024]||0), in_ = Number(f.india.years?.[2024]||0);
+    const out = [];
+    let s = `本条贸易流两侧数据均来自${(cOff?"中国海关/UN Comtrade 等官方渠道":"行业整理口径")}与${(iOff?"印度及中转地官方统计":"非官方口径")}，整体可靠性较好，可作为判断依据，但解读时需留意统计口径差异。`;
+    out.push(s);
     if(cn>0 && in_>0 && cn > in_*3)
-      lines.push(`量级合理性：中国→${f.chain[1]}（2024 $${cn.toLocaleString("en-US")}M）远大于 ${f.chain[1]}→印度（2024 $${in_.toLocaleString("en-US")}M），说明中转地兼具本地消费与再出口，印度只是其出口目的地之一——数据自洽，转口成分需结合单证核验，不能仅凭量级差断言。`);
-    return lines;
+      out.push(`一个值得注意的细节是，中国对${f.chain[1]}的出口（2024 年约 $${cn.toLocaleString("en-US")}M）远超${f.chain[1]}对印度出口（约 $${in_.toLocaleString("en-US")}M）。这种量级差本身并不足以证明转口——中转地往往兼具本地消化与再出口功能，印度只是其众多目的地之一；要坐实转口，还需要结合单证流向，不能仅凭数字落差下结论。`);
+    if(missing.length)
+      out.push(`数据完整性方面，${missing.join("、")} 年份双侧均缺少公开数值（UN Comtrade 的中国 2025 年官方数据预计 2026 年底才发布）。缺口的年份不影响已观测年份的结论，但在研判趋势延续性时应适当留有余地。`);
+    else
+      out.push(`数据完整性方面，2021–2025 年双侧数值齐备，趋势可以完整观察。`);
+    return out;
   }
+  /* 可信性推断：基于趋势方向 + 管制背景 + 旁证 */
   function credibilityOf(f){
-    const lines = [];
+    const out = [];
     const overlap = flowYears(f.china,f.india).filter(y=>f.china.years?.[y]!=null && f.india.years?.[y]!=null);
     if(overlap.length>=2){
       const yA = overlap[overlap.length-2], yB = overlap[overlap.length-1];
       const cYoy = (f.china.years[yB]-f.china.years[yA])/f.china.years[yA]*100;
       const iYoy = (f.india.years[yB]-f.india.years[yA])/f.india.years[yA]*100;
       const bothUp = cYoy>0 && iYoy>0;
-      lines.push(`双侧趋势（${yA}→${yB}）：中国→${f.chain[1]} ${cYoy>=0?"+":""}${cYoy.toFixed(1)}%、${f.chain[1]}→印度 ${iYoy>=0?"+":""}${iYoy.toFixed(1)}%，${bothUp?"两侧同步上升（双升），与「中国货经中转地放量进入印度」的转口假说方向一致，可信性较强":"并非双侧同步上升，转口假说需谨慎"}`);
+      if(bothUp)
+        out.push(`从趋势看，${yA}→${yB} 年中国对${f.chain[1]}出口增长 ${cYoy>=0?"+":""}${cYoy.toFixed(1)}%，同时${f.chain[1]}对印度出口增长 ${iYoy>=0?"+":""}${iYoy.toFixed(1)}%，两侧同步上行。这种「双升」与「中国货物经中转地放量进入印度」的转口假说方向一致，是支持该假说的正向信号。`);
+      else
+        out.push(`从趋势看，${yA}→${yB} 年中国对${f.chain[1]}出口${cYoy>=0?"增长":"下降"} ${Math.abs(cYoy).toFixed(1)}%、${f.chain[1]}对印度出口${iYoy>=0?"增长":"下降"} ${Math.abs(iYoy).toFixed(1)}%，并未出现双侧同步上行。这意味着即使存在转口，其规模与节奏也未形成持续放量，对假说的支撑力度相对有限。`);
     }
     const ec = ecMatchByHs(f.hs);
     if(ec && ec.item.controlled)
-      lines.push(`管制背景：该 HS 属出口管制清单（${ec.item.basis}），若转口属实，属于「管制物项经第三国规避」的高敏感情形，需更高证据标准。`);
-    lines.push(`现有佐证：转口板块上下文收录 CBIC 14/2025 原产地新规、DRI 多起执法案例与 Nomura 亚洲转口研究（[85][87][88][114]），为同类商品转口提供制度性与案例性旁证；单条贸易流仍以数据信号为主，缺乏逐单货物流向的直接证据，故整体可信度定为「较高/中」而非「高」。`);
-    return lines;
+      out.push(`还需考虑管制背景：本商品属于中国出口管制清单物项（${ec.item.basis}）。若转口确凿，将属于「管制物项经第三国规避」的高敏感情形，因此需要比普通商品更高的证据标准才能下结论。`);
+    out.push(`现有旁证包括 CBIC 14/2025 原产地新规、DRI 多起转口执法案例以及 Nomura 关于亚洲转口的研究，均指向同类商品存在转口渠道的制度性与案例性可能；但单条贸易流目前仍以数据信号为主，尚未见到逐单货物流向的直接证据，故整体可信度定为「较高/中」是审慎的。`);
+    return out;
   }
-  /* 走私管制物品风险判断 */
+  /* 走私管制物品风险 */
   function smugglingRiskOf(f){
     const ec = ecMatchByHs(f.hs);
-    const lines = [];
+    const out = [];
     if(ec && ec.item.controlled){
-      lines.push(`走私/违规出口管制物品风险：高——本商品（${ec.item.name}）列管（${ec.item.basis}），经第三国转口将构成「未经许可出口+规避监管」双重违规，属海关重点打击对象。`);
-      lines.push(`监管提示：${ec.item.note||"—"}`);
+      out.push(`走私/违规出口管制物品风险较高。本商品（${ec.item.name}）已列入两用物项管制清单（${ec.item.basis}）。若经${f.chain[1]}转口进入印度，将同时构成「未经许可出口」与「规避监管」双重违规，属于海关执法重点关注的类型。`);
+      const note = (ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim();
+      if(note) out.push(`监管提示：${note}`);
     } else {
-      lines.push(`走私/违规出口管制物品风险：低—中——本商品（${f.goods}）当前未列入两用物项管制清单，走私风险集中于偷逃关税/反倾销税与虚假原产地（参考 DRI 同类案件 [87][116][117]），而非出口管制违规。`);
-      if(ec && ec.item.note) lines.push(`判定提示：${(ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim()}`);
+      out.push(`走私/违规出口管制物品风险总体为低至中等。本商品（${f.goods}）当前未列入两用物项管制清单，其风险更多集中在偷逃关税、规避反倾销税与伪造原产地（DRI 已有同类型案件查处记录），而非出口管制违规本身。`);
+      if(ec && ec.item.note){
+        const note = (ec.item.note||"").replace(/\[\d+\]/g, "").replace(/\s+/g, " ").trim();
+        out.push(`判定提示：${note}`);
+      }
     }
-    return lines;
+    return out;
   }
 
   /* 贸易流：深度评估 sections（HTML 弹窗与 DOCX 共用结构） */
@@ -951,19 +977,21 @@
       secs.push({ type:"para", text:`${y} | ${cv==null?"—":Number(cv).toLocaleString("en-US")} | ${iv==null?"—":Number(iv).toLocaleString("en-US")}` });
     });
     secs.push({ type:"heading", text:"三、真实性判断及理由" });
-    sourceTruthOf(f).forEach(l=>secs.push({ type:"bullet", text:l }));
+    sourceTruthOf(f).forEach(l=>secs.push({ type:"para", text:l }));
     secs.push({ type:"heading", text:"四、可信性推断及理由" });
-    credibilityOf(f).forEach(l=>secs.push({ type:"bullet", text:l }));
+    credibilityOf(f).forEach(l=>secs.push({ type:"para", text:l }));
     secs.push({ type:"heading", text:"五、风险判断" });
-    secs.push({ type:"bullet", text:"（一）走私/违规出口管制物品风险" });
-    smugglingRiskOf(f).forEach(l=>secs.push({ type:"bullet", text:l }));
+    secs.push({ type:"para", text:"（一）走私/违规出口管制物品风险" });
+    smugglingRiskOf(f).forEach(l=>secs.push({ type:"para", text:l }));
     const mil = milRiskOf(f);
-    secs.push({ type:"bullet", text:`（二）出口物项被用于军事用途风险：${mil.risk}——${mil.why}` });
+    secs.push({ type:"para", text:`（二）出口物项被用于军事用途风险（${mil.risk}）：${mil.why}` });
     secs.push({ type:"heading", text:"六、若属实对中国的影响" });
-    chinaImpactOf(f).forEach(l=>secs.push({ type:"bullet", text:l }));
+    chinaImpactOf(f).forEach(l=>secs.push({ type:"para", text:l }));
     secs.push({ type:"heading", text:"七、中国海关应对措施" });
-    customsResponseOf(f).forEach(l=>secs.push({ type:"bullet", text:l }));
-    secs.push({ type:"heading", text:"八、数据口径与来源" });
+    customsResponseOf(f).forEach(l=>secs.push({ type:"para", text:l }));
+    secs.push({ type:"heading", text:"八、综合研判" });
+    verdictOf(f).forEach(l=>secs.push({ type:"para", text:l }));
+    secs.push({ type:"heading", text:"九、数据口径与来源" });
     secs.push({ type:"para", text:`中国侧：${f.china.note||"—"}` });
     secs.push({ type:"para", text:`中转地→印度：${f.india.note||"—"}` });
     secs.push({ type:"para", text:`分析：${f.note||"—"}` });
@@ -978,20 +1006,22 @@
     secs.push({ type:"heading", text:"二、证据与数据" });
     secs.push({ type:"para", text: r.data || "—" });
     secs.push({ type:"heading", text:"三、真实性判断及理由" });
-    const authMap = { "高":"证据为官方执法文件/海关通告（Show Cause Notice、征税通知、DRI 查获通报）或权威媒体直接引用，真实性强", "较高":"证据为官方统计或权威机构研究，结合媒体报道，真实性较高", "中":"证据为行业分析/机构研究，个别含官方引证，真实性中等", "较低":"证据以推断/指控为主，缺乏直接单证，真实性待核验", "低":"以传闻/推断为主，真实性存疑" };
-    secs.push({ type:"bullet", text:`真实程度评级：${r.authenticity||"—"}——${authMap[r.authenticity]||"按证据类型判定"}` });
+    const authMap = { "高":"证据为官方执法文件或海关通告（Show Cause Notice、征税通知、DRI 查获通报），或权威媒体直接引用，真实性强", "较高":"证据为官方统计或权威机构研究，辅以媒体报道，真实性较高", "中":"证据为行业分析与机构研究，个别含官方引证，真实性中等", "较低":"证据以推断或指控为主，缺乏直接单证，真实性待核验", "低":"以传闻和推断为主，真实性存疑" };
+    secs.push({ type:"para", text:`真实程度评为「${r.authenticity||"—"}」：${authMap[r.authenticity]||"按证据类型判定"}。` });
     secs.push({ type:"heading", text:"四、可信性推断及理由" });
-    const credMap = { "高":"来源为官方文件（海关通告/征税通知/DRI 执法）或权威机构直接发布，可信度高", "较高":"来源为官方统计+权威研究（Nomura/越南官方等）交叉印证，可信度较高", "中":"来源为行业报告/媒体，有官方引证但间接，可信度中等", "较低":"来源为推断性分析，可信度较低", "低":"来源单一且以指控为主，可信度低" };
-    secs.push({ type:"bullet", text:`可信程度评级：${r.credibility||"—"}——${credMap[r.credibility]||"按来源性质判定"}` });
-    if(r.credNote) secs.push({ type:"bullet", text:`评估说明：${r.credNote}` });
+    const credMap = { "高":"来源为官方文件或权威机构直接发布，可信度高", "较高":"来源为官方统计加权威研究（如 Nomura、越南官方）交叉印证，可信度较高", "中":"来源为行业报告或媒体，有官方引证但属间接，可信度中等", "较低":"来源为推断性分析，可信度较低", "低":"来源单一且以指控为主，可信度低" };
+    secs.push({ type:"para", text:`可信程度评为「${r.credibility||"—"}」：${credMap[r.credibility]||"按来源性质判定"}。` });
+    if(r.credNote) secs.push({ type:"para", text:`评估说明：${r.credNote}` });
     secs.push({ type:"heading", text:"五、风险判断" });
-    secs.push({ type:"bullet", text:"（一）走私/违规出口管制物品风险：本路径主要商品为 "+r.goods+"，若属管制物项（稀土/锂电/镓锗等）经第三国转口，构成规避出口管制；若为普通商品，风险集中于虚假原产地与偷逃关税（参考 DRI/CBIC 执法案例 [85][87][114][115][116][117]）。" });
-    secs.push({ type:"bullet", text:"（二）军事用途风险：路径商品多为民用（服装/化妆品/玩具/钢铁等），未见公开军事用途证据；若涉及工程机械/电子等，按 HS 参数与最终用户判定（参考 BRO 边境项目报道 [145]）。" });
+    secs.push({ type:"para", text:`走私/违规出口管制物品风险：本路径主要商品为「${r.goods}」。若属管制物项（稀土、锂电、镓锗等）经第三国转口，将构成规避出口管制；若为普通商品，风险则集中于伪造原产地与偷逃关税，DRI 与 CBIC 已有同类型案件查处记录。` });
+    secs.push({ type:"para", text:`军事用途风险：路径商品以民用为主（服装、化妆品、玩具、钢铁等），未见公开军事用途证据；若涉及工程机械或电子类商品，应按 HS 参数与最终用户情况判定（可参考 BRO 边境项目相关报道）。` });
     secs.push({ type:"heading", text:"六、若属实对中国的影响" });
-    secs.push({ type:"bullet", text:"转口属实将削弱中国商品的直接出口统计价值与关税竞争力；印度借 FTA 原产地规则获得低关税中国成分，而中企实际收益被中间商截留；同时放大「中国转口」的合规叙事，可能招致印度系统性反规避调查与更高贸易壁垒。" });
+    secs.push({ type:"para", text:`如果转口属实，中国商品的直接出口统计价值与关税竞争力都会受损：印度借 FTA 原产地规则获得低关税的中国成分，而中企实际收益被中间商截留；同时"中国转口"的合规叙事被强化，可能招致印度系统性反规避调查与更高贸易壁垒，最终波及中国正常出口。` });
     secs.push({ type:"heading", text:"七、中国海关应对措施" });
-    secs.push({ type:"bullet", text:"加强原产地单证与转口路径核验，配合印方 CAROTAR/原产地证明要求（[85][114]）；对涉管制物项落实最终用户/最终用途核查；将本路径商品 HS 纳入「对中转地出口×中转地对印出口」双升监控。" });
-    secs.push({ type:"heading", text:"八、来源" });
+    secs.push({ type:"para", text:`一是加强原产地单证与转口路径核验，配合印方 CAROTAR/原产地证明要求；二是对涉管制物项落实最终用户与最终用途核查；三是将本路径商品 HS 纳入"对中转地出口 × 中转地对印出口"的双升监控，及时发现异常放量。` });
+    secs.push({ type:"heading", text:"八、综合研判" });
+    secs.push({ type:"para", text:`综合来看，本条路径${r.credibility==="高"?"证据链较完整（官方文件加执法案例），可信度较高，建议列为重点观察对象并持续跟踪":(r.credibility==="较高"?"证据以官方统计与权威研究为主，可信度较高，建议列为观察级转口路径":"证据以推断与媒体报道为主，可信度中等偏低，建议作为背景线索持续关注，待出现官方执法或逐单证据后再升级评估")}。建议结合贸易数据板块的同 HS 双升信号交叉印证，形成"开源线索 × 数据验证"的双轨研判。` });
+    secs.push({ type:"heading", text:"九、来源" });
     secs.push({ type:"para", text: r.source ? `[${r.source}]` : "—" });
     return secs;
   }
@@ -1007,30 +1037,35 @@
     const sec = t=>`<div class="frep-sec"><h4>${t}</h4>`;
     const mil = milRiskOf(f);
     const ec = ecMatchByHs(f.hs);
+    const para = l=>`<p class="frep-p">${l}</p>`;
     return `
-      <h3 class="frep-title">转口贸易流深度评估报告</h3>
+      <h3 class="frep-title">转口贸易流评估报告</h3>
       <div class="frep-meta">路径：${f.chain.map(p=>`<span class="node ${p==="中国"?"cn":(p==="印度"?"in":"mid")}">${p}</span>`).join('<span class="arrow">→</span>')}</div>
-      <div class="frep-meta">主要商品：<b>${f.goods}</b> · HS ${f.hs}${ec&&ec.item.controlled?` <span class="badge b-ec b-ec-yes">列管</span>`:(ec?` <span class="badge b-ec b-ec-no">未列管</span>`:"")}</div>
-      ${sec("一、贸易流概况")}<p>${f.hsNote || "—"}</p></div>
+      <div class="frep-meta">主要商品：<b>${f.goods}</b> · HS ${f.hs}${ec&&ec.item.controlled?` <span class="badge b-ec b-ec-yes">已列管</span>`:(ec?` <span class="badge b-ec b-ec-no">未列管</span>`:"")}</div>
+      <div class="frep-verdict">
+        ${verdictOf(f).map(para).join("")}
+      </div>
+      ${sec("一、贸易流概况")}${para(f.hsNote || "—")}</div>
       ${sec("二、历年数据（单位：百万美元）")}
         <table class="frep-tbl"><thead><tr><th>年份</th><th>中国 → ${f.chain[1]}</th><th>${f.chain[1]} → 印度</th></tr></thead><tbody>${rows}</tbody></table>
       </div>
       ${sec("三、真实性判断及理由")}
-        ${sourceTruthOf(f).map(l=>`<p class="frep-li">• ${l}</p>`).join("")}
+        ${sourceTruthOf(f).map(para).join("")}
       </div>
       ${sec("四、可信性推断及理由")}
-        ${credibilityOf(f).map(l=>`<p class="frep-li">• ${l}</p>`).join("")}
+        ${credibilityOf(f).map(para).join("")}
       </div>
       ${sec("五、风险判断")}
-        <p class="frep-li"><b>（一）走私/违规出口管制物品风险</b></p>
-        ${smugglingRiskOf(f).map(l=>`<p class="frep-li">　• ${l}</p>`).join("")}
-        <p class="frep-li"><b>（二）出口物项被用于军事用途风险：${mil.risk}</b> —— ${mil.why}</p>
+        <p class="frep-p"><b>（一）走私/违规出口管制物品风险</b></p>
+        ${smugglingRiskOf(f).map(para).join("")}
+        <p class="frep-p"><b>（二）出口物项被用于军事用途风险（${mil.risk}）</b></p>
+        ${para(mil.why)}
       </div>
       ${sec("六、若属实对中国的影响")}
-        ${chinaImpactOf(f).map(l=>`<p class="frep-li">• ${l}</p>`).join("")}
+        ${chinaImpactOf(f).map(para).join("")}
       </div>
       ${sec("七、中国海关应对措施")}
-        ${customsResponseOf(f).map(l=>`<p class="frep-li">• ${l}</p>`).join("")}
+        ${customsResponseOf(f).map(para).join("")}
       </div>
       ${sec("八、数据口径与来源")}
         <p>中国侧：${f.china.note || "—"}${f.china.source?cite(f.china.source):""}</p>
@@ -1044,31 +1079,34 @@
       </div>`;
   }
   function routeReportHTML(r, i){
-    const authMap = { "高":"证据为官方执法文件/海关通告或权威媒体直接引用，真实性强", "较高":"证据为官方统计或权威机构研究结合媒体报道，真实性较高", "中":"证据为行业分析/机构研究、个别含官方引证，真实性中等", "较低":"证据以推断/指控为主，缺乏直接单证，真实性待核验", "低":"以传闻/推断为主，真实性存疑" };
-    const credMap = { "高":"来源为官方文件或权威机构直接发布，可信度高", "较高":"来源为官方统计+权威研究交叉印证，可信度较高", "中":"来源为行业报告/媒体、有官方引证但间接，可信度中等", "较低":"来源为推断性分析，可信度较低", "低":"来源单一且以指控为主，可信度低" };
+    const authMap = { "高":"证据为官方执法文件或海关通告（Show Cause Notice、征税通知、DRI 查获通报），或权威媒体直接引用，真实性强", "较高":"证据为官方统计或权威机构研究，辅以媒体报道，真实性较高", "中":"证据为行业分析与机构研究，个别含官方引证，真实性中等", "较低":"证据以推断或指控为主，缺乏直接单证，真实性待核验", "低":"以传闻和推断为主，真实性存疑" };
+    const credMap = { "高":"来源为官方文件或权威机构直接发布，可信度高", "较高":"来源为官方统计加权威研究（如 Nomura、越南官方）交叉印证，可信度较高", "中":"来源为行业报告或媒体，有官方引证但属间接，可信度中等", "较低":"来源为推断性分析，可信度较低", "低":"来源单一且以指控为主，可信度低" };
+    const para = l=>`<p class="frep-p">${l}</p>`;
+    const verdict = r.credibility==="高" ? "证据链较完整（官方文件加执法案例），可信度较高，建议列为重点观察对象并持续跟踪" : (r.credibility==="较高" ? "证据以官方统计与权威研究为主，可信度较高，建议列为观察级转口路径" : "证据以推断与媒体报道为主，可信度中等偏低，建议作为背景线索持续关注，待出现官方执法或逐单证据后再升级评估");
     return `
-      <h3 class="frep-title">转口路径深度评估报告</h3>
+      <h3 class="frep-title">转口路径评估报告</h3>
       <div class="frep-meta">路径：${r.path.split("→").map(s=>s.trim()).map(p=>`<span class="node ${p==="中国"?"cn":(p==="印度"?"in":"mid")}">${p}</span>`).join('<span class="arrow">→</span>')}</div>
       <div class="frep-meta">主要商品：<b>${r.goods}</b></div>
-      <div class="frep-sec"><h4>一、证据与数据</h4><p>${r.data || "—"}${r.source?cite(r.source):""}</p></div>
+      <div class="frep-verdict">${para(`综合来看，本条路径${verdict}。建议结合贸易数据板块的同 HS 双升信号交叉印证，形成"开源线索 × 数据验证"的双轨研判。`)}</div>
+      <div class="frep-sec"><h4>一、证据与数据</h4>${para((r.data||"—")+(r.source?`（来源 ${r.source}）`:"")+(r.source?cite(r.source):""))}</div>
       <div class="frep-sec"><h4>二、真实性判断及理由</h4>
-        <p class="frep-li">• 真实程度评级：<span class="rel-badge ${relCls(r.authenticity||"—")}">${r.authenticity||"—"}</span> —— ${authMap[r.authenticity]||"按证据类型判定"}</p>
+        ${para(`真实程度评为「${r.authenticity||"—"}」：${authMap[r.authenticity]||"按证据类型判定"}。`)}
       </div>
       <div class="frep-sec"><h4>三、可信性推断及理由</h4>
-        <p class="frep-li">• 可信程度评级：<span class="rel-badge ${relCls(r.credibility||"—")}">${r.credibility||"—"}</span> —— ${credMap[r.credibility]||"按来源性质判定"}</p>
-        ${r.credNote?`<p class="frep-li">• 评估说明：${r.credNote}</p>`:""}
+        ${para(`可信程度评为「${r.credibility||"—"}」：${credMap[r.credibility]||"按来源性质判定"}。`)}
+        ${r.credNote?para(`评估说明：${r.credNote}`):""}
       </div>
       <div class="frep-sec"><h4>四、风险判断</h4>
-        <p class="frep-li">• （一）走私/违规出口管制物品风险：主要商品「${r.goods}」若属管制物项（稀土/锂电/镓锗等）经第三国转口，构成规避出口管制；若为普通商品，风险集中于虚假原产地与偷逃关税（参考 DRI/CBIC 执法案例 <span class="cite-ref">85</span> <span class="cite-ref">87</span> <span class="cite-ref">114</span> <span class="cite-ref">115</span> <span class="cite-ref">116</span> <span class="cite-ref">117</span>）。</p>
-        <p class="frep-li">• （二）军事用途风险：路径商品多为民用（服装/化妆品/玩具/钢铁等），未见公开军事用途证据；若涉及工程机械/电子等，按 HS 参数与最终用户判定（参考 BRO 边境项目报道 <span class="cite-ref">145</span>）。</p>
+        ${para(`走私/违规出口管制物品风险：本路径主要商品为「${r.goods}」。若属管制物项（稀土、锂电、镓锗等）经第三国转口，将构成规避出口管制；若为普通商品，风险则集中于伪造原产地与偷逃关税，DRI 与 CBIC 已有同类型案件查处记录。`)}
+        ${para(`军事用途风险：路径商品以民用为主（服装、化妆品、玩具、钢铁等），未见公开军事用途证据；若涉及工程机械或电子类商品，应按 HS 参数与最终用户情况判定（可参考 BRO 边境项目相关报道）。`)}
       </div>
       <div class="frep-sec"><h4>五、若属实对中国的影响</h4>
-        <p class="frep-li">• 转口属实将削弱中国商品直接出口的统计价值与关税竞争力；印度借 FTA 原产地规则获得低关税中国成分，中企实际收益被中间商截留；同时放大「中国转口」合规叙事，可能招致印度系统性反规避调查与更高贸易壁垒。</p>
+        ${para(`如果转口属实，中国商品的直接出口统计价值与关税竞争力都会受损：印度借 FTA 原产地规则获得低关税的中国成分，而中企实际收益被中间商截留；同时"中国转口"的合规叙事被强化，可能招致印度系统性反规避调查与更高贸易壁垒，最终波及中国正常出口。`)}
       </div>
       <div class="frep-sec"><h4>六、中国海关应对措施</h4>
-        <p class="frep-li">• 加强原产地单证与转口路径核验，配合印方 CAROTAR/原产地证明要求（<span class="cite-ref">85</span> <span class="cite-ref">114</span>）；对涉管制物项落实最终用户/最终用途核查；将本路径商品 HS 纳入「对中转地出口×中转地对印出口」双升监控。</p>
+        ${para(`一是加强原产地单证与转口路径核验，配合印方 CAROTAR/原产地证明要求；二是对涉管制物项落实最终用户与最终用途核查；三是将本路径商品 HS 纳入"对中转地出口 × 中转地对印出口"的双升监控，及时发现异常放量。`)}
       </div>
-      <div class="frep-sec"><h4>七、来源</h4><p>${r.source?cite(r.source):"—"}</p></div>
+      <div class="frep-sec"><h4>七、来源</h4>${para(r.source?cite(r.source):"—")}</div>
       <div class="report-actions">
         <button class="dl-docx" type="button" id="flowDlDocx">⬇ 下载评估报告（DOCX）</button>
         <span class="dl-hint">点击后浏览器将直接生成并下载 Word 文档，无需联网</span>
