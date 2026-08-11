@@ -100,10 +100,25 @@ img{max-width:100%}
 .subdep-head h4{font-size:14.5px;color:var(--ink);font-family:var(--font-display);font-weight:700;margin:0;line-height:1.35}
 .subdep-badge{flex-shrink:0;font-family:var(--font-mono);font-weight:800;font-size:17px;color:#fff;padding:3px 12px;border-radius:999px;letter-spacing:.3px;box-shadow:0 2px 6px rgba(0,0,0,.14)}
 .subdep-canvas{position:relative;width:100%;height:210px;flex-shrink:0}
-.subdep-note{font-size:12px;color:var(--ink-mute);line-height:1.65;margin-top:12px}
-.subdep-note.folded{max-height:3.9em;overflow:hidden;position:relative}
-.subdep-fold-btn{display:inline-block;margin-left:4px;padding:0 10px;font-size:11.5px;font-weight:600;color:var(--in);background:rgba(224,118,42,.1);border:1px solid rgba(224,118,42,.35);border-radius:999px;cursor:pointer;font-family:inherit;transition:background .15s}
-.subdep-fold-btn:hover{background:rgba(224,118,42,.2)}
+/* 注释折叠：用原生 <details>/<summary> 实现，按钮天然在 note 区下方可见 */
+.subdep-details{margin-top:10px}
+.subdep-details > .subdep-fold-btn{
+  list-style:none;display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;font-size:11.5px;font-weight:600;color:var(--in);
+  background:rgba(224,118,42,.1);border:1px solid rgba(224,118,42,.35);
+  border-radius:999px;cursor:pointer;font-family:inherit;
+  transition:background .15s,color .15s;
+}
+.subdep-details > .subdep-fold-btn::-webkit-details-marker{display:none}
+.subdep-details > .subdep-fold-btn::marker{display:none}
+.subdep-details > .subdep-fold-btn:hover{background:rgba(224,118,42,.22)}
+.subdep-details[open] > .subdep-fold-btn{background:rgba(224,118,42,.18);color:var(--primary)}
+.subdep-details .chev{display:inline-block;width:0;height:0;
+  border-left:5px solid currentColor;border-top:4px solid transparent;
+  border-bottom:4px solid transparent;transition:transform .2s}
+.subdep-details[open] .chev{transform:rotate(90deg)}
+.subdep-note-body{font-size:12px;color:var(--ink-mute);line-height:1.7;
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
 /* 总览条：14 产业按依赖度降序的胶囊色块（可点击导航） */
 .top-overview{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:20px 0 2px}
 .top-overview-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
